@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  body {
+    @apply bg-white text-[#111111];
+  }
+}
+
+/* ── Mosaic Gallery Grid ── */
+.mosaic-grid {
+  column-count: 1;
+  column-gap: 4px;
+}
+
+.mosaic-item {
+  break-inside: avoid;
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .mosaic-grid { column-count: 2; }
+}
+
+@media (min-width: 1024px) {
+  .mosaic-grid { column-count: 3; }
+}
+
+@media (min-width: 1280px) {
+  .mosaic-grid { column-count: 4; }
+}
+
