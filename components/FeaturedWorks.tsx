@@ -79,11 +79,11 @@ const FeaturedWorks = () => {
                   className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                   priority={index === 0}
                 />
-                <div className="absolute inset-0 bg-black/30 md:bg-black/10 md:group-hover:bg-black/40 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors duration-500" />
 
-                <div className="absolute bottom-6 left-6 text-white translate-y-0 opacity-100 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500">
-                  <p className="text-[9px] uppercase tracking-[0.2em] mb-1 opacity-90 font-medium">{item.category}</p>
-                  <h4 className="text-lg font-bold tracking-tight">{item.title}</h4>
+                <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <p className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] mb-1 opacity-90 font-medium">{item.category}</p>
+                  <h4 className="text-sm md:text-lg font-bold tracking-tight">{item.title}</h4>
                 </div>
               </motion.div>
             ))}
