@@ -119,11 +119,11 @@ const Gallery = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                      <p className="text-white font-semibold text-base translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 md:p-5">
+                      <p className="text-white font-semibold text-xs md:text-base translate-y-3 group-hover:translate-y-0 transition-transform duration-300 line-clamp-1">
                         {photo.title}
                       </p>
-                      <p className="text-white/60 text-xs uppercase tracking-widest mt-1 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                      <p className="text-white/60 text-[9px] md:text-xs uppercase tracking-widest mt-0.5 md:mt-1 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 delay-75">
                         {photo.category}
                       </p>
                     </div>

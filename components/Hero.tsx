@@ -54,10 +54,10 @@ const Hero = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-white font-medium tracking-[0.3em] mb-4 uppercase text-sm">
+            <h2 className="text-white font-medium tracking-[0.3em] mb-2 md:mb-4 uppercase text-[10px] md:text-sm">
               {name}
             </h2>
-            <h1 className="text-5xl md:text-8xl font-bold mb-8 text-white tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 text-white tracking-tight leading-[1.1] md:leading-tight">
               {tagline.includes(",") ? (
                 <>
                   {tagline.split(",")[0]},<br />
@@ -74,7 +74,7 @@ const Hero = () => {
             >
               <a
                 href="#gallery"
-                className="inline-block border border-white text-white px-10 py-4 rounded-none hover:bg-white hover:text-black transition-all duration-300 font-medium uppercase tracking-widest text-sm"
+                className="inline-block border border-white text-white px-6 py-3 md:px-10 md:py-4 rounded-none hover:bg-white hover:text-black transition-all duration-300 font-medium uppercase tracking-widest text-[10px] md:text-sm"
               >
                 View Gallery
               </a>

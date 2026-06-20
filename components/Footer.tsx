@@ -156,7 +156,7 @@ const Footer = () => {
 
       {/* ──────────── Main Footer Grid ──────────── */}
       <div className="relative container mx-auto px-6 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
 
           {/* Column 1 — Brand */}
           <motion.div
@@ -166,10 +166,10 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0 }}
             className="lg:col-span-1"
           >
-            <a href="#home" className="inline-block text-2xl font-bold tracking-tighter mb-4 hover:opacity-70 transition-opacity">
+            <a href="#home" className="inline-block text-xl md:text-2xl font-bold tracking-tighter mb-4 hover:opacity-70 transition-opacity">
               HIKRA
             </a>
-            <p className="text-white/40 text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-white/40 text-[10px] md:text-sm leading-relaxed mb-6 max-w-xs">
               Capturing timeless moments through the art of photography &amp; cinematic videography. Every frame tells a story.
             </p>
 
@@ -182,9 +182,9 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className={`w-10 h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 hover:text-white hover:border-transparent transition-all duration-300 ${social.color}`}
+                  className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 hover:text-white hover:border-transparent transition-all duration-300 ${social.color}`}
                 >
-                  <social.icon className="w-4 h-4" />
+                  <social.icon className="w-3.5 h-3.5 md:w-4 md:h-4" />
                 </a>
               ))}
             </div>
@@ -197,7 +197,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-6">
+            <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
               Quick Links
             </h3>
             <ul className="space-y-3.5">
@@ -205,7 +205,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="group flex items-center gap-2 text-white/40 text-sm hover:text-white transition-colors duration-300"
+                    className="group flex items-center gap-2 text-white/40 text-[10px] md:text-sm hover:text-white transition-colors duration-300"
                   >
                     <span className="w-0 h-px bg-white group-hover:w-4 transition-all duration-300" />
                     {link.name}
@@ -222,13 +222,13 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-6">
+            <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
               Services
             </h3>
             <ul className="space-y-3.5">
               {services.map((service) => (
                 <li key={service}>
-                  <span className="text-white/40 text-sm hover:text-white transition-colors duration-300 cursor-default">
+                  <span className="text-white/40 text-[10px] md:text-sm hover:text-white transition-colors duration-300 cursor-default">
                     {service}
                   </span>
                 </li>
@@ -243,7 +243,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-6">
+            <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
               Get In Touch
             </h3>
 
@@ -251,24 +251,24 @@ const Footer = () => {
               <li>
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-start gap-3 text-white/40 text-sm hover:text-white transition-colors group"
+                  className="flex items-start gap-2 md:gap-3 text-white/40 text-[10px] md:text-sm hover:text-white transition-colors group break-all"
                 >
-                  <Mail className="w-4 h-4 mt-0.5 shrink-0 text-white/30 group-hover:text-white transition-colors" />
+                  <Mail className="w-3.5 h-3.5 md:w-4 md:h-4 mt-0.5 shrink-0 text-white/30 group-hover:text-white transition-colors" />
                   {email}
                 </a>
               </li>
               <li>
                 <a
                   href={`tel:${phone}`}
-                  className="flex items-start gap-3 text-white/40 text-sm hover:text-white transition-colors group"
+                  className="flex items-start gap-2 md:gap-3 text-white/40 text-[10px] md:text-sm hover:text-white transition-colors group"
                 >
-                  <Phone className="w-4 h-4 mt-0.5 shrink-0 text-white/30 group-hover:text-white transition-colors" />
+                  <Phone className="w-3.5 h-3.5 md:w-4 md:h-4 mt-0.5 shrink-0 text-white/30 group-hover:text-white transition-colors" />
                   {phone}
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-3 text-white/40 text-sm">
-                  <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-white/30" />
+                <div className="flex items-start gap-2 md:gap-3 text-white/40 text-[10px] md:text-sm">
+                  <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4 mt-0.5 shrink-0 text-white/30" />
                   {location}
                 </div>
               </li>
@@ -276,21 +276,21 @@ const Footer = () => {
 
             {/* Newsletter */}
             <div>
-              <p className="text-white/50 text-xs uppercase tracking-widest mb-3">Newsletter</p>
+              <p className="text-white/50 text-[9px] md:text-xs uppercase tracking-widest mb-3">Newsletter</p>
               <form onSubmit={handleSubscribe} className="relative">
                 <input
                   type="email"
                   value={emailValue}
                   onChange={(e) => setEmailValue(e.target.value)}
                   placeholder="Email address"
-                  className="w-full bg-white/5 border border-white/10 rounded-full px-5 py-3 pr-12 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors"
+                  className="w-full bg-white/5 border border-white/10 rounded-full px-4 md:px-5 py-2.5 md:py-3 pr-10 md:pr-12 text-[10px] md:text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors"
                 />
                 <button
                   type="submit"
                   aria-label="Subscribe"
-                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  <Send className="w-3 h-3 md:w-3.5 md:h-3.5" />
                 </button>
               </form>
               {subscribed && (

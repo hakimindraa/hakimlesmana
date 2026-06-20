@@ -14,9 +14,9 @@ interface Photo {
 }
 
 const gridClasses = [
-  "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto",
+  "md:col-span-2 md:row-span-2 aspect-[4/5] md:aspect-auto",
   "md:col-span-1 md:row-span-1 aspect-square md:aspect-auto",
-  "md:col-span-1 md:row-span-1 aspect-square md:aspect-auto",
+  "md:col-span-1 md:row-span-1 aspect-[4/3] md:aspect-auto",
 ];
 
 const FeaturedWorks = () => {
@@ -61,7 +61,7 @@ const FeaturedWorks = () => {
             <div className="w-8 h-8 border-3 border-gray-300 border-t-gray-800 rounded-full animate-spin" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 h-auto md:h-[550px]">
+          <div className="columns-2 gap-2 space-y-2 md:columns-1 md:space-y-0 md:grid md:grid-cols-3 md:grid-rows-2 md:gap-4 h-auto md:h-[550px]">
             {featured.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -69,7 +69,7 @@ const FeaturedWorks = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className={`relative overflow-hidden group rounded-sm shadow-sm md:h-full ${gridClasses[index] || ""}`}
+                className={`break-inside-avoid w-full relative overflow-hidden group rounded-sm shadow-sm md:h-full ${gridClasses[index] || ""}`}
               >
                 <Image
                   src={item.src}

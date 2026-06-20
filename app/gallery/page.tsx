@@ -87,9 +87,9 @@ export default function FullGalleryPage() {
         <div className="relative container mx-auto px-6 pt-12 pb-20 md:pt-16 md:pb-28">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-white/50 text-sm hover:text-white transition-colors mb-12 group"
+            className="inline-flex items-center gap-2 text-white/50 text-[10px] md:text-sm hover:text-white transition-colors mb-8 md:mb-12 group"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:-translate-x-1 transition-transform" />
             Back to Home
           </Link>
 
@@ -99,15 +99,15 @@ export default function FullGalleryPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs uppercase tracking-[0.2em] text-white/60 mb-6">
-              <Camera className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] md:text-xs uppercase tracking-[0.2em] text-white/60 mb-6">
+              <Camera className="w-3 h-3 md:w-3.5 md:h-3.5" />
               <span>Full Collection</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
               Gallery
             </h1>
-            <p className="text-white/50 text-base md:text-lg leading-relaxed max-w-lg">
+            <p className="text-white/50 text-sm md:text-lg leading-relaxed max-w-lg">
               Browse through my complete collection of photography and
               videography work. Filter by category to find what inspires you.
             </p>
@@ -131,7 +131,7 @@ export default function FullGalleryPage() {
                     setActiveCategory(cat);
                     setSelectedImage(null);
                   }}
-                  className={`shrink-0 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 ${
+                  className={`shrink-0 px-4 py-2 md:px-5 md:py-2.5 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest transition-all duration-300 ${
                     activeCategory === cat
                       ? "bg-[#111] text-white shadow-lg"
                       : "bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-800"
@@ -139,7 +139,7 @@ export default function FullGalleryPage() {
                 >
                   {cat}
                   <span
-                    className={`ml-2 text-[10px] ${
+                    className={`ml-1 md:ml-2 text-[8px] md:text-[10px] ${
                       activeCategory === cat
                         ? "text-white/60"
                         : "text-gray-400"
@@ -169,7 +169,7 @@ export default function FullGalleryPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
+                className="columns-2 lg:columns-3 xl:columns-4 gap-2 space-y-2 md:gap-4 md:space-y-4"
               >
                 {filteredPhotos.map((photo, index) => (
                   <motion.div
@@ -188,10 +188,10 @@ export default function FullGalleryPage() {
                       className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                      <p className="text-white font-semibold text-base translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+                      <p className="text-white font-semibold text-sm md:text-base translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
                         {photo.title}
                       </p>
-                      <p className="text-white/60 text-xs uppercase tracking-widest mt-1 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                      <p className="text-white/60 text-[10px] md:text-xs uppercase tracking-widest mt-0.5 md:mt-1 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 delay-75">
                         {photo.category}
                       </p>
                     </div>
@@ -209,7 +209,7 @@ export default function FullGalleryPage() {
             )}
 
             <div className="text-center mt-16">
-              <p className="text-gray-400 text-xs uppercase tracking-widest">
+              <p className="text-gray-400 text-[10px] md:text-xs uppercase tracking-widest">
                 Showing {filteredPhotos.length} of {photos.length} photos
                 {activeCategory !== "All" && (
                   <>
@@ -267,10 +267,10 @@ export default function FullGalleryPage() {
                 className="object-contain"
               />
               <div className="absolute -bottom-14 left-0 right-0 text-center">
-                <p className="text-white text-lg font-medium">
+                <p className="text-white text-base md:text-lg font-medium">
                   {filteredPhotos[selectedImage].title}
                 </p>
-                <p className="text-white/40 text-xs uppercase tracking-widest mt-1">
+                <p className="text-white/40 text-[10px] md:text-xs uppercase tracking-widest mt-1">
                   {filteredPhotos[selectedImage].category} ·{" "}
                   {selectedImage + 1} / {filteredPhotos.length}
                 </p>

@@ -25,7 +25,7 @@ body {
 
 /* ── Mosaic Gallery Grid ── */
 .mosaic-grid {
-  column-count: 1;
+  column-count: 2;
   column-gap: 4px;
 }
 

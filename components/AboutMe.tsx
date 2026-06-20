@@ -42,47 +42,47 @@ const AboutMe = () => {
             About Me
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="md:col-span-2 space-y-6">
-              <h3 className="text-2xl font-bold text-primary italic">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+            <div className="col-span-1 md:col-span-2 space-y-4 md:space-y-6">
+              <h3 className="text-[11px] md:text-2xl font-bold text-primary italic leading-snug md:leading-normal">
                 &quot;Menangkap momen bukan hanya soal menekan tombol, tapi soal bercerita tanpa suara.&quot;
               </h3>
-              <p className="text-secondary leading-relaxed">
+              <p className="text-secondary text-[9px] md:text-base leading-relaxed">
                 {bio}
               </p>
-              <p className="text-secondary leading-relaxed">
+              <p className="text-secondary text-[9px] md:text-base leading-relaxed">
                 {aboutText}
               </p>
             </div>
 
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="p-2 bg-white rounded-none">
-                  <Camera className="w-5 h-5 text-primary" />
+            <div className="col-span-1 space-y-4 md:space-y-6">
+              <div className="flex items-start space-x-2 md:space-x-4">
+                <div className="p-1 md:p-2 bg-white rounded-none">
+                  <Camera className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm uppercase tracking-wider">Gaya Fotografi</h4>
-                  <p className="text-sm text-secondary">Minimalis, Clean, &amp; Emosional</p>
+                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">Gaya Fotografi</h4>
+                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">Minimalis, Clean, &amp; Emosional</p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="p-2 bg-white rounded-none">
-                  <History className="w-5 h-5 text-primary" />
+              <div className="flex items-start space-x-2 md:space-x-4">
+                <div className="p-1 md:p-2 bg-white rounded-none">
+                  <History className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm uppercase tracking-wider">Pengalaman</h4>
-                  <p className="text-sm text-secondary">5+ Tahun di Industri Kreatif</p>
+                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">Pengalaman</h4>
+                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">5+ Tahun di Industri Kreatif</p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="p-2 bg-white rounded-none">
-                  <Heart className="w-5 h-5 text-primary" />
+              <div className="flex items-start space-x-2 md:space-x-4">
+                <div className="p-1 md:p-2 bg-white rounded-none">
+                  <Heart className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm uppercase tracking-wider">Passion</h4>
-                  <p className="text-sm text-secondary">Eksplorasi Alam &amp; Ekspresi Manusia</p>
+                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">Passion</h4>
+                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">Eksplorasi Alam &amp; Ekspresi Manusia</p>
                 </div>
               </div>
             </div>
