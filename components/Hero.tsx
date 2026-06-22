@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 interface Profile {
   name: string;
   tagline: string;
   bio: string;
+  hero_image: string;
 }
 
 const Hero = () => {
@@ -27,6 +27,7 @@ const Hero = () => {
 
   const name = profile?.name || "Hakim Photography";
   const tagline = profile?.tagline || "Capturing Moments, Telling Stories.";
+  const heroImage = profile?.hero_image || "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000";
 
   return (
     <section
@@ -35,12 +36,10 @@ const Hero = () => {
     >
       {/* Background Image - Fullscreen */}
       <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000"
+        <img
+          src={heroImage}
           alt="Featured Work"
-          fill
-          priority
-          className="object-cover opacity-60"
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
       </div>

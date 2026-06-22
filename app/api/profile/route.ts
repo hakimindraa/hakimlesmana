@@ -30,6 +30,7 @@ export async function PUT(req: NextRequest) {
         tagline = ${data.tagline || ""},
         bio = ${data.bio || ""},
         about_text = ${data.about_text || ""},
+        hero_image = ${data.hero_image || ""},
         email = ${data.email || ""},
         phone = ${data.phone || ""},
         whatsapp = ${data.whatsapp || ""},

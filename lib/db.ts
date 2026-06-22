@@ -53,6 +53,7 @@ export async function initializeDatabase() {
       tagline VARCHAR(500) DEFAULT '',
       bio TEXT DEFAULT '',
       about_text TEXT DEFAULT '',
+      hero_image TEXT DEFAULT '',
       email VARCHAR(255) DEFAULT '',
       phone VARCHAR(50) DEFAULT '',
       whatsapp VARCHAR(50) DEFAULT '',
@@ -68,12 +69,13 @@ export async function initializeDatabase() {
   const existing = await sql`SELECT id FROM profile LIMIT 1`;
   if (existing.length === 0) {
     await sql`
-      INSERT INTO profile (name, tagline, bio, about_text, email, phone, whatsapp, location, instagram)
+      INSERT INTO profile (name, tagline, bio, about_text, hero_image, email, phone, whatsapp, location, instagram)
       VALUES (
         'Hikra',
         'Photographer & Videographer',
         'Capturing timeless moments through the art of photography & cinematic videography.',
         'Saya adalah seorang fotografer dan videografer profesional yang berdedikasi untuk menangkap momen-momen berharga.',
+        'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000',
         'hakim@example.com',
         '+62 812 3456 7890',
         '6281234567890',

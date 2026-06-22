@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Save, User, Mail, Phone, MapPin, Instagram, Facebook, Linkedin } from "lucide-react";
+import { Save, User, Mail, Phone, MapPin, Instagram, Facebook, Linkedin, ImageIcon } from "lucide-react";
 
 interface Profile {
   id: number;
@@ -10,6 +10,7 @@ interface Profile {
   tagline: string;
   bio: string;
   about_text: string;
+  hero_image: string;
   email: string;
   phone: string;
   whatsapp: string;
@@ -132,6 +133,46 @@ export default function ProfileEditor() {
           <label className={labelClass}>About Text (full)</label>
           <textarea value={profile.about_text} onChange={(e) => updateField("about_text", e.target.value)} rows={4} placeholder="Detailed about me text..." className={inputClass + " resize-none"} />
         </div>
+      </motion.div>
+
+      {/* Hero Image */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className="bg-white rounded-xl border border-gray-100 p-6 space-y-5"
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <ImageIcon className="w-5 h-5 text-gray-400" />
+          <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Hero Image</h2>
+        </div>
+
+        <div>
+          <label className={labelClass}>Image URL (dari imgbb atau link langsung)</label>
+          <input
+            type="text"
+            value={profile.hero_image}
+            onChange={(e) => updateField("hero_image", e.target.value)}
+            placeholder="https://i.ibb.co/xxxxx/hero.jpg"
+            className={inputClass}
+          />
+        </div>
+
+        {profile.hero_image && (
+          <div className="mt-3">
+            <label className={labelClass}>Preview</label>
+            <div className="relative w-full h-48 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+              <img
+                src={profile.hero_image}
+                alt="Hero preview"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
+        )}
       </motion.div>
 
       {/* Contact Info */}
