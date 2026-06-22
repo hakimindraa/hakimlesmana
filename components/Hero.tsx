@@ -27,7 +27,7 @@ const Hero = () => {
 
   const name = profile?.name || "Hakim Photography";
   const tagline = profile?.tagline || "Capturing Moments, Telling Stories.";
-  const heroImage = profile?.hero_image || "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000";
+  const heroImage = profile?.hero_image || "";
 
   return (
     <section
@@ -36,13 +36,16 @@ const Hero = () => {
     >
       {/* Background Image - Fullscreen */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Featured Work"
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-        />
+        {heroImage && (
+          <img
+            src={heroImage}
+            alt="Featured Work"
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
       </div>
+
 
       {/* Content */}
       <div className="relative h-full flex items-center justify-center text-center">
