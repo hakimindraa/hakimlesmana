@@ -7,24 +7,25 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://hakimlesmana.my.id"),
   title: {
-    default: "Hakim Photography | Photographer & Visual Storyteller",
-    template: "%s | Hakim Photography",
+    default: "Hakim Lesmana | Portofolio Fotografi",
+    template: "%s | Hakim Lesmana",
   },
   description:
-    "Portofolio fotografi profesional Hakim. Temukan karya visual dan cerita terbaik dari lensa saya.",
+    "Kumpulan karya foto Hakim Lesmana — landscape, street photography, dan momen perjalanan yang terekam dari berbagai sudut.",
   openGraph: {
-    title: "Hakim Photography | Photographer & Visual Storyteller",
+    title: "Hakim Lesmana | Portofolio Fotografi",
     description:
-      "Portofolio fotografi profesional Hakim. Temukan karya visual dan cerita terbaik dari lensa saya.",
+      "Kumpulan karya foto Hakim Lesmana — landscape, street photography, dan momen perjalanan yang terekam dari berbagai sudut.",
     url: "https://hakimlesmana.my.id",
-    siteName: "Hakim Photography",
+    siteName: "Hakim Lesmana",
     locale: "id_ID",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hakim Photography | Photographer & Visual Storyteller",
-    description: "Portofolio fotografi profesional Hakim.",
+    title: "Hakim Lesmana | Portofolio Fotografi",
+    description:
+      "Karya foto Hakim Lesmana — landscape, street, dan perjalanan.",
   },
   // Uncomment dan isi kode verifikasi dari Google Search Console nanti:
   // verification: {
@@ -38,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="id" className="scroll-smooth">
       <body className={inter.className}>{children}</body>
     </html>
   );
