@@ -166,9 +166,14 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0 }}
             className="lg:col-span-1"
           >
-            <a href="#home" className="inline-block text-xl md:text-2xl font-bold tracking-tighter mb-4 hover:opacity-70 transition-opacity">
-              HIKRA
+            <a href="#home" className="inline-block mb-4 hover:opacity-70 transition-opacity">
+              <img
+                src="/iconfooter.png"
+                alt="Logo"
+                className="h-7 md:h-11 w-auto"
+              />
             </a>
+
             <p className="text-white/40 text-[10px] md:text-sm leading-relaxed mb-6 max-w-xs">
               Capturing timeless moments through the art of photography &amp; cinematic videography. Every frame tells a story.
             </p>
