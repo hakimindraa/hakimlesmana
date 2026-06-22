@@ -41,10 +41,15 @@ const Navbar = () => {
         {/* Left: Logo (HAKIM) */}
         <a
           href="#home"
-          className="text-xs md:text-xl font-bold tracking-tighter shrink-0 hover:opacity-70 transition-opacity"
+          className="shrink-0 hover:opacity-70 transition-opacity"
         >
-          HIKRA
+          <img
+            src="/icon2.png"
+            alt="icon2"
+            className="h-8 md:h-10 w-auto"
+          />
         </a>
+
 
         {/* Center: Desktop Menu */}
         <div className="hidden md:flex items-center gap-10">
