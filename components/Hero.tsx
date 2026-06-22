@@ -25,15 +25,26 @@ const Hero = () => {
     fetchProfile();
   }, []);
 
-  const name = profile?.name || "Hakim Photography";
-  const tagline = profile?.tagline || "Capturing Moments, Telling Stories.";
+  const name = profile?.name || "";
+  const tagline = profile?.tagline || "";
   const heroImage = profile?.hero_image || "";
+
+  // Jika profile belum selesai dimuat dari database, tampilkan loading spinner atau layar hitam
+  if (!profile) {
+    return (
+      <div className="h-screen w-full bg-black flex items-center justify-center">
+        <p className="text-white tracking-widest text-xs uppercase animate-pulse">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <section
       id="home"
       className="relative h-screen w-full overflow-hidden bg-black"
     >
+      {/* ... sisa kode di bawahnya ... */}
+
       {/* Background Image - Fullscreen */}
       <div className="absolute inset-0">
         {heroImage && (
