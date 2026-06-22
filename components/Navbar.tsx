@@ -46,7 +46,7 @@ const Navbar = () => {
           <img
             src="/icon2.png"
             alt="icon2"
-            className="h-4 md:h-8 w-auto"
+            className="h-6 md:h-11 w-auto"
           />
         </a>
 
