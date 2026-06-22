@@ -38,8 +38,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Data JSON-LD untuk SEO Google
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Hakim Lesmana",
+    jobTitle: "Photographer",
+    url: "https://hakimlesmana.my.id",
+    image: "https://hakimlesmana.my.id/foto-profil.jpg", // <-- SESUAIKAN: ganti dengan URL foto profil/logo Anda nanti
+    description: "Kumpulan karya foto Hakim Lesmana — landscape, street photography, dan momen perjalanan yang terekam dari berbagai sudut.",
+    sameAs: [
+      "https://www.instagram.com/hakimlesmna", // <-- SESUAIKAN: ganti dengan link Instagram Anda
+      "https://www.linkedin.com/in/hakimindralesmana"         // <-- SESUAIKAN: ganti dengan link medsos lain (atau hapus baris ini jika tidak ada)
+    ]
+  };
+
   return (
     <html lang="id" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
