@@ -65,6 +65,51 @@ export async function initializeDatabase() {
     )
   `;
 
+  await sql`
+    CREATE TABLE IF NOT EXISTS resume_skills (
+      id SERIAL PRIMARY KEY,
+      category VARCHAR(100) NOT NULL,
+      name VARCHAR(255) NOT NULL,
+      display_order INT DEFAULT 0,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS resume_experiences (
+      id SERIAL PRIMARY KEY,
+      start_date VARCHAR(100),
+      end_date VARCHAR(100),
+      role VARCHAR(255) NOT NULL,
+      client VARCHAR(255) NOT NULL,
+      description TEXT,
+      display_order INT DEFAULT 0,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS resume_awards (
+      id SERIAL PRIMARY KEY,
+      type VARCHAR(50) DEFAULT 'award',
+      year VARCHAR(50),
+      title VARCHAR(255) NOT NULL,
+      issuer VARCHAR(255),
+      display_order INT DEFAULT 0,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS resume_gear (
+      id SERIAL PRIMARY KEY,
+      category VARCHAR(100) NOT NULL,
+      name VARCHAR(255) NOT NULL,
+      display_order INT DEFAULT 0,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
   // Insert default profile if not exists
   const existing = await sql`SELECT id FROM profile LIMIT 1`;
   if (existing.length === 0) {

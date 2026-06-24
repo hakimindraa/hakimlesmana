@@ -87,6 +87,16 @@ const AboutMe = () => {
               </div>
             </div>
           </div>
+
+          {/* CTA Button */}
+          <div className="mt-16 flex justify-center">
+            <a href="/about" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-black border border-black rounded-full overflow-hidden transition-all duration-300 hover:bg-transparent hover:text-black hover:shadow-[0_0_20px_rgba(0,0,0,0.1)]">
+              <span className="relative z-10 flex items-center gap-2 text-xs tracking-widest uppercase">
+                View Full Portfolio & Resume
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </span>
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

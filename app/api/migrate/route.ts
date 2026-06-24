@@ -2,11 +2,15 @@ import { NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { getSessionFromCookies } from "@/lib/auth";
 
+import { initializeDatabase } from "@/lib/db";
+
 export async function GET() {
   const isAuth = await getSessionFromCookies();
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
+    await initializeDatabase();
+    
     const sql = getDb();
 
     // Add hero_image column if it doesn't exist
