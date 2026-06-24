@@ -21,6 +21,7 @@ const navItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Gallery", href: "/admin/gallery", icon: ImageIcon },
   { name: "Categories", href: "/admin/categories", icon: Tags },
+  { name: "Web Projects", href: "/admin/tech-projects", icon: Database },
   { name: "Profile", href: "/admin/profile", icon: User },
   { name: "Certificates", href: "/admin/certificates", icon: Award },
   { name: "Resume", href: "/admin/resume", icon: User },

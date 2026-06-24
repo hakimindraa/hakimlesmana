@@ -81,8 +81,8 @@ export default function AboutPage() {
         </div>
         <div className="relative h-full flex items-center justify-center text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="max-w-3xl mx-auto px-6">
-            <h2 className="text-white/70 font-medium tracking-[0.3em] mb-4 uppercase text-xs md:text-sm">PHOTOGRAPHER & VISUAL STORYTELLER</h2>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight">About {profile?.name?.split(' ')[0] || "Me"}</h1>
+            <h2 className="text-white/70 font-medium tracking-[0.3em] mb-4 uppercase text-xs md:text-sm">CREATIVE TECHNOLOGIST</h2>
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">I build and create &mdash;<br/>from pixels to products.</h1>
           </motion.div>
         </div>
       </section>
@@ -97,7 +97,9 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">My Journey</h3>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black tracking-tight">{profile?.name || "Hikra"}</h2>
-              <p className="text-gray-600 leading-relaxed mb-6 whitespace-pre-wrap">{profile?.bio}</p>
+              <div className="text-gray-600 leading-relaxed mb-6 space-y-4 whitespace-pre-wrap">
+                {profile?.bio || "Berangkat dari ketertarikan mendalam terhadap seni visual, saya memulai perjalanan sebagai fotografer dan videografer. Namun seiring berjalannya waktu, saya menyadari bahwa karya visual yang hebat membutuhkan wadah digital yang hebat pula.\n\nItulah mengapa saya terjun ke dunia Web Development dan UI/UX. Kini, saya tidak hanya memotret momen, tapi juga membangun pengalaman digital interaktif (pixels to products) yang memukau secara estetika dan performa."}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -205,9 +207,8 @@ export default function AboutPage() {
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="flex flex-col items-center mb-16 text-center">
-            <Camera className="w-8 h-8 mb-4 text-black" />
-            <h3 className="text-3xl font-bold tracking-tight mb-2">My Gear</h3>
-            <p className="text-gray-500 text-sm">Tools I use to bring stories to life.</p>
+            <h3 className="text-3xl font-bold tracking-tight mb-2">My Arsenal</h3>
+            <p className="text-gray-500 text-sm">Tools and tech stacks I use to bring stories to life.</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

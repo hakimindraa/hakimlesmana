@@ -110,6 +110,20 @@ export async function initializeDatabase() {
     )
   `;
 
+  await sql`
+    CREATE TABLE IF NOT EXISTS tech_projects (
+      id SERIAL PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      description TEXT,
+      tech_stack VARCHAR(500),
+      image_url TEXT,
+      live_url VARCHAR(255),
+      github_url VARCHAR(255),
+      display_order INT DEFAULT 0,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
   // Insert default profile if not exists
   const existing = await sql`SELECT id FROM profile LIMIT 1`;
   if (existing.length === 0) {
