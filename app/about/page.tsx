@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Award, Trophy, Camera, Briefcase } from "lucide-react";
 
-type Profile = { name: string; bio: string; hero_image: string };
+type Profile = { name: string; bio: string; hero_image: string; about_subtitle?: string; about_title?: string };
 type Skill = { id: number; category: string; name: string };
 type Experience = { id: number; start_date: string; end_date: string; role: string; client: string; description: string };
 type ResumeAward = { id: number; type: string; year: string; title: string; issuer: string };
@@ -81,8 +81,8 @@ export default function AboutPage() {
         </div>
         <div className="relative h-full flex items-center justify-center text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="max-w-3xl mx-auto px-6">
-            <h2 className="text-white/70 font-medium tracking-[0.3em] mb-4 uppercase text-xs md:text-sm">CREATIVE TECHNOLOGIST</h2>
-            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">I build and create &mdash;<br/>from pixels to products.</h1>
+            <h2 className="text-white/70 font-medium tracking-[0.3em] mb-4 uppercase text-xs md:text-sm">{profile?.about_subtitle || "CREATIVE TECHNOLOGIST"}</h2>
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight" dangerouslySetInnerHTML={{ __html: profile?.about_title || "I build and create &mdash;<br/>from pixels to products." }} />
           </motion.div>
         </div>
       </section>
@@ -98,7 +98,7 @@ export default function AboutPage() {
               <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">My Journey</h3>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black tracking-tight">{profile?.name || "Hikra"}</h2>
               <div className="text-gray-600 leading-relaxed mb-6 space-y-4 whitespace-pre-wrap">
-                {profile?.bio || "Berangkat dari ketertarikan mendalam terhadap seni visual, saya memulai perjalanan sebagai fotografer dan videografer. Namun seiring berjalannya waktu, saya menyadari bahwa karya visual yang hebat membutuhkan wadah digital yang hebat pula.\n\nItulah mengapa saya terjun ke dunia Web Development dan UI/UX. Kini, saya tidak hanya memotret momen, tapi juga membangun pengalaman digital interaktif (pixels to products) yang memukau secara estetika dan performa."}
+                {profile?.bio || "Berangkat dari ketertarikan mendalam terhadap seni visual..."}
               </div>
             </motion.div>
           </div>

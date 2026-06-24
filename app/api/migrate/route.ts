@@ -18,6 +18,14 @@ export async function GET() {
       ALTER TABLE profile
       ADD COLUMN IF NOT EXISTS hero_image TEXT DEFAULT ''
     `;
+    await sql`
+      ALTER TABLE profile
+      ADD COLUMN IF NOT EXISTS about_subtitle VARCHAR(255) DEFAULT 'CREATIVE TECHNOLOGIST'
+    `;
+    await sql`
+      ALTER TABLE profile
+      ADD COLUMN IF NOT EXISTS about_title TEXT DEFAULT 'I build and create — from pixels to products.'
+    `;
 
     return NextResponse.json({
       success: true,

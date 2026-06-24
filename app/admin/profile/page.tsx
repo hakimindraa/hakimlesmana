@@ -10,6 +10,8 @@ interface Profile {
   tagline: string;
   bio: string;
   about_text: string;
+  about_subtitle: string;
+  about_title: string;
   hero_image: string;
   email: string;
   phone: string;
@@ -124,14 +126,25 @@ export default function ProfileEditor() {
           </div>
         </div>
 
-        <div>
-          <label className={labelClass}>Short Bio</label>
-          <textarea value={profile.bio} onChange={(e) => updateField("bio", e.target.value)} rows={2} placeholder="A brief description..." className={inputClass + " resize-none"} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-4">
+          <div>
+            <label className={labelClass}>About Subtitle (e.g. CREATIVE TECHNOLOGIST)</label>
+            <input type="text" value={profile.about_subtitle || ""} onChange={(e) => updateField("about_subtitle", e.target.value)} className={inputClass} />
+          </div>
+          <div>
+            <label className={labelClass}>About Title (e.g. I build and create...)</label>
+            <input type="text" value={profile.about_title || ""} onChange={(e) => updateField("about_title", e.target.value)} className={inputClass} />
+          </div>
         </div>
 
         <div>
-          <label className={labelClass}>About Text (full)</label>
-          <textarea value={profile.about_text} onChange={(e) => updateField("about_text", e.target.value)} rows={4} placeholder="Detailed about me text..." className={inputClass + " resize-none"} />
+          <label className={labelClass}>My Journey (Bio) - 2 Paragraf</label>
+          <textarea value={profile.bio} onChange={(e) => updateField("bio", e.target.value)} rows={6} placeholder="Ceritakan perjalananmu..." className={inputClass + " resize-y"} />
+        </div>
+
+        <div>
+          <label className={labelClass}>About Text (Home page text)</label>
+          <textarea value={profile.about_text} onChange={(e) => updateField("about_text", e.target.value)} rows={4} placeholder="Detailed about me text..." className={inputClass + " resize-y"} />
         </div>
       </motion.div>
 

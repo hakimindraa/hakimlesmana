@@ -53,6 +53,8 @@ export async function initializeDatabase() {
       tagline VARCHAR(500) DEFAULT '',
       bio TEXT DEFAULT '',
       about_text TEXT DEFAULT '',
+      about_subtitle VARCHAR(255) DEFAULT 'CREATIVE TECHNOLOGIST',
+      about_title TEXT DEFAULT 'I build and create — from pixels to products.',
       hero_image TEXT DEFAULT '',
       email VARCHAR(255) DEFAULT '',
       phone VARCHAR(50) DEFAULT '',
