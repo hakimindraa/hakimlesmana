@@ -6,18 +6,20 @@ import { Menu, X, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/LanguageContext";
 
-const navItems = [
-  { name: "Home", href: "/#home" },
-  { name: "About", href: "/about" },
-  { name: "Gallery", href: "/#gallery" },
-  { name: "Web Dev", href: "/projects" },
-  { name: "Certificates", href: "/#certificates" },
-];
+
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, toggleLanguage } = useLanguage();
+
+  const navItems = [
+    { name: language === "en" ? "Home" : "Beranda", href: "/#home" },
+    { name: language === "en" ? "About" : "Tentang", href: "/about" },
+    { name: language === "en" ? "Gallery" : "Galeri", href: "/#gallery" },
+    { name: language === "en" ? "Web Dev" : "Web Dev", href: "/projects" },
+    { name: language === "en" ? "Certificates" : "Sertifikat", href: "/#certificates" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,7 +91,7 @@ const Navbar = () => {
                 : "bg-white text-black hover:bg-gray-200"
             )}
           >
-            Contact
+            {language === "en" ? "Contact" : "Kontak"}
           </a>
 
           {/* Mobile Menu Toggle */}
@@ -126,7 +128,7 @@ const Navbar = () => {
                 href="mailto:hakim@example.com"
                 className="w-full text-center py-4 bg-black text-white text-[11px] font-bold uppercase tracking-widest rounded-full"
               >
-                Contact
+                {language === "en" ? "Contact" : "Kontak"}
               </a>
             </div>
           </motion.div>

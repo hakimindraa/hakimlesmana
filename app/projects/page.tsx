@@ -5,12 +5,16 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Code, ExternalLink, Github } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 type TechProject = {
   id: number;
   title: string;
+  title_en?: string;
   description: string;
+  description_en?: string;
   tech_stack: string;
+  tech_stack_en?: string;
   image_url: string;
   live_url: string;
   github_url: string;
@@ -19,6 +23,7 @@ type TechProject = {
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<TechProject[]>([]);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -48,7 +53,9 @@ export default function ProjectsPage() {
               Web Development <br /> & UI/UX Projects
             </h1>
             <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-10">
-              Membangun pengalaman digital yang tidak hanya terlihat indah secara visual, tetapi juga berfungsi dengan performa tinggi dan intuitif.
+              {language === "en" 
+                ? "Building digital experiences that are not only visually beautiful, but also performant and intuitive."
+                : "Membangun pengalaman digital yang tidak hanya terlihat indah secara visual, tetapi juga berfungsi dengan performa tinggi dan intuitif."}
             </p>
           </motion.div>
 
@@ -78,7 +85,9 @@ export default function ProjectsPage() {
                   
                   <div>
                     <div className="flex items-start justify-between gap-4 mb-3">
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{proj.title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                        {language === "en" && proj.title_en ? proj.title_en : proj.title}
+                      </h3>
                       <div className="flex gap-2 shrink-0 pt-1">
                         {proj.github_url && (
                           <a href={proj.github_url} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:text-black hover:border-black transition-colors">
@@ -93,10 +102,12 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                     
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">{proj.description}</p>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">
+                      {language === "en" && proj.description_en ? proj.description_en : proj.description}
+                    </p>
                     
                     <div className="flex flex-wrap gap-2">
-                      {proj.tech_stack.split(',').map((tech, i) => (
+                      {(language === "en" && proj.tech_stack_en ? proj.tech_stack_en : proj.tech_stack).split(',').map((tech, i) => (
                         <span key={i} className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-[10px] font-bold text-gray-600 uppercase tracking-wider">
                           {tech.trim()}
                         </span>
@@ -110,7 +121,9 @@ export default function ProjectsPage() {
 
           {!loading && projects.length === 0 && (
             <div className="py-20 text-center">
-              <p className="text-gray-400">Belum ada project yang ditambahkan.</p>
+              <p className="text-gray-400">
+                {language === "en" ? "No projects added yet." : "Belum ada project yang ditambahkan."}
+              </p>
             </div>
           )}
         </div>

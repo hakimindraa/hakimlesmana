@@ -21,8 +21,8 @@ export async function POST(req: NextRequest) {
     const data = await req.json();
     const sql = getDb();
     const result = await sql`
-      INSERT INTO tech_projects (title, description, tech_stack, image_url, live_url, github_url, display_order)
-      VALUES (${data.title}, ${data.description || ""}, ${data.tech_stack || ""}, ${data.image_url || ""}, ${data.live_url || ""}, ${data.github_url || ""}, ${data.display_order || 0})
+      INSERT INTO tech_projects (title, title_en, description, description_en, tech_stack, tech_stack_en, image_url, live_url, github_url, display_order)
+      VALUES (${data.title}, ${data.title_en || ""}, ${data.description || ""}, ${data.description_en || ""}, ${data.tech_stack || ""}, ${data.tech_stack_en || ""}, ${data.image_url || ""}, ${data.live_url || ""}, ${data.github_url || ""}, ${data.display_order || 0})
       RETURNING *
     `;
     return NextResponse.json(result[0]);
@@ -44,8 +44,11 @@ export async function PUT(req: NextRequest) {
     const result = await sql`
       UPDATE tech_projects SET
         title = ${data.title},
+        title_en = ${data.title_en || ""},
         description = ${data.description || ""},
+        description_en = ${data.description_en || ""},
         tech_stack = ${data.tech_stack || ""},
+        tech_stack_en = ${data.tech_stack_en || ""},
         image_url = ${data.image_url || ""},
         live_url = ${data.live_url || ""},
         github_url = ${data.github_url || ""},

@@ -37,7 +37,9 @@ const Hero = () => {
   if (!profile) {
     return (
       <div className="h-screen w-full bg-black flex items-center justify-center">
-        <p className="text-white tracking-widest text-xs uppercase animate-pulse">Loading...</p>
+        <p className="text-white tracking-widest text-xs uppercase animate-pulse">
+          {language === "en" ? "Loading..." : "Memuat..."}
+        </p>
       </div>
     );
   }
@@ -93,7 +95,7 @@ const Hero = () => {
                 href="#gallery"
                 className="inline-block border border-white text-white px-6 py-3 md:px-10 md:py-4 rounded-none hover:bg-white hover:text-black transition-all duration-300 font-medium uppercase tracking-widest text-[10px] md:text-sm"
               >
-                View Gallery
+                {language === "en" ? "View Gallery" : "Lihat Galeri"}
               </a>
             </motion.div>
           </motion.div>
@@ -107,7 +109,7 @@ const Hero = () => {
         transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center gap-2"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.2em]">{language === "en" ? "Scroll" : "Gulir"}</span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-white/50 to-transparent" />
       </motion.div>
     </section>

@@ -4,20 +4,24 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Award } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "@/components/LanguageContext";
 
 interface Certificate {
   id: number;
   title: string;
+  title_en?: string;
   issuer: string;
   date: string;
   image_url: string;
   description: string;
+  description_en?: string;
 }
 
 const Certificates = () => {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [selectedCert, setSelectedCert] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchCerts = async () => {
@@ -43,7 +47,7 @@ const Certificates = () => {
     <section id="certificates" className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold mb-12 text-center tracking-tight">
-          Certificates
+          {language === "en" ? "Certificates" : "Sertifikat"}
         </h2>
 
         {loading ? (
@@ -75,7 +79,7 @@ const Certificates = () => {
                   <div>
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-xl font-bold leading-tight">
-                        {cert.title}
+                        {language === "en" && cert.title_en ? cert.title_en : cert.title}
                       </h3>
                       {cert.date && (
                         <span className="text-sm font-medium text-secondary bg-white px-3 py-1 border border-gray-200">
@@ -88,7 +92,7 @@ const Certificates = () => {
                     )}
                     {cert.description && (
                       <p className="text-secondary text-sm mb-6 leading-relaxed">
-                        {cert.description}
+                        {language === "en" && cert.description_en ? cert.description_en : cert.description}
                       </p>
                     )}
                   </div>
@@ -97,7 +101,7 @@ const Certificates = () => {
                       onClick={() => setSelectedCert(index)}
                       className="flex items-center text-sm font-bold uppercase tracking-widest text-primary hover:gap-2 transition-all"
                     >
-                      View Certificate <Award className="ml-2 w-4 h-4" />
+                      {language === "en" ? "View Certificate" : "Lihat Sertifikat"} <Award className="ml-2 w-4 h-4" />
                     </button>
                   )}
                 </div>

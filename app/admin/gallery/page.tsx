@@ -19,10 +19,12 @@ import {
 interface Photo {
   id: number;
   title: string;
+  title_en: string;
   src: string;
   category: string;
   is_featured: boolean;
   featured_description: string;
+  featured_description_en: string;
   display_order: number;
 }
 
@@ -45,10 +47,12 @@ export default function GalleryManager() {
   // Form state
   const [form, setForm] = useState({
     title: "",
+    title_en: "",
     src: "",
     category: "",
     is_featured: false,
     featured_description: "",
+    featured_description_en: "",
     display_order: 0,
   });
 
@@ -71,7 +75,7 @@ export default function GalleryManager() {
 
   const openAddModal = () => {
     setEditingPhoto(null);
-    setForm({ title: "", src: "", category: categories[0]?.name || "", is_featured: false, featured_description: "", display_order: 0 });
+    setForm({ title: "", title_en: "", src: "", category: categories[0]?.name || "", is_featured: false, featured_description: "", featured_description_en: "", display_order: 0 });
     setModalOpen(true);
   };
 
@@ -79,10 +83,12 @@ export default function GalleryManager() {
     setEditingPhoto(photo);
     setForm({
       title: photo.title,
+      title_en: photo.title_en || "",
       src: photo.src,
       category: photo.category,
       is_featured: photo.is_featured,
       featured_description: photo.featured_description || "",
+      featured_description_en: photo.featured_description_en || "",
       display_order: photo.display_order,
     });
     setModalOpen(true);
@@ -301,15 +307,27 @@ export default function GalleryManager() {
               {/* Modal body */}
               <div className="p-6 space-y-5">
                 {/* Title */}
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Title</label>
-                  <input
-                    type="text"
-                    value={form.title}
-                    onChange={(e) => setForm({ ...form, title: e.target.value })}
-                    placeholder="Photo title"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Title - ID</label>
+                    <input
+                      type="text"
+                      value={form.title}
+                      onChange={(e) => setForm({ ...form, title: e.target.value })}
+                      placeholder="Judul foto"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Title - EN</label>
+                    <input
+                      type="text"
+                      value={form.title_en}
+                      onChange={(e) => setForm({ ...form, title_en: e.target.value })}
+                      placeholder="Photo title"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400"
+                    />
+                  </div>
                 </div>
 
                 {/* Image source */}
@@ -400,17 +418,31 @@ export default function GalleryManager() {
                 </div>
 
                 {form.is_featured && (
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
-                      Featured Description
-                    </label>
-                    <textarea
-                      value={form.featured_description}
-                      onChange={(e) => setForm({ ...form, featured_description: e.target.value })}
-                      placeholder="Short description for featured section"
-                      rows={2}
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none"
-                    />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                        Featured Description - ID
+                      </label>
+                      <textarea
+                        value={form.featured_description}
+                        onChange={(e) => setForm({ ...form, featured_description: e.target.value })}
+                        placeholder="Deskripsi singkat"
+                        rows={2}
+                        className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                        Featured Description - EN
+                      </label>
+                      <textarea
+                        value={form.featured_description_en}
+                        onChange={(e) => setForm({ ...form, featured_description_en: e.target.value })}
+                        placeholder="Short description"
+                        rows={2}
+                        className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none"
+                      />
+                    </div>
                   </div>
                 )}
 

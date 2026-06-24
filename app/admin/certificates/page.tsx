@@ -16,10 +16,12 @@ import {
 interface Certificate {
   id: number;
   title: string;
+  title_en: string;
   issuer: string;
   date: string;
   image_url: string;
   description: string;
+  description_en: string;
 }
 
 export default function CertificateManager() {
@@ -32,10 +34,12 @@ export default function CertificateManager() {
 
   const [form, setForm] = useState({
     title: "",
+    title_en: "",
     issuer: "",
     date: "",
     image_url: "",
     description: "",
+    description_en: "",
   });
 
   const fetchCerts = useCallback(async () => {
@@ -53,7 +57,7 @@ export default function CertificateManager() {
 
   const openAddModal = () => {
     setEditingCert(null);
-    setForm({ title: "", issuer: "", date: "", image_url: "", description: "" });
+    setForm({ title: "", title_en: "", issuer: "", date: "", image_url: "", description: "", description_en: "" });
     setModalOpen(true);
   };
 
@@ -61,10 +65,12 @@ export default function CertificateManager() {
     setEditingCert(cert);
     setForm({
       title: cert.title,
+      title_en: cert.title_en || "",
       issuer: cert.issuer,
       date: cert.date,
       image_url: cert.image_url,
       description: cert.description,
+      description_en: cert.description_en || "",
     });
     setModalOpen(true);
   };
@@ -205,9 +211,15 @@ export default function CertificateManager() {
               </div>
 
               <div className="p-6 space-y-5">
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Title *</label>
-                  <input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="Certificate title" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400" />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Title - ID *</label>
+                    <input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="Judul" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Title - EN *</label>
+                    <input type="text" value={form.title_en} onChange={(e) => setForm({ ...form, title_en: e.target.value })} placeholder="Title" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400" />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -246,9 +258,15 @@ export default function CertificateManager() {
                   )}
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Description</label>
-                  <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} placeholder="Optional description" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none" />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Description - ID</label>
+                    <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} placeholder="Deskripsi" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Description - EN</label>
+                    <textarea value={form.description_en} onChange={(e) => setForm({ ...form, description_en: e.target.value })} rows={3} placeholder="Description" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-400 resize-none" />
+                  </div>
                 </div>
               </div>
 

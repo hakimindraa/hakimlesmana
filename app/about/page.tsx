@@ -8,10 +8,10 @@ import { Award, Trophy, Camera, Briefcase } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 
 type Profile = { name: string; bio: string; hero_image: string; about_subtitle?: string; about_title?: string; bio_en?: string; about_subtitle_en?: string; about_title_en?: string; };
-type Skill = { id: number; category: string; name: string };
-type Experience = { id: number; start_date: string; end_date: string; role: string; client: string; description: string };
-type ResumeAward = { id: number; type: string; year: string; title: string; issuer: string };
-type Gear = { id: number; category: string; name: string };
+type Skill = { id: number; category: string; category_en?: string; name: string; name_en?: string };
+type Experience = { id: number; start_date: string; end_date: string; role: string; role_en?: string; client: string; client_en?: string; description: string; description_en?: string };
+type ResumeAward = { id: number; type: string; year: string; title: string; title_en?: string; issuer: string; issuer_en?: string };
+type Gear = { id: number; category: string; category_en?: string; name: string; name_en?: string };
 
 export default function AboutPage() {
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -50,22 +50,26 @@ export default function AboutPage() {
   if (loading) {
     return (
       <div className="h-screen w-full bg-black flex items-center justify-center">
-        <p className="text-white tracking-widest text-xs uppercase animate-pulse">Loading Resume...</p>
+        <p className="text-white tracking-widest text-xs uppercase animate-pulse">
+          {language === "en" ? "Loading Resume..." : "Memuat Resume..."}
+        </p>
       </div>
     );
   }
 
   // Mengelompokkan skills berdasarkan kategori
   const groupedSkills = skills.reduce((acc, skill) => {
-    if (!acc[skill.category]) acc[skill.category] = [];
-    acc[skill.category].push(skill);
+    const cat = language === "en" && skill.category_en ? skill.category_en : skill.category;
+    if (!acc[cat]) acc[cat] = [];
+    acc[cat].push(skill);
     return acc;
   }, {} as Record<string, Skill[]>);
 
   // Mengelompokkan gear berdasarkan kategori
   const groupedGear = gear.reduce((acc, g) => {
-    if (!acc[g.category]) acc[g.category] = [];
-    acc[g.category].push(g);
+    const cat = language === "en" && g.category_en ? g.category_en : g.category;
+    if (!acc[cat]) acc[cat] = [];
+    acc[cat].push(g);
     return acc;
   }, {} as Record<string, Gear[]>);
 
@@ -101,7 +105,9 @@ export default function AboutPage() {
               <img src={heroImage} alt="Portrait" className="w-full aspect-[3/4] object-cover filter grayscale hover:grayscale-0 transition-all duration-700" />
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">My Journey</h3>
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">
+                {language === "en" ? "My Journey" : "Perjalananku"}
+              </h3>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black tracking-tight">{profile?.name || "Hikra"}</h2>
               <div className="text-gray-600 leading-relaxed mb-6 space-y-4 whitespace-pre-wrap">
                 {bio}
@@ -114,14 +120,18 @@ export default function AboutPage() {
       {/* 3. Expertise & Skills */}
       <section className="py-20 bg-gray-50 border-y border-gray-100">
         <div className="container mx-auto px-6 max-w-5xl">
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-10 text-center">Expertise & Skills</h3>
+          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-10 text-center">
+            {language === "en" ? "Expertise & Skills" : "Keahlian & Kemampuan"}
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {Object.entries(groupedSkills).map(([category, catSkills], idx) => (
               <motion.div key={category} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}>
                 <h4 className="font-bold text-sm uppercase tracking-wider mb-4 border-b border-gray-200 pb-2">{category}</h4>
                 <div className="flex flex-wrap gap-2">
                   {catSkills.map(skill => (
-                    <span key={skill.id} className="px-3 py-1.5 text-[11px] font-medium border border-gray-200 bg-white rounded-full text-gray-700">{skill.name}</span>
+                    <span key={skill.id} className="px-3 py-1.5 text-[11px] font-medium border border-gray-200 bg-white rounded-full text-gray-700">
+                      {language === "en" && skill.name_en ? skill.name_en : skill.name}
+                    </span>
                   ))}
                 </div>
               </motion.div>
@@ -135,7 +145,9 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="flex items-center gap-4 mb-16">
             <Briefcase className="w-6 h-6 text-black" />
-            <h3 className="text-2xl font-bold tracking-tight">Professional Experience</h3>
+            <h3 className="text-2xl font-bold tracking-tight">
+              {language === "en" ? "Professional Experience" : "Pengalaman Profesional"}
+            </h3>
           </div>
           <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
             {experiences.map((exp, idx) => (
@@ -145,12 +157,16 @@ export default function AboutPage() {
                 </div>
                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl border border-gray-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_25px_-5px_rgba(0,0,0,0.1)] transition-shadow">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                    <h4 className="font-bold text-lg text-black">{exp.role}</h4>
+                    <h4 className="font-bold text-lg text-black">
+                      {language === "en" && exp.role_en ? exp.role_en : exp.role}
+                    </h4>
                     <span className="text-xs font-bold px-3 py-1 bg-gray-100 rounded-full text-gray-600 shrink-0">{exp.start_date} - {exp.end_date}</span>
                   </div>
-                  <h5 className="text-sm font-medium text-gray-500 mb-4">{exp.client}</h5>
+                  <h5 className="text-sm font-medium text-gray-500 mb-4">
+                    {language === "en" && exp.client_en ? exp.client_en : exp.client}
+                  </h5>
                   <ul className="text-sm text-gray-600 space-y-2 list-none">
-                    {exp.description.split('\n').filter(line => line.trim() !== '').map((line, i) => (
+                    {(language === "en" && exp.description_en ? exp.description_en : exp.description).split('\n').filter((line: string) => line.trim() !== '').map((line: string, i: number) => (
                       <li key={i} className="flex gap-2">
                         <span className="text-gray-300 mt-1.5">•</span>
                         <span>{line}</span>
@@ -172,15 +188,21 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className="flex items-center gap-3 mb-8">
                 <Award className="w-5 h-5" />
-                <h3 className="text-xl font-bold tracking-tight">Exhibitions & Features</h3>
+                <h3 className="text-xl font-bold tracking-tight">
+                  {language === "en" ? "Exhibitions & Features" : "Pameran & Fitur"}
+                </h3>
               </div>
               <div className="space-y-6">
                 {awards.filter(a => a.type === "exhibition").map((item) => (
                   <div key={item.id} className="flex gap-4">
                     <div className="w-12 text-xs font-bold text-gray-400 pt-1">{item.year}</div>
                     <div>
-                      <h4 className="font-bold text-black">{item.title}</h4>
-                      <p className="text-sm text-gray-500">{item.issuer}</p>
+                      <h4 className="font-bold text-black">
+                        {language === "en" && item.title_en ? item.title_en : item.title}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {language === "en" && item.issuer_en ? item.issuer_en : item.issuer}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -190,15 +212,21 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
               <div className="flex items-center gap-3 mb-8">
                 <Trophy className="w-5 h-5" />
-                <h3 className="text-xl font-bold tracking-tight">Awards & Recognition</h3>
+                <h3 className="text-xl font-bold tracking-tight">
+                  {language === "en" ? "Awards & Recognition" : "Penghargaan & Pengakuan"}
+                </h3>
               </div>
               <div className="space-y-6">
                 {awards.filter(a => a.type === "award").map((item) => (
                   <div key={item.id} className="flex gap-4">
                     <div className="w-12 text-xs font-bold text-gray-400 pt-1">{item.year}</div>
                     <div>
-                      <h4 className="font-bold text-black">{item.title}</h4>
-                      <p className="text-sm text-gray-500">{item.issuer}</p>
+                      <h4 className="font-bold text-black">
+                        {language === "en" && item.title_en ? item.title_en : item.title}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {language === "en" && item.issuer_en ? item.issuer_en : item.issuer}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -213,8 +241,14 @@ export default function AboutPage() {
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="flex flex-col items-center mb-16 text-center">
-            <h3 className="text-3xl font-bold tracking-tight mb-2">My Arsenal</h3>
-            <p className="text-gray-500 text-sm">Tools and tech stacks I use to bring stories to life.</p>
+            <h3 className="text-3xl font-bold tracking-tight mb-2">
+              {language === "en" ? "My Arsenal" : "Peralatan Saya"}
+            </h3>
+            <p className="text-gray-500 text-sm">
+              {language === "en"
+                ? "Tools and tech stacks I use to bring stories to life."
+                : "Alat dan teknologi yang saya gunakan untuk mewujudkan kisah."}
+            </p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -225,7 +259,7 @@ export default function AboutPage() {
                   {items.map(item => (
                     <li key={item.id} className="font-medium text-sm text-black flex items-center gap-2">
                       <span className="w-1.5 h-1.5 bg-black rounded-full" />
-                      {item.name}
+                      {language === "en" && item.name_en ? item.name_en : item.name}
                     </li>
                   ))}
                 </ul>

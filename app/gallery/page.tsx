@@ -11,10 +11,12 @@ import {
   ArrowLeft,
   Camera,
 } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 interface Photo {
   id: number;
   title: string;
+  title_en?: string;
   src: string;
   category: string;
 }
@@ -30,6 +32,7 @@ export default function FullGalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +93,7 @@ export default function FullGalleryPage() {
             className="inline-flex items-center gap-2 text-white/50 text-[10px] md:text-sm hover:text-white transition-colors mb-8 md:mb-12 group"
           >
             <ArrowLeft className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to Home
+            {language === "en" ? "Back to Home" : "Kembali ke Beranda"}
           </Link>
 
           <motion.div
@@ -101,15 +104,16 @@ export default function FullGalleryPage() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] md:text-xs uppercase tracking-[0.2em] text-white/60 mb-6">
               <Camera className="w-3 h-3 md:w-3.5 md:h-3.5" />
-              <span>Full Collection</span>
+              <span>{language === "en" ? "Full Collection" : "Koleksi Lengkap"}</span>
             </div>
 
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
-              Gallery
+              {language === "en" ? "Gallery" : "Galeri"}
             </h1>
             <p className="text-white/50 text-sm md:text-lg leading-relaxed max-w-lg">
-              Browse through my complete collection of photography and
-              videography work. Filter by category to find what inspires you.
+              {language === "en"
+                ? "Browse through my complete collection of photography and videography work. Filter by category to find what inspires you."
+                : "Jelajahi koleksi lengkap karya fotografi dan videografi saya. Filter berdasarkan kategori untuk menemukan inspirasi Anda."}
             </p>
           </motion.div>
         </div>
@@ -137,7 +141,7 @@ export default function FullGalleryPage() {
                       : "bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                   }`}
                 >
-                  {cat}
+                  {cat === "All" ? (language === "en" ? "All" : "Semua") : cat}
                   <span
                     className={`ml-1 md:ml-2 text-[8px] md:text-[10px] ${
                       activeCategory === cat
@@ -189,7 +193,7 @@ export default function FullGalleryPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
                       <p className="text-white font-semibold text-sm md:text-base translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
-                        {photo.title}
+                        {language === "en" && photo.title_en ? photo.title_en : photo.title}
                       </p>
                       <p className="text-white/60 text-[10px] md:text-xs uppercase tracking-widest mt-0.5 md:mt-1 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 delay-75">
                         {photo.category}
@@ -203,18 +207,18 @@ export default function FullGalleryPage() {
             {filteredPhotos.length === 0 && (
               <div className="text-center py-20">
                 <p className="text-gray-400 text-lg">
-                  No photos in this category yet.
+                  {language === "en" ? "No photos in this category yet." : "Belum ada foto di kategori ini."}
                 </p>
               </div>
             )}
 
             <div className="text-center mt-16">
               <p className="text-gray-400 text-[10px] md:text-xs uppercase tracking-widest">
-                Showing {filteredPhotos.length} of {photos.length} photos
+                {language === "en" ? "Showing" : "Menampilkan"} {filteredPhotos.length} {language === "en" ? "of" : "dari"} {photos.length} {language === "en" ? "photos" : "foto"}
                 {activeCategory !== "All" && (
                   <>
                     {" "}
-                    in{" "}
+                    {language === "en" ? "in" : "di"}{" "}
                     <span className="text-gray-600 font-semibold">
                       {activeCategory}
                     </span>
@@ -268,7 +272,7 @@ export default function FullGalleryPage() {
               />
               <div className="absolute -bottom-14 left-0 right-0 text-center">
                 <p className="text-white text-base md:text-lg font-medium">
-                  {filteredPhotos[selectedImage].title}
+                  {language === "en" && filteredPhotos[selectedImage].title_en ? filteredPhotos[selectedImage].title_en : filteredPhotos[selectedImage].title}
                 </p>
                 <p className="text-white/40 text-[10px] md:text-xs uppercase tracking-widest mt-1">
                   {filteredPhotos[selectedImage].category} ·{" "}

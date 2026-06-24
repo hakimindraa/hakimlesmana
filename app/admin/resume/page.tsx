@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { Plus, Trash2, Edit2, Check, X as XIcon, RefreshCw } from "lucide-react";
 
-type Skill = { id: number; category: string; name: string; display_order: number };
-type Experience = { id: number; start_date: string; end_date: string; role: string; client: string; description: string; display_order: number };
-type Award = { id: number; type: string; year: string; title: string; issuer: string; display_order: number };
-type Gear = { id: number; category: string; name: string; display_order: number };
+type Skill = { id: number; category: string; category_en: string; name: string; name_en: string; display_order: number };
+type Experience = { id: number; start_date: string; end_date: string; role: string; role_en: string; client: string; client_en: string; description: string; description_en: string; display_order: number };
+type Award = { id: number; type: string; year: string; title: string; title_en: string; issuer: string; issuer_en: string; display_order: number };
+type Gear = { id: number; category: string; category_en: string; name: string; name_en: string; display_order: number };
 
 export default function ResumeAdminPage() {
   const [activeTab, setActiveTab] = useState("skills");
@@ -92,7 +92,7 @@ export default function ResumeAdminPage() {
 // --- Managers ---
 
 function SkillsManager({ items, refresh }: { items: Skill[], refresh: () => void }) {
-  const [form, setForm] = useState({ id: 0, category: "", name: "", display_order: 0 });
+  const [form, setForm] = useState({ id: 0, category: "", category_en: "", name: "", name_en: "", display_order: 0 });
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -103,20 +103,22 @@ function SkillsManager({ items, refresh }: { items: Skill[], refresh: () => void
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
     });
-    setForm({ id: 0, category: "", name: "", display_order: 0 });
+    setForm({ id: 0, category: "", category_en: "", name: "", name_en: "", display_order: 0 });
     setIsEditing(false);
     refresh();
   };
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end bg-gray-50 p-4 rounded-lg">
-        <div><label className="block text-xs text-gray-500 mb-1">Category (e.g. Photography)</label><input required value={form.category} onChange={e=>setForm({...form, category: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
-        <div><label className="block text-xs text-gray-500 mb-1">Skill Name (e.g. Wedding)</label><input required value={form.name} onChange={e=>setForm({...form, name: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end bg-gray-50 p-4 rounded-lg">
+        <div><label className="block text-xs text-gray-500 mb-1">Category - ID</label><input required value={form.category} onChange={e=>setForm({...form, category: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Category - EN</label><input value={form.category_en} onChange={e=>setForm({...form, category_en: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Skill Name - ID</label><input required value={form.name} onChange={e=>setForm({...form, name: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Skill Name - EN</label><input value={form.name_en} onChange={e=>setForm({...form, name_en: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
         <div><label className="block text-xs text-gray-500 mb-1">Order</label><input type="number" value={form.display_order} onChange={e=>setForm({...form, display_order: parseInt(e.target.value)})} className="w-full border p-2 rounded text-sm" /></div>
         <div className="flex gap-2">
           <button type="submit" className="px-4 py-2 bg-black text-white rounded text-sm w-full">{isEditing ? "Update" : "Add"}</button>
-          {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, category: "", name: "", display_order: 0 })}} className="px-4 py-2 border rounded text-sm">Cancel</button>}
+          {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, category: "", category_en: "", name: "", name_en: "", display_order: 0 })}} className="px-4 py-2 border rounded text-sm">Cancel</button>}
         </div>
       </form>
 
@@ -139,7 +141,7 @@ function SkillsManager({ items, refresh }: { items: Skill[], refresh: () => void
 }
 
 function ExperiencesManager({ items, refresh }: { items: Experience[], refresh: () => void }) {
-  const [form, setForm] = useState({ id: 0, start_date: "", end_date: "", role: "", client: "", description: "", display_order: 0 });
+  const [form, setForm] = useState({ id: 0, start_date: "", end_date: "", role: "", role_en: "", client: "", client_en: "", description: "", description_en: "", display_order: 0 });
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -150,7 +152,7 @@ function ExperiencesManager({ items, refresh }: { items: Experience[], refresh: 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
     });
-    setForm({ id: 0, start_date: "", end_date: "", role: "", client: "", description: "", display_order: 0 });
+    setForm({ id: 0, start_date: "", end_date: "", role: "", role_en: "", client: "", client_en: "", description: "", description_en: "", display_order: 0 });
     setIsEditing(false);
     refresh();
   };
@@ -160,14 +162,17 @@ function ExperiencesManager({ items, refresh }: { items: Experience[], refresh: 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end bg-gray-50 p-4 rounded-lg">
         <div><label className="block text-xs text-gray-500 mb-1">Start Date</label><input value={form.start_date} onChange={e=>setForm({...form, start_date: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
         <div><label className="block text-xs text-gray-500 mb-1">End Date</label><input value={form.end_date} onChange={e=>setForm({...form, end_date: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
-        <div><label className="block text-xs text-gray-500 mb-1">Role (e.g. Lead Photo)</label><input required value={form.role} onChange={e=>setForm({...form, role: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
-        <div><label className="block text-xs text-gray-500 mb-1">Client/Company</label><input required value={form.client} onChange={e=>setForm({...form, client: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
-        <div className="col-span-1 lg:col-span-3"><label className="block text-xs text-gray-500 mb-1">Description (Bullets, use new line)</label><textarea value={form.description} onChange={e=>setForm({...form, description: e.target.value})} className="w-full border p-2 rounded text-sm h-20" /></div>
-        <div>
-          <label className="block text-xs text-gray-500 mb-1">Order</label><input type="number" value={form.display_order} onChange={e=>setForm({...form, display_order: parseInt(e.target.value)})} className="w-full border p-2 rounded text-sm mb-2" />
+        <div><label className="block text-xs text-gray-500 mb-1">Role - ID</label><input required value={form.role} onChange={e=>setForm({...form, role: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Role - EN</label><input value={form.role_en} onChange={e=>setForm({...form, role_en: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div className="col-span-2"><label className="block text-xs text-gray-500 mb-1">Client/Company - ID</label><input required value={form.client} onChange={e=>setForm({...form, client: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div className="col-span-2"><label className="block text-xs text-gray-500 mb-1">Client/Company - EN</label><input value={form.client_en} onChange={e=>setForm({...form, client_en: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div className="col-span-1 lg:col-span-2"><label className="block text-xs text-gray-500 mb-1">Description - ID</label><textarea value={form.description} onChange={e=>setForm({...form, description: e.target.value})} className="w-full border p-2 rounded text-sm h-20" /></div>
+        <div className="col-span-1 lg:col-span-2"><label className="block text-xs text-gray-500 mb-1">Description - EN</label><textarea value={form.description_en} onChange={e=>setForm({...form, description_en: e.target.value})} className="w-full border p-2 rounded text-sm h-20" /></div>
+        <div className="col-span-1 lg:col-span-4 flex items-end gap-4">
+          <div className="w-32"><label className="block text-xs text-gray-500 mb-1">Order</label><input type="number" value={form.display_order} onChange={e=>setForm({...form, display_order: parseInt(e.target.value)})} className="w-full border p-2 rounded text-sm" /></div>
           <div className="flex gap-2">
             <button type="submit" className="px-4 py-2 bg-black text-white rounded text-sm w-full">{isEditing ? "Update" : "Add"}</button>
-            {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, start_date: "", end_date: "", role: "", client: "", description: "", display_order: 0 })}} className="px-4 py-2 border rounded text-sm">Cancel</button>}
+            {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, start_date: "", end_date: "", role: "", role_en: "", client: "", client_en: "", description: "", description_en: "", display_order: 0 })}} className="px-4 py-2 border rounded text-sm">Cancel</button>}
           </div>
         </div>
       </form>
@@ -194,29 +199,31 @@ function ExperiencesManager({ items, refresh }: { items: Experience[], refresh: 
 }
 
 function AwardsManager({ items, refresh }: { items: Award[], refresh: () => void }) {
-  const [form, setForm] = useState({ id: 0, type: "award", year: "", title: "", issuer: "", display_order: 0 });
+  const [form, setForm] = useState({ id: 0, type: "award", year: "", title: "", title_en: "", issuer: "", issuer_en: "", display_order: 0 });
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const method = isEditing ? "PUT" : "POST";
     await fetch("/api/resume/resume_awards", { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-    setForm({ id: 0, type: "award", year: "", title: "", issuer: "", display_order: 0 });
+    setForm({ id: 0, type: "award", year: "", title: "", title_en: "", issuer: "", issuer_en: "", display_order: 0 });
     setIsEditing(false);
     refresh();
   };
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-6 gap-4 items-end bg-gray-50 p-4 rounded-lg">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end bg-gray-50 p-4 rounded-lg">
         <div><label className="block text-xs text-gray-500 mb-1">Type</label><select value={form.type} onChange={e=>setForm({...form, type: e.target.value})} className="w-full border p-2 rounded text-sm"><option value="award">Award</option><option value="exhibition">Exhibition</option></select></div>
         <div><label className="block text-xs text-gray-500 mb-1">Year</label><input value={form.year} onChange={e=>setForm({...form, year: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
-        <div className="col-span-2"><label className="block text-xs text-gray-500 mb-1">Title</label><input required value={form.title} onChange={e=>setForm({...form, title: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
-        <div><label className="block text-xs text-gray-500 mb-1">Issuer/Location</label><input value={form.issuer} onChange={e=>setForm({...form, issuer: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Title - ID</label><input required value={form.title} onChange={e=>setForm({...form, title: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Title - EN</label><input value={form.title_en} onChange={e=>setForm({...form, title_en: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Issuer/Location - ID</label><input value={form.issuer} onChange={e=>setForm({...form, issuer: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Issuer/Location - EN</label><input value={form.issuer_en} onChange={e=>setForm({...form, issuer_en: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
         <div>
           <div className="flex gap-2">
             <button type="submit" className="px-4 py-2 bg-black text-white rounded text-sm w-full">{isEditing ? "Update" : "Add"}</button>
-            {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, type: "award", year: "", title: "", issuer: "", display_order: 0 })}} className="px-4 py-2 border rounded text-sm">Cancel</button>}
+            {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, type: "award", year: "", title: "", title_en: "", issuer: "", issuer_en: "", display_order: 0 })}} className="px-4 py-2 border rounded text-sm">Cancel</button>}
           </div>
         </div>
       </form>
@@ -241,27 +248,29 @@ function AwardsManager({ items, refresh }: { items: Award[], refresh: () => void
 }
 
 function GearManager({ items, refresh }: { items: Gear[], refresh: () => void }) {
-  const [form, setForm] = useState({ id: 0, category: "Camera", name: "", display_order: 0 });
+  const [form, setForm] = useState({ id: 0, category: "Camera", category_en: "", name: "", name_en: "", display_order: 0 });
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const method = isEditing ? "PUT" : "POST";
     await fetch("/api/resume/resume_gear", { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-    setForm({ id: 0, category: "Camera", name: "", display_order: 0 });
+    setForm({ id: 0, category: "Camera", category_en: "", name: "", name_en: "", display_order: 0 });
     setIsEditing(false);
     refresh();
   };
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end bg-gray-50 p-4 rounded-lg">
-        <div><label className="block text-xs text-gray-500 mb-1">Category (Camera/Lens/Audio)</label><input required value={form.category} onChange={e=>setForm({...form, category: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
-        <div><label className="block text-xs text-gray-500 mb-1">Item Name</label><input required value={form.name} onChange={e=>setForm({...form, name: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end bg-gray-50 p-4 rounded-lg">
+        <div><label className="block text-xs text-gray-500 mb-1">Category - ID</label><input required value={form.category} onChange={e=>setForm({...form, category: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Category - EN</label><input value={form.category_en} onChange={e=>setForm({...form, category_en: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Item Name - ID</label><input required value={form.name} onChange={e=>setForm({...form, name: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
+        <div><label className="block text-xs text-gray-500 mb-1">Item Name - EN</label><input value={form.name_en} onChange={e=>setForm({...form, name_en: e.target.value})} className="w-full border p-2 rounded text-sm" /></div>
         <div><label className="block text-xs text-gray-500 mb-1">Order</label><input type="number" value={form.display_order} onChange={e=>setForm({...form, display_order: parseInt(e.target.value)})} className="w-full border p-2 rounded text-sm" /></div>
         <div className="flex gap-2">
           <button type="submit" className="px-4 py-2 bg-black text-white rounded text-sm w-full">{isEditing ? "Update" : "Add"}</button>
-          {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, category: "Camera", name: "", display_order: 0 })}} className="px-4 py-2 border rounded text-sm">Cancel</button>}
+          {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, category: "Camera", category_en: "", name: "", name_en: "", display_order: 0 })}} className="px-4 py-2 border rounded text-sm">Cancel</button>}
         </div>
       </form>
       <div className="overflow-x-auto">

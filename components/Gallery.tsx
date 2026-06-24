@@ -5,12 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 const PREVIEW_COUNT = 10;
 
 interface Photo {
   id: number;
   title: string;
+  title_en?: string;
   src: string;
   category: string;
 }
@@ -19,6 +21,7 @@ const Gallery = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchPhotos = async () => {
@@ -70,13 +73,15 @@ const Gallery = () => {
           className="text-center mb-14"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-3">
-            Portfolio
+            {language === "en" ? "Portfolio" : "Portofolio"}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Selected Works
+            {language === "en" ? "Selected Works" : "Karya Terpilih"}
           </h2>
           <p className="text-secondary max-w-md mx-auto text-sm">
-            A curated selection of my recent photography and videography projects.
+            {language === "en" 
+              ? "A curated selection of my recent photography and videography projects."
+              : "Pilihan kurasi dari proyek fotografi dan videografi terbaru saya."}
           </p>
         </motion.div>
 
@@ -121,7 +126,7 @@ const Gallery = () => {
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 md:p-5">
                       <p className="text-white font-semibold text-xs md:text-base translate-y-3 group-hover:translate-y-0 transition-transform duration-300 line-clamp-1">
-                        {photo.title}
+                        {language === "en" && photo.title_en ? photo.title_en : photo.title}
                       </p>
                       <p className="text-white/60 text-[9px] md:text-xs uppercase tracking-widest mt-0.5 md:mt-1 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 delay-75">
                         {photo.category}
@@ -144,12 +149,14 @@ const Gallery = () => {
                 href="/gallery"
                 className="group inline-flex items-center gap-3 px-10 py-4 bg-[#111] text-white text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-[#222] transition-all duration-300 hover:shadow-lg"
               >
-                View Full Gallery
+                {language === "en" ? "View Full Gallery" : "Lihat Galeri Lengkap"}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
               {totalPhotos > 0 && (
                 <p className="text-secondary text-xs mt-4 tracking-wide">
-                  {totalPhotos}+ photos across {totalCategories} categories
+                  {language === "en"
+                    ? `${totalPhotos}+ photos across ${totalCategories} categories`
+                    : `${totalPhotos}+ foto di ${totalCategories} kategori`}
                 </p>
               )}
             </motion.div>
@@ -199,7 +206,9 @@ const Gallery = () => {
               />
               <div className="absolute -bottom-12 left-0 right-0 text-center">
                 <p className="text-white text-lg font-medium">
-                  {previewPhotos[selectedImage].title}
+                  {language === "en" && previewPhotos[selectedImage].title_en 
+                    ? previewPhotos[selectedImage].title_en 
+                    : previewPhotos[selectedImage].title}
                 </p>
                 <p className="text-white/40 text-xs uppercase tracking-widest mt-1">
                   {previewPhotos[selectedImage].category}

@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const { title, src, category, is_featured, featured_description, display_order } = await req.json();
+    const { title, title_en, src, category, is_featured, featured_description, featured_description_en, display_order } = await req.json();
 
     if (!title || !src || !category) {
       return NextResponse.json({ error: "Title, src, and category are required" }, { status: 400 });
@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
 
     const sql = getDb();
     const result = await sql`
-      INSERT INTO photos (title, src, category, is_featured, featured_description, display_order)
-      VALUES (${title}, ${src}, ${category}, ${is_featured || false}, ${featured_description || ""}, ${display_order || 0})
+      INSERT INTO photos (title, title_en, src, category, is_featured, featured_description, featured_description_en, display_order)
+      VALUES (${title}, ${title_en || ""}, ${src}, ${category}, ${is_featured || false}, ${featured_description || ""}, ${featured_description_en || ""}, ${display_order || 0})
       RETURNING *
     `;
 
@@ -46,15 +46,16 @@ export async function PUT(req: NextRequest) {
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const { id, title, src, category, is_featured, featured_description, display_order } = await req.json();
+    const { id, title, title_en, src, category, is_featured, featured_description, featured_description_en, display_order } = await req.json();
 
     if (!id) return NextResponse.json({ error: "ID is required" }, { status: 400 });
 
     const sql = getDb();
     const result = await sql`
       UPDATE photos 
-      SET title = ${title}, src = ${src}, category = ${category}, 
+      SET title = ${title}, title_en = ${title_en || ""}, src = ${src}, category = ${category}, 
           is_featured = ${is_featured || false}, featured_description = ${featured_description || ""},
+          featured_description_en = ${featured_description_en || ""},
           display_order = ${display_order || 0}, updated_at = NOW()
       WHERE id = ${id}
       RETURNING *

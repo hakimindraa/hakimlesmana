@@ -24,11 +24,11 @@ export async function POST(req: NextRequest) {
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const { name } = await req.json();
+    const { name, name_en } = await req.json();
     if (!name) return NextResponse.json({ error: "Name is required" }, { status: 400 });
 
     const sql = getDb();
-    const result = await sql`INSERT INTO categories (name) VALUES (${name}) RETURNING *`;
+    const result = await sql`INSERT INTO categories (name, name_en) VALUES (${name}, ${name_en || ""}) RETURNING *`;
     return NextResponse.json(result[0], { status: 201 });
   } catch (error) {
     console.error("Error creating category:", error);
@@ -41,11 +41,11 @@ export async function PUT(req: NextRequest) {
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const { id, name } = await req.json();
+    const { id, name, name_en } = await req.json();
     if (!id || !name) return NextResponse.json({ error: "ID and name are required" }, { status: 400 });
 
     const sql = getDb();
-    const result = await sql`UPDATE categories SET name = ${name} WHERE id = ${id} RETURNING *`;
+    const result = await sql`UPDATE categories SET name = ${name}, name_en = ${name_en || ""} WHERE id = ${id} RETURNING *`;
     if (result.length === 0) return NextResponse.json({ error: "Category not found" }, { status: 404 });
     return NextResponse.json(result[0]);
   } catch (error) {

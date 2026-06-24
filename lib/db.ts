@@ -16,6 +16,7 @@ export async function initializeDatabase() {
     CREATE TABLE IF NOT EXISTS categories (
       id SERIAL PRIMARY KEY,
       name VARCHAR(100) UNIQUE NOT NULL,
+      name_en VARCHAR(100),
       created_at TIMESTAMP DEFAULT NOW()
     )
   `;
@@ -24,10 +25,12 @@ export async function initializeDatabase() {
     CREATE TABLE IF NOT EXISTS photos (
       id SERIAL PRIMARY KEY,
       title VARCHAR(255) NOT NULL,
+      title_en VARCHAR(255),
       src TEXT NOT NULL,
       category VARCHAR(100) NOT NULL,
       is_featured BOOLEAN DEFAULT false,
       featured_description TEXT,
+      featured_description_en TEXT,
       display_order INT DEFAULT 0,
       created_at TIMESTAMP DEFAULT NOW(),
       updated_at TIMESTAMP DEFAULT NOW()
@@ -38,10 +41,12 @@ export async function initializeDatabase() {
     CREATE TABLE IF NOT EXISTS certificates (
       id SERIAL PRIMARY KEY,
       title VARCHAR(255) NOT NULL,
+      title_en VARCHAR(255),
       issuer VARCHAR(255),
       date VARCHAR(100),
       image_url TEXT,
       description TEXT,
+      description_en TEXT,
       created_at TIMESTAMP DEFAULT NOW()
     )
   `;
@@ -90,7 +95,9 @@ export async function initializeDatabase() {
     CREATE TABLE IF NOT EXISTS resume_skills (
       id SERIAL PRIMARY KEY,
       category VARCHAR(100) NOT NULL,
+      category_en VARCHAR(100),
       name VARCHAR(255) NOT NULL,
+      name_en VARCHAR(255),
       display_order INT DEFAULT 0,
       created_at TIMESTAMP DEFAULT NOW()
     )
@@ -102,8 +109,11 @@ export async function initializeDatabase() {
       start_date VARCHAR(100),
       end_date VARCHAR(100),
       role VARCHAR(255) NOT NULL,
+      role_en VARCHAR(255),
       client VARCHAR(255) NOT NULL,
+      client_en VARCHAR(255),
       description TEXT,
+      description_en TEXT,
       display_order INT DEFAULT 0,
       created_at TIMESTAMP DEFAULT NOW()
     )
@@ -115,7 +125,9 @@ export async function initializeDatabase() {
       type VARCHAR(50) DEFAULT 'award',
       year VARCHAR(50),
       title VARCHAR(255) NOT NULL,
+      title_en VARCHAR(255),
       issuer VARCHAR(255),
+      issuer_en VARCHAR(255),
       display_order INT DEFAULT 0,
       created_at TIMESTAMP DEFAULT NOW()
     )
@@ -125,7 +137,9 @@ export async function initializeDatabase() {
     CREATE TABLE IF NOT EXISTS resume_gear (
       id SERIAL PRIMARY KEY,
       category VARCHAR(100) NOT NULL,
+      category_en VARCHAR(100),
       name VARCHAR(255) NOT NULL,
+      name_en VARCHAR(255),
       display_order INT DEFAULT 0,
       created_at TIMESTAMP DEFAULT NOW()
     )
@@ -135,8 +149,11 @@ export async function initializeDatabase() {
     CREATE TABLE IF NOT EXISTS tech_projects (
       id SERIAL PRIMARY KEY,
       title VARCHAR(255) NOT NULL,
+      title_en VARCHAR(255),
       description TEXT,
+      description_en TEXT,
       tech_stack VARCHAR(500),
+      tech_stack_en VARCHAR(500),
       image_url TEXT,
       live_url VARCHAR(255),
       github_url VARCHAR(255),

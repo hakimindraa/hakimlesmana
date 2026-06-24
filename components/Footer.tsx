@@ -15,6 +15,7 @@ import {
   Video,
   Send,
 } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 interface Profile {
   name: string;
@@ -32,6 +33,7 @@ const Footer = () => {
   const [emailValue, setEmailValue] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
+  const { language } = useLanguage();
 
   const currentYear = new Date().getFullYear();
 
@@ -56,20 +58,20 @@ const Footer = () => {
   const linkedinUrl = profile?.linkedin || "#";
 
   const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Certificates", href: "#certificates" },
-    { name: "Contact", href: "#contact" },
+    { name: language === "en" ? "Home" : "Beranda", href: "#home" },
+    { name: language === "en" ? "About" : "Tentang", href: "#about" },
+    { name: language === "en" ? "Gallery" : "Galeri", href: "#gallery" },
+    { name: language === "en" ? "Certificates" : "Sertifikat", href: "#certificates" },
+    { name: language === "en" ? "Contact" : "Kontak", href: "#contact" },
   ];
 
   const services = [
-    "Wedding Photography",
-    "Pre-Wedding Shoot",
-    "Event Videography",
-    "Product Photography",
-    "Cinematic Film",
-    "Photo Editing",
+    language === "en" ? "Wedding Photography" : "Fotografi Pernikahan",
+    language === "en" ? "Pre-Wedding Shoot" : "Sesi Pre-Wedding",
+    language === "en" ? "Event Videography" : "Videografi Acara",
+    language === "en" ? "Product Photography" : "Fotografi Produk",
+    language === "en" ? "Cinematic Film" : "Film Sinematik",
+    language === "en" ? "Photo Editing" : "Pengeditan Foto",
   ];
 
   const socialLinks = [
@@ -122,14 +124,16 @@ const Footer = () => {
             </div>
 
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
-              Let&apos;s Create
+              {language === "en" ? "Let's Create" : "Mari Ciptakan"}
               <span className="block bg-gradient-to-r from-white via-white/80 to-white/50 bg-clip-text text-transparent">
-                Something Beautiful
+                {language === "en" ? "Something Beautiful" : "Sesuatu yang Indah"}
               </span>
             </h2>
 
             <p className="text-white/50 text-base md:text-lg max-w-lg mx-auto mb-10 leading-relaxed">
-              Punya proyek menarik atau ingin menyapa? Saya selalu terbuka untuk diskusi mengenai kolaborasi visual yang bermakna.
+              {language === "en" 
+                ? "Got an interesting project or just want to say hi? I'm always open to discussing meaningful visual collaborations."
+                : "Punya proyek menarik atau ingin menyapa? Saya selalu terbuka untuk diskusi mengenai kolaborasi visual yang bermakna."}
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -138,7 +142,7 @@ const Footer = () => {
                 className="group flex items-center gap-3 px-8 py-4 bg-white text-black text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-white/90 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]"
               >
                 <Mail className="w-4 h-4 group-hover:rotate-6 transition-transform" />
-                Hubungi Saya
+                {language === "en" ? "Contact Me" : "Hubungi Saya"}
               </a>
               <a
                 href={`https://wa.me/${whatsapp}`}
@@ -175,7 +179,9 @@ const Footer = () => {
             </a>
 
             <p className="text-white/40 text-[10px] md:text-sm leading-relaxed mb-6 max-w-xs">
-              Capturing timeless moments through the art of photography &amp; cinematic videography. Every frame tells a story.
+              {language === "en"
+                ? "Capturing timeless moments through the art of photography & cinematic videography. Every frame tells a story."
+                : "Mengabadikan momen abadi melalui seni fotografi & videografi sinematik. Setiap bingkai menceritakan sebuah kisah."}
             </p>
 
             {/* Social Icons */}
@@ -203,7 +209,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
-              Quick Links
+              {language === "en" ? "Quick Links" : "Tautan Cepat"}
             </h3>
             <ul className="space-y-3.5">
               {quickLinks.map((link) => (
@@ -228,7 +234,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
-              Services
+              {language === "en" ? "Services" : "Layanan"}
             </h3>
             <ul className="space-y-3.5">
               {services.map((service) => (
@@ -249,7 +255,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
-              Get In Touch
+              {language === "en" ? "Get In Touch" : "Hubungi Kami"}
             </h3>
 
             <ul className="space-y-4 mb-8">

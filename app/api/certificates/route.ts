@@ -18,13 +18,13 @@ export async function POST(req: NextRequest) {
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const { title, issuer, date, image_url, description } = await req.json();
+    const { title, title_en, issuer, date, image_url, description, description_en } = await req.json();
     if (!title) return NextResponse.json({ error: "Title is required" }, { status: 400 });
 
     const sql = getDb();
     const result = await sql`
-      INSERT INTO certificates (title, issuer, date, image_url, description)
-      VALUES (${title}, ${issuer || ""}, ${date || ""}, ${image_url || ""}, ${description || ""})
+      INSERT INTO certificates (title, title_en, issuer, date, image_url, description, description_en)
+      VALUES (${title}, ${title_en || ""}, ${issuer || ""}, ${date || ""}, ${image_url || ""}, ${description || ""}, ${description_en || ""})
       RETURNING *
     `;
     return NextResponse.json(result[0], { status: 201 });
@@ -39,13 +39,13 @@ export async function PUT(req: NextRequest) {
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const { id, title, issuer, date, image_url, description } = await req.json();
+    const { id, title, title_en, issuer, date, image_url, description, description_en } = await req.json();
     if (!id) return NextResponse.json({ error: "ID is required" }, { status: 400 });
 
     const sql = getDb();
     const result = await sql`
-      UPDATE certificates SET title = ${title}, issuer = ${issuer || ""}, 
-      date = ${date || ""}, image_url = ${image_url || ""}, description = ${description || ""}
+      UPDATE certificates SET title = ${title}, title_en = ${title_en || ""}, issuer = ${issuer || ""}, 
+      date = ${date || ""}, image_url = ${image_url || ""}, description = ${description || ""}, description_en = ${description_en || ""}
       WHERE id = ${id} RETURNING *
     `;
     if (result.length === 0) return NextResponse.json({ error: "Certificate not found" }, { status: 404 });

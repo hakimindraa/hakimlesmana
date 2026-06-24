@@ -3,14 +3,17 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/components/LanguageContext";
 
 interface Photo {
   id: number;
   title: string;
+  title_en?: string;
   src: string;
   category: string;
   is_featured: boolean;
   featured_description: string;
+  featured_description_en?: string;
 }
 
 const gridClasses = [
@@ -22,6 +25,7 @@ const gridClasses = [
 const FeaturedWorks = () => {
   const [featured, setFeatured] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchFeatured = async () => {
@@ -48,11 +52,15 @@ const FeaturedWorks = () => {
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="flex justify-between items-end mb-10">
           <div>
-            <h2 className="text-[10px] uppercase tracking-[0.5em] text-secondary mb-2 font-medium">Selected Portfolios</h2>
-            <h3 className="text-3xl font-bold tracking-tight text-primary">Featured Works</h3>
+            <h2 className="text-[10px] uppercase tracking-[0.5em] text-secondary mb-2 font-medium">
+              {language === "en" ? "Selected Portfolios" : "Portofolio Pilihan"}
+            </h2>
+            <h3 className="text-3xl font-bold tracking-tight text-primary">
+              {language === "en" ? "Featured Works" : "Karya Unggulan"}
+            </h3>
           </div>
           <a href="#gallery" className="text-[10px] font-bold uppercase tracking-[0.2em] border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-all">
-            View All
+            {language === "en" ? "View All" : "Lihat Semua"}
           </a>
         </div>
 
@@ -83,7 +91,9 @@ const FeaturedWorks = () => {
 
                 <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                   <p className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] mb-1 opacity-90 font-medium">{item.category}</p>
-                  <h4 className="text-sm md:text-lg font-bold tracking-tight">{item.title}</h4>
+                  <h4 className="text-sm md:text-lg font-bold tracking-tight">
+                    {language === "en" && item.title_en ? item.title_en : item.title}
+                  </h4>
                 </div>
               </motion.div>
             ))}

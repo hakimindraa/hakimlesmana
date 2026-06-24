@@ -6,8 +6,11 @@ import { Plus, Trash2, Edit2, RefreshCw, Upload, Link as LinkIcon, Github } from
 type TechProject = {
   id: number;
   title: string;
+  title_en: string;
   description: string;
+  description_en: string;
   tech_stack: string;
+  tech_stack_en: string;
   image_url: string;
   live_url: string;
   github_url: string;
@@ -20,7 +23,7 @@ export default function TechProjectsAdmin() {
   const [isEditing, setIsEditing] = useState(false);
   
   const [form, setForm] = useState({
-    id: 0, title: "", description: "", tech_stack: "", image_url: "", live_url: "", github_url: "", display_order: 0
+    id: 0, title: "", title_en: "", description: "", description_en: "", tech_stack: "", tech_stack_en: "", image_url: "", live_url: "", github_url: "", display_order: 0
   });
 
   const fetchData = async () => {
@@ -50,7 +53,7 @@ export default function TechProjectsAdmin() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)
       });
-      setForm({ id: 0, title: "", description: "", tech_stack: "", image_url: "", live_url: "", github_url: "", display_order: 0 });
+      setForm({ id: 0, title: "", title_en: "", description: "", description_en: "", tech_stack: "", tech_stack_en: "", image_url: "", live_url: "", github_url: "", display_order: 0 });
       setIsEditing(false);
       fetchData();
     } catch (err) {
@@ -82,10 +85,14 @@ export default function TechProjectsAdmin() {
 
       <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg mb-8 border border-gray-100">
-          <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Project Title</label><input required value={form.title} onChange={e=>setForm({...form, title: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. E-Commerce Dashboard" /></div>
-          <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Tech Stack</label><input value={form.tech_stack} onChange={e=>setForm({...form, tech_stack: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. Next.js, Tailwind, Prisma" /></div>
+          <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Project Title - ID</label><input required value={form.title} onChange={e=>setForm({...form, title: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. E-Commerce Dashboard" /></div>
+          <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Project Title - EN</label><input value={form.title_en} onChange={e=>setForm({...form, title_en: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. E-Commerce Dashboard" /></div>
           
-          <div className="md:col-span-2"><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Description</label><textarea value={form.description} onChange={e=>setForm({...form, description: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm h-20 bg-white" placeholder="Describe the project..." /></div>
+          <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Tech Stack - ID</label><input value={form.tech_stack} onChange={e=>setForm({...form, tech_stack: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. Next.js, Tailwind, Prisma" /></div>
+          <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Tech Stack - EN</label><input value={form.tech_stack_en} onChange={e=>setForm({...form, tech_stack_en: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. Next.js, Tailwind, Prisma" /></div>
+          
+          <div className="md:col-span-1"><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Description - ID</label><textarea value={form.description} onChange={e=>setForm({...form, description: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm h-20 bg-white" placeholder="Deskripsi..." /></div>
+          <div className="md:col-span-1"><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Description - EN</label><textarea value={form.description_en} onChange={e=>setForm({...form, description_en: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm h-20 bg-white" placeholder="Description..." /></div>
           
           <div className="md:col-span-2"><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Image URL (Screenshot)</label><input value={form.image_url} onChange={e=>setForm({...form, image_url: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="https://..." /></div>
 
@@ -96,7 +103,7 @@ export default function TechProjectsAdmin() {
             <div className="w-32"><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Display Order</label><input type="number" value={form.display_order} onChange={e=>setForm({...form, display_order: parseInt(e.target.value)})} className="w-full border border-gray-300 p-2 rounded-lg text-sm bg-white" /></div>
             
             <div className="flex gap-2">
-              {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, title: "", description: "", tech_stack: "", image_url: "", live_url: "", github_url: "", display_order: 0 })}} className="px-6 py-2.5 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50">Cancel</button>}
+              {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, title: "", title_en: "", description: "", description_en: "", tech_stack: "", tech_stack_en: "", image_url: "", live_url: "", github_url: "", display_order: 0 })}} className="px-6 py-2.5 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50">Cancel</button>}
               <button type="submit" className="px-6 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 flex items-center gap-2">
                 {isEditing ? <Edit2 className="w-4 h-4"/> : <Plus className="w-4 h-4"/>} {isEditing ? "Update Project" : "Add Project"}
               </button>
