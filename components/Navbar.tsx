@@ -56,7 +56,7 @@ const Navbar = () => {
           className="shrink-0 hover:opacity-70 transition-opacity"
         >
           <img
-            src="/icon2.jpeg"
+            src="/icon2.png"
             alt="icon2"
             className="h-6 md:h-11 w-auto"
           />
