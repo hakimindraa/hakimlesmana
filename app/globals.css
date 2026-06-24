@@ -18,6 +18,7 @@ body {
   * {
     @apply border-gray-200;
   }
+
   body {
     @apply bg-white text-[#111111];
   }
@@ -37,14 +38,19 @@ body {
 }
 
 @media (min-width: 640px) {
-  .mosaic-grid { column-count: 2; }
+  .mosaic-grid {
+    column-count: 2;
+  }
 }
 
 @media (min-width: 1024px) {
-  .mosaic-grid { column-count: 3; }
+  .mosaic-grid {
+    column-count: 3;
+  }
 }
 
 @media (min-width: 1280px) {
-  .mosaic-grid { column-count: 4; }
+  .mosaic-grid {
+    column-count: 4;
+  }
 }
-

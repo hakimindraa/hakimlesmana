@@ -4,11 +4,12 @@ import { getSessionFromRequest } from "@/lib/auth";
 
 const ALLOWED_TABLES = ["resume_skills", "resume_experiences", "resume_awards", "resume_gear"];
 
-export async function POST(req: NextRequest, { params }: { params: { table: string } }) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ table: string }> }) {
   const isAuth = await getSessionFromRequest(req);
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const table = params.table;
+  const resolvedParams = await params;
+  const table = resolvedParams.table;
   if (!ALLOWED_TABLES.includes(table)) {
     return NextResponse.json({ error: "Invalid table" }, { status: 400 });
   }
@@ -43,11 +44,12 @@ export async function POST(req: NextRequest, { params }: { params: { table: stri
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { table: string } }) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ table: string }> }) {
   const isAuth = await getSessionFromRequest(req);
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const table = params.table;
+  const resolvedParams = await params;
+  const table = resolvedParams.table;
   if (!ALLOWED_TABLES.includes(table)) {
     return NextResponse.json({ error: "Invalid table" }, { status: 400 });
   }
@@ -90,11 +92,12 @@ export async function PUT(req: NextRequest, { params }: { params: { table: strin
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { table: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ table: string }> }) {
   const isAuth = await getSessionFromRequest(req);
   if (!isAuth) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const table = params.table;
+  const resolvedParams = await params;
+  const table = resolvedParams.table;
   if (!ALLOWED_TABLES.includes(table)) {
     return NextResponse.json({ error: "Invalid table" }, { status: 400 });
   }
