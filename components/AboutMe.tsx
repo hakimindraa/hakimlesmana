@@ -7,7 +7,6 @@ import { Camera, Heart, Code2 } from "lucide-react";
 interface Profile {
   name: string;
   bio: string;
-  bio: string;
   about_text: string;
   home_quote?: string;
   hl1_title?: string;
