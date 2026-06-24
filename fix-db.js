@@ -21,15 +21,20 @@ async function fixDb() {
     const cols = await sql`SELECT column_name FROM information_schema.columns WHERE table_name = 'profile'`;
     const colNames = cols.map(c => c.column_name);
 
-    if (!colNames.includes('home_quote')) await sql`ALTER TABLE profile ADD COLUMN home_quote TEXT DEFAULT 'Menangkap emosi lewat lensa visual, dan membangun solusi lewat baris kode.'`;
-    if (!colNames.includes('hl1_title')) await sql`ALTER TABLE profile ADD COLUMN hl1_title VARCHAR(255) DEFAULT 'VISUAL ARTS'`;
-    if (!colNames.includes('hl1_desc')) await sql`ALTER TABLE profile ADD COLUMN hl1_desc TEXT DEFAULT 'Fotografi, Sinematografi, & UI/UX Design.'`;
-    if (!colNames.includes('hl2_title')) await sql`ALTER TABLE profile ADD COLUMN hl2_title VARCHAR(255) DEFAULT 'DIGITAL ENGINEERING'`;
-    if (!colNames.includes('hl2_desc')) await sql`ALTER TABLE profile ADD COLUMN hl2_desc TEXT DEFAULT 'Next.js, React, & Modern Web Development.'`;
-    if (!colNames.includes('hl3_title')) await sql`ALTER TABLE profile ADD COLUMN hl3_title VARCHAR(255) DEFAULT 'CORE PASSION'`;
-    if (!colNames.includes('hl3_desc')) await sql`ALTER TABLE profile ADD COLUMN hl3_desc TEXT DEFAULT 'Memadukan Estetika Visual dengan Performa Interaktif.'`;
+    if (!colNames.includes('tagline_en')) await sql`ALTER TABLE profile ADD COLUMN tagline_en TEXT DEFAULT ''`;
+    if (!colNames.includes('bio_en')) await sql`ALTER TABLE profile ADD COLUMN bio_en TEXT DEFAULT ''`;
+    if (!colNames.includes('about_text_en')) await sql`ALTER TABLE profile ADD COLUMN about_text_en TEXT DEFAULT ''`;
+    if (!colNames.includes('about_subtitle_en')) await sql`ALTER TABLE profile ADD COLUMN about_subtitle_en VARCHAR(255) DEFAULT ''`;
+    if (!colNames.includes('about_title_en')) await sql`ALTER TABLE profile ADD COLUMN about_title_en TEXT DEFAULT ''`;
+    if (!colNames.includes('home_quote_en')) await sql`ALTER TABLE profile ADD COLUMN home_quote_en TEXT DEFAULT ''`;
+    if (!colNames.includes('hl1_title_en')) await sql`ALTER TABLE profile ADD COLUMN hl1_title_en VARCHAR(255) DEFAULT ''`;
+    if (!colNames.includes('hl1_desc_en')) await sql`ALTER TABLE profile ADD COLUMN hl1_desc_en TEXT DEFAULT ''`;
+    if (!colNames.includes('hl2_title_en')) await sql`ALTER TABLE profile ADD COLUMN hl2_title_en VARCHAR(255) DEFAULT ''`;
+    if (!colNames.includes('hl2_desc_en')) await sql`ALTER TABLE profile ADD COLUMN hl2_desc_en TEXT DEFAULT ''`;
+    if (!colNames.includes('hl3_title_en')) await sql`ALTER TABLE profile ADD COLUMN hl3_title_en VARCHAR(255) DEFAULT ''`;
+    if (!colNames.includes('hl3_desc_en')) await sql`ALTER TABLE profile ADD COLUMN hl3_desc_en TEXT DEFAULT ''`;
 
-    console.log("Done adding home highlights columns!");
+    console.log("Done adding i18n columns!");
   } catch (err) {
     console.error("Error:", err);
   }

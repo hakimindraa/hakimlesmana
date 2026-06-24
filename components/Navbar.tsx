@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/components/LanguageContext";
 
 const navItems = [
   { name: "Home", href: "/#home" },
@@ -16,6 +17,7 @@ const navItems = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, toggleLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,8 +67,19 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right: Contact Button */}
-        <div className="flex items-center">
+        {/* Right: Contact Button & Language Toggle */}
+        <div className="flex items-center gap-2 md:gap-4">
+          <button
+            onClick={toggleLanguage}
+            className={cn(
+              "flex items-center gap-1 px-3 py-2 rounded-full transition-all text-xs font-bold uppercase tracking-widest",
+              isScrolled ? "hover:bg-gray-100" : "hover:bg-white/10"
+            )}
+          >
+            <Globe size={14} />
+            {language}
+          </button>
+
           <a
             href="mailto:hakim@example.com"
             className={cn(

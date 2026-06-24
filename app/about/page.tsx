@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Award, Trophy, Camera, Briefcase } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
-type Profile = { name: string; bio: string; hero_image: string; about_subtitle?: string; about_title?: string };
+type Profile = { name: string; bio: string; hero_image: string; about_subtitle?: string; about_title?: string; bio_en?: string; about_subtitle_en?: string; about_title_en?: string; };
 type Skill = { id: number; category: string; name: string };
 type Experience = { id: number; start_date: string; end_date: string; role: string; client: string; description: string };
 type ResumeAward = { id: number; type: string; year: string; title: string; issuer: string };
@@ -19,6 +20,7 @@ export default function AboutPage() {
   const [awards, setAwards] = useState<ResumeAward[]>([]);
   const [gear, setGear] = useState<Gear[]>([]);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,6 +71,10 @@ export default function AboutPage() {
 
   const heroImage = profile?.hero_image || "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000";
 
+  const subtitle = language === "en" && profile?.about_subtitle_en ? profile.about_subtitle_en : (profile?.about_subtitle || "CREATIVE TECHNOLOGIST");
+  const title = language === "en" && profile?.about_title_en ? profile.about_title_en : (profile?.about_title || "I build and create &mdash;<br/>from pixels to products.");
+  const bio = language === "en" && profile?.bio_en ? profile.bio_en : (profile?.bio || "Berangkat dari ketertarikan mendalam terhadap seni visual...");
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -81,8 +87,8 @@ export default function AboutPage() {
         </div>
         <div className="relative h-full flex items-center justify-center text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="max-w-3xl mx-auto px-6">
-            <h2 className="text-white/70 font-medium tracking-[0.3em] mb-4 uppercase text-xs md:text-sm">{profile?.about_subtitle || "CREATIVE TECHNOLOGIST"}</h2>
-            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight" dangerouslySetInnerHTML={{ __html: profile?.about_title || "I build and create &mdash;<br/>from pixels to products." }} />
+            <h2 className="text-white/70 font-medium tracking-[0.3em] mb-4 uppercase text-xs md:text-sm">{subtitle}</h2>
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight" dangerouslySetInnerHTML={{ __html: title }} />
           </motion.div>
         </div>
       </section>
@@ -98,7 +104,7 @@ export default function AboutPage() {
               <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">My Journey</h3>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black tracking-tight">{profile?.name || "Hikra"}</h2>
               <div className="text-gray-600 leading-relaxed mb-6 space-y-4 whitespace-pre-wrap">
-                {profile?.bio || "Berangkat dari ketertarikan mendalam terhadap seni visual..."}
+                {bio}
               </div>
             </motion.div>
           </div>

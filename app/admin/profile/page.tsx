@@ -19,6 +19,18 @@ interface Profile {
   hl2_desc: string;
   hl3_title: string;
   hl3_desc: string;
+  tagline_en: string;
+  bio_en: string;
+  about_text_en: string;
+  about_subtitle_en: string;
+  about_title_en: string;
+  home_quote_en: string;
+  hl1_title_en: string;
+  hl1_desc_en: string;
+  hl2_title_en: string;
+  hl2_desc_en: string;
+  hl3_title_en: string;
+  hl3_desc_en: string;
   hero_image: string;
   email: string;
   phone: string;
@@ -144,9 +156,26 @@ export default function ProfileEditor() {
           </div>
         </div>
 
-        <div>
-          <label className={labelClass}>My Journey (Bio) - 2 Paragraf</label>
-          <textarea value={profile.bio} onChange={(e) => updateField("bio", e.target.value)} rows={6} placeholder="Ceritakan perjalananmu..." className={inputClass + " resize-y"} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass}>Short Tagline (Homepage) - ID</label>
+            <input type="text" value={profile.tagline || ""} onChange={(e) => updateField("tagline", e.target.value)} className={inputClass} />
+          </div>
+          <div>
+            <label className={labelClass}>Short Tagline (Homepage) - EN</label>
+            <input type="text" value={profile.tagline_en || ""} onChange={(e) => updateField("tagline_en", e.target.value)} className={inputClass} />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass}>My Journey (Bio) - ID</label>
+            <textarea value={profile.bio || ""} onChange={(e) => updateField("bio", e.target.value)} rows={4} className={inputClass + " resize-y"} />
+          </div>
+          <div>
+            <label className={labelClass}>My Journey (Bio) - EN</label>
+            <textarea value={profile.bio_en || ""} onChange={(e) => updateField("bio_en", e.target.value)} rows={4} className={inputClass + " resize-y"} />
+          </div>
         </div>
 
         <div>
@@ -166,48 +195,72 @@ export default function ProfileEditor() {
           <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Homepage About Highlights</h2>
         </div>
 
-        <div>
-          <label className={labelClass}>Home Quote (Kutipan Miring)</label>
-          <textarea value={profile.home_quote || ""} onChange={(e) => updateField("home_quote", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass}>Home Quote (Kutipan Miring) - ID</label>
+            <textarea value={profile.home_quote || ""} onChange={(e) => updateField("home_quote", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+          </div>
+          <div>
+            <label className={labelClass}>Home Quote (Kutipan Miring) - EN</label>
+            <textarea value={profile.home_quote_en || ""} onChange={(e) => updateField("home_quote_en", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-100">
           {/* Highlight 1 */}
           <div className="space-y-3">
             <h3 className="text-xs font-bold text-gray-400">HIGHLIGHT 1 (Visual Arts)</h3>
-            <div>
-              <label className={labelClass}>Judul</label>
-              <input type="text" value={profile.hl1_title || ""} onChange={(e) => updateField("hl1_title", e.target.value)} className={inputClass} />
-            </div>
-            <div>
-              <label className={labelClass}>Deskripsi</label>
-              <textarea value={profile.hl1_desc || ""} onChange={(e) => updateField("hl1_desc", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+            <div className="grid grid-cols-1 gap-2">
+              <div>
+                <label className={labelClass}>Judul (ID | EN)</label>
+                <div className="flex gap-2">
+                  <input type="text" value={profile.hl1_title || ""} onChange={(e) => updateField("hl1_title", e.target.value)} className={inputClass} placeholder="ID" />
+                  <input type="text" value={profile.hl1_title_en || ""} onChange={(e) => updateField("hl1_title_en", e.target.value)} className={inputClass} placeholder="EN" />
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Deskripsi (ID | EN)</label>
+                <textarea value={profile.hl1_desc || ""} onChange={(e) => updateField("hl1_desc", e.target.value)} rows={2} className={inputClass + " resize-y mb-2"} placeholder="ID" />
+                <textarea value={profile.hl1_desc_en || ""} onChange={(e) => updateField("hl1_desc_en", e.target.value)} rows={2} className={inputClass + " resize-y"} placeholder="EN" />
+              </div>
             </div>
           </div>
 
           {/* Highlight 2 */}
           <div className="space-y-3">
             <h3 className="text-xs font-bold text-gray-400">HIGHLIGHT 2 (Digital Engineering)</h3>
-            <div>
-              <label className={labelClass}>Judul</label>
-              <input type="text" value={profile.hl2_title || ""} onChange={(e) => updateField("hl2_title", e.target.value)} className={inputClass} />
-            </div>
-            <div>
-              <label className={labelClass}>Deskripsi</label>
-              <textarea value={profile.hl2_desc || ""} onChange={(e) => updateField("hl2_desc", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+            <div className="grid grid-cols-1 gap-2">
+              <div>
+                <label className={labelClass}>Judul (ID | EN)</label>
+                <div className="flex gap-2">
+                  <input type="text" value={profile.hl2_title || ""} onChange={(e) => updateField("hl2_title", e.target.value)} className={inputClass} placeholder="ID" />
+                  <input type="text" value={profile.hl2_title_en || ""} onChange={(e) => updateField("hl2_title_en", e.target.value)} className={inputClass} placeholder="EN" />
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Deskripsi (ID | EN)</label>
+                <textarea value={profile.hl2_desc || ""} onChange={(e) => updateField("hl2_desc", e.target.value)} rows={2} className={inputClass + " resize-y mb-2"} placeholder="ID" />
+                <textarea value={profile.hl2_desc_en || ""} onChange={(e) => updateField("hl2_desc_en", e.target.value)} rows={2} className={inputClass + " resize-y"} placeholder="EN" />
+              </div>
             </div>
           </div>
 
           {/* Highlight 3 */}
           <div className="space-y-3">
             <h3 className="text-xs font-bold text-gray-400">HIGHLIGHT 3 (Core Passion)</h3>
-            <div>
-              <label className={labelClass}>Judul</label>
-              <input type="text" value={profile.hl3_title || ""} onChange={(e) => updateField("hl3_title", e.target.value)} className={inputClass} />
-            </div>
-            <div>
-              <label className={labelClass}>Deskripsi</label>
-              <textarea value={profile.hl3_desc || ""} onChange={(e) => updateField("hl3_desc", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+            <div className="grid grid-cols-1 gap-2">
+              <div>
+                <label className={labelClass}>Judul (ID | EN)</label>
+                <div className="flex gap-2">
+                  <input type="text" value={profile.hl3_title || ""} onChange={(e) => updateField("hl3_title", e.target.value)} className={inputClass} placeholder="ID" />
+                  <input type="text" value={profile.hl3_title_en || ""} onChange={(e) => updateField("hl3_title_en", e.target.value)} className={inputClass} placeholder="EN" />
+                </div>
+              </div>
+              <div>
+                <label className={labelClass}>Deskripsi (ID | EN)</label>
+                <textarea value={profile.hl3_desc || ""} onChange={(e) => updateField("hl3_desc", e.target.value)} rows={2} className={inputClass + " resize-y mb-2"} placeholder="ID" />
+                <textarea value={profile.hl3_desc_en || ""} onChange={(e) => updateField("hl3_desc_en", e.target.value)} rows={2} className={inputClass + " resize-y"} placeholder="EN" />
+              </div>
             </div>
           </div>
         </div>

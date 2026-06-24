@@ -36,6 +36,8 @@ export const metadata: Metadata = {
   // },
 };
 
+import { LanguageProvider } from "@/components/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -64,7 +66,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
+      </body>
     </html>
   );
 }

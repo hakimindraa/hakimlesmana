@@ -2,16 +2,19 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/components/LanguageContext";
 
 interface Profile {
   name: string;
   tagline: string;
+  tagline_en?: string;
   bio: string;
   hero_image: string;
 }
 
 const Hero = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -26,7 +29,8 @@ const Hero = () => {
   }, []);
 
   const name = profile?.name || "";
-  const tagline = profile?.tagline || "";
+  const baseTagline = language === "en" && profile?.tagline_en ? profile.tagline_en : profile?.tagline || "";
+  const tagline = baseTagline;
   const heroImage = profile?.hero_image || "";
 
   // Jika profile belum selesai dimuat dari database, tampilkan loading spinner atau layar hitam
