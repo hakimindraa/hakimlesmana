@@ -48,36 +48,36 @@ const FeaturedWorks = () => {
   if (!loading && featured.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-6 max-w-5xl">
+    <section className="relative py-24">
+      <div className="relative container mx-auto px-6 max-w-5xl">
         <div className="flex justify-between items-end mb-10">
           <div>
             <h2 className="text-[10px] uppercase tracking-[0.5em] text-secondary mb-2 font-medium">
               {language === "en" ? "Selected Portfolios" : "Portofolio Pilihan"}
             </h2>
-            <h3 className="text-3xl font-bold tracking-tight text-primary">
+            <h3 className="text-3xl font-bold tracking-tight text-primary dark:text-white">
               {language === "en" ? "Featured Works" : "Karya Unggulan"}
             </h3>
           </div>
-          <a href="#gallery" className="text-[10px] font-bold uppercase tracking-[0.2em] border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-all">
+          <a href="#gallery" className="text-[10px] font-bold uppercase tracking-[0.2em] border-b border-primary dark:border-white pb-1 hover:text-secondary dark:hover:text-gray-300 hover:border-secondary dark:hover:border-gray-300 transition-all dark:text-white">
             {language === "en" ? "View All" : "Lihat Semua"}
           </a>
         </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-8 h-8 border-3 border-gray-300 border-t-gray-800 rounded-full animate-spin" />
+            <div className="w-8 h-8 border-3 border-gray-300 dark:border-gray-700 border-t-gray-800 dark:border-t-white rounded-full animate-spin" />
           </div>
         ) : (
-          <div className="flex flex-col gap-4 md:grid md:grid-cols-3 md:grid-rows-2 md:gap-4 h-auto md:h-[550px]">
+          <div className="flex flex-col gap-5 md:grid md:grid-cols-3 md:grid-rows-2 md:gap-6 h-auto md:h-[600px]">
             {featured.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className={`break-inside-avoid w-full relative overflow-hidden group rounded-sm shadow-sm md:h-full ${gridClasses[index] || ""}`}
+                className={`break-inside-avoid w-full relative overflow-hidden group rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-gray-200 dark:border-slate-800 hover:-translate-y-2 transition-all duration-300 md:h-full ${gridClasses[index] || ""}`}
               >
                 <Image
                   src={item.src}

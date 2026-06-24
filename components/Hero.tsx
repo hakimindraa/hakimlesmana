@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/components/LanguageContext";
 
 interface Profile {
@@ -15,6 +15,9 @@ interface Profile {
 const Hero = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const { language } = useLanguage();
+
+  const { scrollY } = useScroll();
+  const backgroundY = useTransform(scrollY, [0, 1000], ["0%", "30%"]);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -32,6 +35,18 @@ const Hero = () => {
   const baseTagline = language === "en" && profile?.tagline_en ? profile.tagline_en : profile?.tagline || "";
   const tagline = baseTagline;
   const heroImage = profile?.hero_image || "";
+
+  // Pisahkan tagline berdasarkan koma atau " & " untuk rotator
+  const taglineItems = tagline.replace(" & ", ", ").split(",").map(s => s.trim()).filter(Boolean);
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+
+  useEffect(() => {
+    if (taglineItems.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % taglineItems.length);
+    }, 3000); // Ganti peran setiap 3 detik
+    return () => clearInterval(interval);
+  }, [taglineItems.length]);
 
   // Jika profile belum selesai dimuat dari database, tampilkan loading spinner atau layar hitam
   if (!profile) {
@@ -54,10 +69,11 @@ const Hero = () => {
       {/* Background Image - Fullscreen */}
       <div className="absolute inset-0">
         {heroImage && (
-          <img
+          <motion.img
             src={heroImage}
             alt="Featured Work"
-            className="absolute inset-0 w-full h-full object-cover opacity-60"
+            style={{ y: backgroundY }}
+            className="absolute inset-0 w-full h-[130%] -top-[15%] object-cover opacity-60"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
@@ -73,19 +89,32 @@ const Hero = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-white font-medium tracking-[0.3em] mb-2 md:mb-4 uppercase text-[10px] md:text-sm">
-              {name}
+            <h2 className="text-white font-medium tracking-[0.3em] mb-2 md:mb-4 uppercase text-[10px] md:text-sm flex justify-center flex-wrap">
+              {name.split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.1, delay: 0.5 + index * 0.05 }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
             </h2>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 text-white tracking-tight leading-[1.1] md:leading-tight">
-              {tagline.includes(",") ? (
-                <>
-                  {tagline.split(",")[0]},<br />
-                  {tagline.split(",").slice(1).join(",")}
-                </>
-              ) : (
-                tagline
-              )}
-            </h1>
+            <div className="h-[60px] sm:h-[80px] md:h-[100px] lg:h-[130px] mb-6 md:mb-8 overflow-hidden flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={currentRoleIndex}
+                  initial={{ y: 40, opacity: 0, filter: "blur(10px)" }}
+                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                  exit={{ y: -40, opacity: 0, filter: "blur(10px)" }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.1] md:leading-tight w-full"
+                >
+                  {taglineItems[currentRoleIndex]}
+                </motion.h1>
+              </AnimatePresence>
+            </div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -93,7 +122,7 @@ const Hero = () => {
             >
               <a
                 href="#gallery"
-                className="inline-block border border-white text-white px-6 py-3 md:px-10 md:py-4 rounded-none hover:bg-white hover:text-black transition-all duration-300 font-medium uppercase tracking-widest text-[10px] md:text-sm"
+                className="inline-block bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-3 md:px-12 md:py-4 rounded-full hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] hover:-translate-y-1 transition-all duration-500 font-semibold uppercase tracking-widest text-[10px] md:text-sm"
               >
                 {language === "en" ? "View Gallery" : "Lihat Galeri"}
               </a>

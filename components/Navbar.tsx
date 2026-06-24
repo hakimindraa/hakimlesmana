@@ -2,16 +2,23 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/LanguageContext";
+import { useTheme } from "next-themes";
 
 
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { language, toggleLanguage } = useLanguage();
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navItems = [
     { name: language === "en" ? "Home" : "Beranda", href: "/#home" },
@@ -39,7 +46,7 @@ const Navbar = () => {
           "flex items-center justify-between w-full max-w-5xl h-13 md:h-16 px-5 md:px-8 rounded-full transition-all duration-500",
           "border backdrop-blur-xl",
           isScrolled
-            ? "bg-white/80 border-gray-200 shadow-lg text-black"
+            ? "bg-white/80 dark:bg-slate-950/80 border-gray-200 dark:border-slate-800 shadow-lg text-black dark:text-white"
             : "bg-white/10 border-white/20 text-white"
         )}
       >
@@ -69,13 +76,26 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right: Contact Button & Language Toggle */}
+        {/* Right: Contact Button & Language Toggle & Theme Toggle */}
         <div className="flex items-center gap-2 md:gap-4">
+          
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className={cn(
+                "flex items-center justify-center w-8 h-8 rounded-full transition-all text-xs font-bold",
+                isScrolled ? "hover:bg-gray-100 dark:hover:bg-slate-800" : "hover:bg-white/10"
+              )}
+            >
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+          )}
+
           <button
             onClick={toggleLanguage}
             className={cn(
               "flex items-center gap-1 px-3 py-2 rounded-full transition-all text-xs font-bold uppercase tracking-widest",
-              isScrolled ? "hover:bg-gray-100" : "hover:bg-white/10"
+              isScrolled ? "hover:bg-gray-100 dark:hover:bg-slate-800" : "hover:bg-white/10"
             )}
           >
             <Globe size={14} />
@@ -87,7 +107,7 @@ const Navbar = () => {
             className={cn(
               "hidden md:block px-8 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-full transition-all shrink-0",
               isScrolled
-                ? "bg-black text-white hover:bg-gray-800"
+                ? "bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200"
                 : "bg-white text-black hover:bg-gray-200"
             )}
           >
@@ -111,7 +131,7 @@ const Navbar = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="absolute top-16 left-4 right-4 bg-white rounded-3xl p-8 border border-gray-100 shadow-2xl md:hidden text-black"
+            className="absolute top-16 left-4 right-4 bg-white dark:bg-slate-950 rounded-3xl p-8 border border-gray-100 dark:border-slate-800 shadow-2xl md:hidden text-black dark:text-white"
           >
             <div className="flex flex-col gap-8 items-center">
               {navItems.map((item) => (
@@ -126,7 +146,7 @@ const Navbar = () => {
               ))}
               <a
                 href="mailto:hakim@example.com"
-                className="w-full text-center py-4 bg-black text-white text-[11px] font-bold uppercase tracking-widest rounded-full"
+                className="w-full text-center py-4 bg-black dark:bg-white text-white dark:text-black text-[11px] font-bold uppercase tracking-widest rounded-full"
               >
                 {language === "en" ? "Contact" : "Kontak"}
               </a>
