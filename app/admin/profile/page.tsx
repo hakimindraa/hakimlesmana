@@ -12,6 +12,13 @@ interface Profile {
   about_text: string;
   about_subtitle: string;
   about_title: string;
+  home_quote: string;
+  hl1_title: string;
+  hl1_desc: string;
+  hl2_title: string;
+  hl2_desc: string;
+  hl3_title: string;
+  hl3_desc: string;
   hero_image: string;
   email: string;
   phone: string;
@@ -145,6 +152,64 @@ export default function ProfileEditor() {
         <div>
           <label className={labelClass}>About Text (Home page text)</label>
           <textarea value={profile.about_text} onChange={(e) => updateField("about_text", e.target.value)} rows={4} placeholder="Detailed about me text..." className={inputClass + " resize-y"} />
+        </div>
+      </motion.div>
+
+      {/* Homepage Highlights */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className="bg-white rounded-xl border border-gray-100 p-6 space-y-5"
+      >
+        <div className="flex items-center gap-3 mb-4">
+          <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Homepage About Highlights</h2>
+        </div>
+
+        <div>
+          <label className={labelClass}>Home Quote (Kutipan Miring)</label>
+          <textarea value={profile.home_quote || ""} onChange={(e) => updateField("home_quote", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-100">
+          {/* Highlight 1 */}
+          <div className="space-y-3">
+            <h3 className="text-xs font-bold text-gray-400">HIGHLIGHT 1 (Visual Arts)</h3>
+            <div>
+              <label className={labelClass}>Judul</label>
+              <input type="text" value={profile.hl1_title || ""} onChange={(e) => updateField("hl1_title", e.target.value)} className={inputClass} />
+            </div>
+            <div>
+              <label className={labelClass}>Deskripsi</label>
+              <textarea value={profile.hl1_desc || ""} onChange={(e) => updateField("hl1_desc", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+            </div>
+          </div>
+
+          {/* Highlight 2 */}
+          <div className="space-y-3">
+            <h3 className="text-xs font-bold text-gray-400">HIGHLIGHT 2 (Digital Engineering)</h3>
+            <div>
+              <label className={labelClass}>Judul</label>
+              <input type="text" value={profile.hl2_title || ""} onChange={(e) => updateField("hl2_title", e.target.value)} className={inputClass} />
+            </div>
+            <div>
+              <label className={labelClass}>Deskripsi</label>
+              <textarea value={profile.hl2_desc || ""} onChange={(e) => updateField("hl2_desc", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+            </div>
+          </div>
+
+          {/* Highlight 3 */}
+          <div className="space-y-3">
+            <h3 className="text-xs font-bold text-gray-400">HIGHLIGHT 3 (Core Passion)</h3>
+            <div>
+              <label className={labelClass}>Judul</label>
+              <input type="text" value={profile.hl3_title || ""} onChange={(e) => updateField("hl3_title", e.target.value)} className={inputClass} />
+            </div>
+            <div>
+              <label className={labelClass}>Deskripsi</label>
+              <textarea value={profile.hl3_desc || ""} onChange={(e) => updateField("hl3_desc", e.target.value)} rows={2} className={inputClass + " resize-y"} />
+            </div>
+          </div>
         </div>
       </motion.div>
 

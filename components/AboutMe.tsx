@@ -2,12 +2,20 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Camera, Heart, History } from "lucide-react";
+import { Camera, Heart, Code2 } from "lucide-react";
 
 interface Profile {
   name: string;
   bio: string;
+  bio: string;
   about_text: string;
+  home_quote?: string;
+  hl1_title?: string;
+  hl1_desc?: string;
+  hl2_title?: string;
+  hl2_desc?: string;
+  hl3_title?: string;
+  hl3_desc?: string;
 }
 
 const AboutMe = () => {
@@ -45,7 +53,7 @@ const AboutMe = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             <div className="col-span-1 md:col-span-2 space-y-4 md:space-y-6">
               <h3 className="text-[11px] md:text-2xl font-bold text-primary italic leading-snug md:leading-normal">
-                &quot;Menangkap momen bukan hanya soal menekan tombol, tapi soal bercerita tanpa suara.&quot;
+                &quot;{profile?.home_quote || "Menangkap emosi lewat lensa visual, dan membangun solusi lewat baris kode."}&quot;
               </h3>
               <p className="text-secondary text-[9px] md:text-base leading-relaxed">
                 {bio}
@@ -61,18 +69,18 @@ const AboutMe = () => {
                   <Camera className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">Gaya Fotografi</h4>
-                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">Minimalis, Clean, &amp; Emosional</p>
+                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{profile?.hl1_title || "VISUAL ARTS"}</h4>
+                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">{profile?.hl1_desc || "Fotografi, Sinematografi, & UI/UX Design."}</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-2 md:space-x-4">
                 <div className="p-1 md:p-2 bg-white rounded-none">
-                  <History className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
+                  <Code2 className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">Pengalaman</h4>
-                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">5+ Tahun di Industri Kreatif</p>
+                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{profile?.hl2_title || "DIGITAL ENGINEERING"}</h4>
+                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">{profile?.hl2_desc || "Next.js, React, & Modern Web Development."}</p>
                 </div>
               </div>
 
@@ -81,8 +89,8 @@ const AboutMe = () => {
                   <Heart className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">Passion</h4>
-                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">Eksplorasi Alam &amp; Ekspresi Manusia</p>
+                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{profile?.hl3_title || "CORE PASSION"}</h4>
+                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">{profile?.hl3_desc || "Memadukan Estetika Visual dengan Performa Interaktif."}</p>
                 </div>
               </div>
             </div>
