@@ -193,7 +193,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 hover:text-white hover:border-transparent transition-all duration-300 ${social.color}`}
+                  className={`shrink-0 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 hover:text-white hover:border-transparent transition-all duration-300 ${social.color}`}
                 >
                   <social.icon className="w-3.5 h-3.5 md:w-4 md:h-4" />
                 </a>

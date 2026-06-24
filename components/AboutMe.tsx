@@ -68,18 +68,18 @@ const AboutMe = () => {
           className="max-w-4xl mx-auto"
         >
           <h2 className="text-3xl font-bold mb-12 text-center tracking-tight">
-            About Me
+            {language === "en" ? "About Me" : "Tentang Saya"}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             <div className="col-span-1 md:col-span-2 space-y-4 md:space-y-6">
-              <h3 className="text-[11px] md:text-2xl font-bold text-primary italic leading-snug md:leading-normal">
+              <h3 className="text-base md:text-2xl font-bold text-primary italic leading-snug md:leading-normal">
                 &quot;{quote}&quot;
               </h3>
-              <p className="text-secondary text-[9px] md:text-base leading-relaxed">
+              <p className="text-secondary text-sm md:text-base leading-relaxed">
                 {bio}
               </p>
-              <p className="text-secondary text-[9px] md:text-base leading-relaxed">
+              <p className="text-secondary text-sm md:text-base leading-relaxed">
                 {aboutText}
               </p>
             </div>
@@ -90,8 +90,8 @@ const AboutMe = () => {
                   <Camera className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{hl1Title}</h4>
-                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">{hl1Desc}</p>
+                  <h4 className="font-bold text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{hl1Title}</h4>
+                  <p className="text-xs md:text-sm text-secondary leading-tight md:leading-normal">{hl1Desc}</p>
                 </div>
               </div>
 
@@ -100,8 +100,8 @@ const AboutMe = () => {
                   <Code2 className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{hl2Title}</h4>
-                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">{hl2Desc}</p>
+                  <h4 className="font-bold text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{hl2Title}</h4>
+                  <p className="text-xs md:text-sm text-secondary leading-tight md:leading-normal">{hl2Desc}</p>
                 </div>
               </div>
 
@@ -110,8 +110,8 @@ const AboutMe = () => {
                   <Heart className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[9px] md:text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{hl3Title}</h4>
-                  <p className="text-[8px] md:text-sm text-secondary leading-tight md:leading-normal">{hl3Desc}</p>
+                  <h4 className="font-bold text-sm uppercase tracking-wider leading-tight md:leading-normal mb-1 md:mb-0">{hl3Title}</h4>
+                  <p className="text-xs md:text-sm text-secondary leading-tight md:leading-normal">{hl3Desc}</p>
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@ const AboutMe = () => {
           <div className="mt-16 flex justify-center">
             <a href="/about" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-black border border-black rounded-full overflow-hidden transition-all duration-300 hover:bg-transparent hover:text-black hover:shadow-[0_0_20px_rgba(0,0,0,0.1)]">
               <span className="relative z-10 flex items-center gap-2 text-xs tracking-widest uppercase">
-                View Full Portfolio & Resume
+                {language === "en" ? "View Full Portfolio & Resume" : "Lihat Portofolio & Resume Lengkap"}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </span>
             </a>
