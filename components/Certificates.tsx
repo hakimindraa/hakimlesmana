@@ -71,7 +71,7 @@ const Certificates = () => {
                       src={cert.image_url}
                       alt={cert.title}
                       fill
-                      className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                      className="object-cover grayscale-0 md:grayscale hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
                 )}

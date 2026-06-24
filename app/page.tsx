@@ -21,7 +21,7 @@ export default function Home() {
 
         {/* --- START EDGE FADE EFFECT --- */}
         {/* Hapus blok ini jika Anda tidak menyukai efek bayangan putih yang diam di atas dan bawah layar saat di-scroll */}
-        <div className="absolute inset-0 pointer-events-none z-0 flex flex-col justify-between">
+        <div className="hidden md:flex absolute inset-0 pointer-events-none z-0 flex-col justify-between">
           <div className="sticky top-0 w-full h-0 bg-gradient-to-b from-white dark:from-slate-950 to-transparent" />
           <div className="sticky bottom-0 w-full h-[50vh] bg-gradient-to-t from-white dark:from-slate-950 to-transparent" />
         </div>
