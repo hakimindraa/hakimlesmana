@@ -47,10 +47,10 @@ const Footer = () => {
     fetchProfile();
   }, []);
 
-  const email = profile?.email || "hakim@example.com";
-  const phone = profile?.phone || "+62 812 3456 7890";
-  const whatsapp = profile?.whatsapp || "6281234567890";
-  const location = profile?.location || "Bandung, Indonesia";
+  const email = profile?.email || "hakimindralesmana@gmail.com";
+  const phone = profile?.phone || "+62 83137412551";
+  const whatsapp = profile?.whatsapp || "6283137412551";
+  const location = profile?.location || "Tanjungpinang Kepulauan Riau, Indonesia";
   const instagramUrl = profile?.instagram || "#";
   const facebookUrl = profile?.facebook || "#";
   const linkedinUrl = profile?.linkedin || "#";
