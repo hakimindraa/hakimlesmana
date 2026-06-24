@@ -131,7 +131,7 @@ const Footer = () => {
             </h2>
 
             <p className="text-white/50 text-base md:text-lg max-w-lg mx-auto mb-10 leading-relaxed">
-              {language === "en" 
+              {language === "en"
                 ? "Got an interesting project or just want to say hi? I'm always open to discussing meaningful visual collaborations."
                 : "Punya proyek menarik atau ingin menyapa? Saya selalu terbuka untuk diskusi mengenai kolaborasi visual yang bermakna."}
             </p>
@@ -172,7 +172,7 @@ const Footer = () => {
           >
             <a href="#home" className="inline-block mb-4 hover:opacity-70 transition-opacity">
               <img
-                src="/iconfooter.png"
+                src="/iconfooter.jpeg"
                 alt="Logo"
                 className="h-7 md:h-11 w-auto"
               />

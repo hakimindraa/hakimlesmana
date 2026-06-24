@@ -56,7 +56,7 @@ const Navbar = () => {
           className="shrink-0 hover:opacity-70 transition-opacity"
         >
           <img
-            src="/icon2.png"
+            src="/icon2.jpeg"
             alt="icon2"
             className="h-6 md:h-11 w-auto"
           />
@@ -78,7 +78,7 @@ const Navbar = () => {
 
         {/* Right: Contact Button & Language Toggle & Theme Toggle */}
         <div className="flex items-center gap-2 md:gap-4">
-          
+
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
