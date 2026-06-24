@@ -66,9 +66,9 @@ const Gallery = () => {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: false, amount: 0.1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
@@ -109,9 +109,9 @@ const Gallery = () => {
                 return (
                   <motion.div
                     key={photo.id}
-                    initial={{ opacity: 0, y: 15, filter: "blur(10px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: false, amount: 0.1 }}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.04 }}
                     className={`mosaic-item group cursor-pointer bg-gray-200 dark:bg-slate-900 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-gray-200 dark:border-slate-800 hover:-translate-y-2 transition-all duration-300 ${heights[index]}`}
                     onClick={() => setSelectedImage(index)}

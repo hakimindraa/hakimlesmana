@@ -105,9 +105,9 @@ const Hero = () => {
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={currentRoleIndex}
-                  initial={{ y: 40, opacity: 0, filter: "blur(10px)" }}
-                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  exit={{ y: -40, opacity: 0, filter: "blur(10px)" }}
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -40, opacity: 0 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
                   className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.1] md:leading-tight w-full"
                 >

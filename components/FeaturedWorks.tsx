@@ -73,9 +73,9 @@ const FeaturedWorks = () => {
             {featured.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: false, amount: 0.1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 className={`break-inside-avoid w-full relative overflow-hidden group rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-gray-200 dark:border-slate-800 hover:-translate-y-2 transition-all duration-300 md:h-full ${gridClasses[index] || ""}`}
               >
