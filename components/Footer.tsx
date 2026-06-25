@@ -63,7 +63,7 @@ const Footer = () => {
     { name: language === "en" ? "About" : "Tentang", href: "#about" },
     { name: language === "en" ? "Gallery" : "Galeri", href: "#gallery" },
     { name: language === "en" ? "Web Projects" : "Project Web", href: "/projects" },
-    { name: language === "en" ? "Certificates" : "Sertifikat", href: "#certificates" },
+    //{ name: language === "en" ? "Certificates" : "Sertifikat", href: "#certificates" },
     { name: language === "en" ? "Contact" : "Kontak", href: "#contact" },
   ];
 

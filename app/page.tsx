@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import HeroV3 from "@/components/HeroV2";
 import FeaturedWorks from "@/components/FeaturedWorks";
 import WebDevFeatured from "@/components/WebDevFeatured";
 import AboutMe from "@/components/AboutMe";
@@ -10,7 +10,6 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <Hero />
       <div className="relative bg-white dark:bg-slate-950 transition-colors duration-500">
 
         {/* Global Grid Pattern */}
@@ -18,6 +17,11 @@ export default function Home() {
           className="absolute inset-0 pointer-events-none opacity-[0.8] z-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(100,116,139,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(100,116,139,0.04)_1px,transparent_1px)]"
           style={{ backgroundSize: '32px 32px' }}
         />
+
+        <div className="relative z-10">
+          <HeroV3 />
+        </div>
+
 
         {/* --- START EDGE FADE EFFECT --- */}
         {/* Hapus blok ini jika Anda tidak menyukai efek bayangan putih yang diam di atas dan bawah layar saat di-scroll */}

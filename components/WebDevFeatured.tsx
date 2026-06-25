@@ -45,7 +45,7 @@ const WebDevFeatured = () => {
   if (!loading && projects.length === 0) return null;
 
   return (
-    <section className="relative py-24 bg-gray-50 dark:bg-slate-900/50 transition-colors duration-500">
+    <section className="relative py-24 bg-transparent transition-colors duration-500">
       <div className="relative container mx-auto px-6 max-w-5xl">
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 gap-4">
           <div>

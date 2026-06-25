@@ -40,11 +40,22 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#f8f9fa] selection:bg-black selection:text-white">
-      <Navbar />
+    <main className="min-h-screen relative bg-white dark:bg-slate-950 transition-colors duration-500 selection:bg-black selection:text-white overflow-hidden">
+      
+      {/* Global Grid Pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.8] z-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(100,116,139,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(100,116,139,0.04)_1px,transparent_1px)]"
+        style={{ backgroundSize: '32px 32px' }}
+      />
+      <div className="hidden md:flex absolute inset-0 pointer-events-none z-0 flex-col justify-between">
+        <div className="sticky top-0 w-full h-0 bg-gradient-to-b from-white dark:from-slate-950 to-transparent" />
+      </div>
 
-      <section className="pt-40 pb-20 px-6">
-        <div className="container mx-auto max-w-5xl">
+      <div className="relative z-10">
+        <Navbar />
+
+        <section className="pt-40 pb-20 px-6">
+          <div className="container mx-auto max-w-5xl">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-2xl">
             <h2 className="text-gray-400 font-bold tracking-[0.2em] text-xs uppercase mb-4 flex items-center gap-2">
               <Code className="w-4 h-4" /> Digital Engineering
@@ -127,9 +138,9 @@ export default function ProjectsPage() {
             </div>
           )}
         </div>
-      </section>
-
-      <Footer />
+        </section>
+        <Footer />
+      </div>
     </main>
   );
 }
