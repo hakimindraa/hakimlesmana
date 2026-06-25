@@ -304,7 +304,7 @@ const Footer = () => {
               </a>
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <a href="#" className="text-white/30 text-xs hover:text-white/60 transition-colors">
-                Terms of Service
+                Terms of Services
               </a>
               <span className="w-1 h-1 rounded-full bg-white/20 hidden sm:block" />
 
