@@ -165,7 +165,7 @@ const Footer = () => {
               />
             </a>
 
-            <p className="text-white/40 text-[10px] md:text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-white/40 text-sm md:text-base leading-relaxed mb-6 max-w-xs">
               {language === "en"
                 ? "Capturing timeless moments through the lens and building interactive digital experiences."
                 : "Mengabadikan momen melalui lensa dan membangun pengalaman digital interaktif."}
@@ -190,7 +190,7 @@ const Footer = () => {
 
           {/* Column 2 — Contact & Newsletter */}
           <div>
-            <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
+            <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
               {language === "en" ? "Get In Touch" : "Hubungi Kami"}
             </h3>
 
@@ -198,7 +198,7 @@ const Footer = () => {
               <li>
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-start gap-2 md:gap-3 text-white/40 text-[10px] md:text-sm hover:text-white transition-colors group break-all"
+                  className="flex items-start gap-2 md:gap-3 text-white/40 text-sm md:text-base hover:text-white transition-colors group break-all"
                 >
                   <Mail className="w-3.5 h-3.5 md:w-4 md:h-4 mt-0.5 shrink-0 text-white/30 group-hover:text-white transition-colors" />
                   {email}
@@ -207,14 +207,14 @@ const Footer = () => {
               <li>
                 <a
                   href={`tel:${phone}`}
-                  className="flex items-start gap-2 md:gap-3 text-white/40 text-[10px] md:text-sm hover:text-white transition-colors group"
+                  className="flex items-start gap-2 md:gap-3 text-white/40 text-sm md:text-base hover:text-white transition-colors group"
                 >
                   <Phone className="w-3.5 h-3.5 md:w-4 md:h-4 mt-0.5 shrink-0 text-white/30 group-hover:text-white transition-colors" />
                   {phone}
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-2 md:gap-3 text-white/40 text-[10px] md:text-sm">
+                <div className="flex items-start gap-2 md:gap-3 text-white/40 text-sm md:text-base">
                   <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4 mt-0.5 shrink-0 text-white/30" />
                   {location}
                 </div>
@@ -223,14 +223,14 @@ const Footer = () => {
 
             {/* Newsletter */}
             <div>
-              <p className="text-white/50 text-[9px] md:text-xs uppercase tracking-widest mb-3">Newsletter</p>
+              <p className="text-white/50 text-xs md:text-sm uppercase tracking-widest mb-3">Newsletter</p>
               <form onSubmit={handleSubscribe} className="relative">
                 <input
                   type="email"
                   value={emailValue}
                   onChange={(e) => setEmailValue(e.target.value)}
                   placeholder="Email address"
-                  className="w-full bg-white/5 border border-white/10 rounded-full px-4 md:px-5 py-2.5 md:py-3 pr-10 md:pr-12 text-[10px] md:text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors"
+                  className="w-full bg-white/5 border border-white/10 rounded-full px-4 md:px-5 py-2.5 md:py-3 pr-10 md:pr-12 text-sm md:text-base text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors"
                 />
                 <button
                   type="submit"
