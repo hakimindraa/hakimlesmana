@@ -105,20 +105,10 @@ const Footer = () => {
         }}
       />
 
-      {/* Decorative gradient orbs */}
-      <div className="hidden md:block absolute top-0 left-1/4 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
-      <div className="hidden md:block absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-white/[0.015] rounded-full blur-[100px] pointer-events-none" />
-
       {/* ──────────── CTA Banner ──────────── */}
-      <div className="relative border-b border-white/10">
-        <div className="container mx-auto px-6 py-20 md:py-28">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-3xl mx-auto text-center"
-          >
+      <div className="relative border-b border-white/10 bg-[#111]">
+        <div className="container mx-auto px-6 py-12 md:py-24">
+          <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs uppercase tracking-[0.2em] text-white/60 mb-8">
               <Camera className="w-3.5 h-3.5" />
               <span>Available for Booking</span>
@@ -126,7 +116,7 @@ const Footer = () => {
               <Video className="w-3.5 h-3.5" />
             </div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6 leading-[1.2] md:leading-[1.1]">
               {language === "en" ? "Let's Create" : "Mari Ciptakan"}
               <span className="block bg-gradient-to-r from-white via-white/80 to-white/50 bg-clip-text text-transparent">
                 {language === "en" ? "Something Beautiful" : "Sesuatu yang Indah"}
@@ -139,10 +129,10 @@ const Footer = () => {
                 : "Punya proyek menarik atau ingin menyapa? Saya selalu terbuka untuk diskusi mengenai kolaborasi visual yang bermakna."}
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 md:gap-4">
               <a
                 href={`mailto:${email}`}
-                className="group flex items-center gap-3 px-8 py-4 bg-white text-black text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-white/90 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+                className="group flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 md:px-8 md:py-4 bg-white text-black text-xs md:text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-white/90 transition-all duration-300"
               >
                 <Mail className="w-4 h-4 group-hover:rotate-6 transition-transform" />
                 {language === "en" ? "Contact Me" : "Hubungi Saya"}
@@ -151,28 +141,22 @@ const Footer = () => {
                 href={`https://wa.me/${whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 px-8 py-4 border border-white/20 text-white text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-white/10 transition-all duration-300"
+                className="group flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 md:px-8 md:py-4 border border-white/20 text-white text-xs md:text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-white/10 transition-all duration-300"
               >
                 <MessageCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 WhatsApp
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* ──────────── Main Footer Grid ──────────── */}
-      <div className="relative container mx-auto px-6 py-16 md:py-20">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
+      <div className="relative container mx-auto px-6 py-10 md:py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
 
           {/* Column 1 — Brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0 }}
-            className="lg:col-span-1"
-          >
+          <div className="lg:col-span-1">
             <a href="#home" className="inline-block mb-4 hover:opacity-70 transition-opacity">
               <img
                 src="/iconfooter.jpeg"
@@ -202,15 +186,10 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Column 2 — Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          <div>
             <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
               {language === "en" ? "Quick Links" : "Tautan Cepat"}
             </h3>
@@ -227,15 +206,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Column 3 — Services */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <div>
             <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
               {language === "en" ? "Services" : "Layanan"}
             </h3>
@@ -248,15 +222,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Column 4 — Contact & Newsletter */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          <div>
             <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
               {language === "en" ? "Get In Touch" : "Hubungi Kami"}
             </h3>
@@ -317,7 +286,7 @@ const Footer = () => {
                 </motion.p>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
