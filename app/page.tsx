@@ -1,9 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeaturedWorks from "@/components/FeaturedWorks";
+import WebDevFeatured from "@/components/WebDevFeatured";
 import AboutMe from "@/components/AboutMe";
-import Gallery from "@/components/Gallery";
-import Certificates from "@/components/Certificates";
+// import ImpactStats from "@/components/ImpactStats";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -28,10 +28,10 @@ export default function Home() {
         {/* --- END EDGE FADE EFFECT --- */}
 
         <div className="relative z-10">
+          {/* <ImpactStats /> */}
           <FeaturedWorks />
+          <WebDevFeatured />
           <AboutMe />
-          <Gallery />
-          <Certificates />
         </div>
       </div>
       <Footer />

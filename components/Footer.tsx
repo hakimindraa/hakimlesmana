@@ -13,6 +13,7 @@ import {
   ArrowUp,
   Camera,
   Video,
+  Code,
   Send,
 } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
@@ -61,17 +62,18 @@ const Footer = () => {
     { name: language === "en" ? "Home" : "Beranda", href: "#home" },
     { name: language === "en" ? "About" : "Tentang", href: "#about" },
     { name: language === "en" ? "Gallery" : "Galeri", href: "#gallery" },
+    { name: language === "en" ? "Web Projects" : "Project Web", href: "/projects" },
     { name: language === "en" ? "Certificates" : "Sertifikat", href: "#certificates" },
     { name: language === "en" ? "Contact" : "Kontak", href: "#contact" },
   ];
 
   const services = [
     language === "en" ? "Wedding Photography" : "Fotografi Pernikahan",
-    language === "en" ? "Pre-Wedding Shoot" : "Sesi Pre-Wedding",
+    language === "en" ? "Web Development" : "Web Development",
     language === "en" ? "Event Videography" : "Videografi Acara",
-    language === "en" ? "Product Photography" : "Fotografi Produk",
+    language === "en" ? "UI/UX Design" : "Desain UI/UX",
     language === "en" ? "Cinematic Film" : "Film Sinematik",
-    language === "en" ? "Photo Editing" : "Pengeditan Foto",
+    language === "en" ? "Frontend Engineering" : "Frontend Engineering",
   ];
 
   const socialLinks = [
@@ -120,6 +122,7 @@ const Footer = () => {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs uppercase tracking-[0.2em] text-white/60 mb-8">
               <Camera className="w-3.5 h-3.5" />
               <span>Available for Booking</span>
+              <Code className="w-3.5 h-3.5" />
               <Video className="w-3.5 h-3.5" />
             </div>
 
@@ -180,8 +183,8 @@ const Footer = () => {
 
             <p className="text-white/40 text-[10px] md:text-sm leading-relaxed mb-6 max-w-xs">
               {language === "en"
-                ? "Capturing timeless moments through the art of photography & cinematic videography. Every frame tells a story."
-                : "Mengabadikan momen abadi melalui seni fotografi & videografi sinematik. Setiap bingkai menceritakan sebuah kisah."}
+                ? "Capturing timeless moments through the lens and building interactive digital experiences."
+                : "Mengabadikan momen melalui lensa dan membangun pengalaman digital interaktif."}
             </p>
 
             {/* Social Icons */}
@@ -323,7 +326,7 @@ const Footer = () => {
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/30 text-xs tracking-wider order-2 md:order-1">
-              © {currentYear} {profile?.name || "Hikra"} Photography &amp; Videography. All rights reserved.
+              © {currentYear} {profile?.name || "Hakim Indra Lesmana"}. All rights reserved.
             </p>
 
             <div className="flex items-center gap-6 order-1 md:order-2">

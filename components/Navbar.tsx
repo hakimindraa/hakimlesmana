@@ -23,9 +23,9 @@ const Navbar = () => {
   const navItems = [
     { name: language === "en" ? "Home" : "Beranda", href: "/#home" },
     { name: language === "en" ? "About" : "Tentang", href: "/about" },
-    { name: language === "en" ? "Gallery" : "Galeri", href: "/#gallery" },
-    { name: language === "en" ? "Web Dev" : "Web Dev", href: "/projects" },
-    { name: language === "en" ? "Certificates" : "Sertifikat", href: "/#certificates" },
+    { name: language === "en" ? "Gallery" : "Galeri", href: "/gallery" },
+    { name: language === "en" ? "Web Projects" : "Web Project", href: "/projects" },
+    { name: language === "en" ? "Certificates" : "Sertifikat", href: "/about#certificates" },
   ];
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const Navbar = () => {
             <a
               key={item.name}
               href={item.href}
-              className="text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:opacity-50"
+              className="text-[11px] font-light uppercase tracking-[0.2em] transition-colors hover:opacity-50"
             >
               {item.name}
             </a>
@@ -83,7 +83,7 @@ const Navbar = () => {
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className={cn(
-                "flex items-center justify-center w-8 h-8 rounded-full transition-all text-xs font-bold",
+                "flex items-center justify-center w-8 h-8 rounded-full transition-all text-xs font-light",
                 isScrolled ? "hover:bg-gray-100 dark:hover:bg-slate-800" : "hover:bg-white/10"
               )}
             >

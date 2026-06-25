@@ -59,7 +59,7 @@ const FeaturedWorks = () => {
               {language === "en" ? "Featured Works" : "Karya Unggulan"}
             </h3>
           </div>
-          <a href="#gallery" className="text-[10px] font-bold uppercase tracking-[0.2em] border-b border-primary dark:border-white pb-1 hover:text-secondary dark:hover:text-gray-300 hover:border-secondary dark:hover:border-gray-300 transition-all dark:text-white">
+          <a href="/gallery" className="text-[10px] font-bold uppercase tracking-[0.2em] border-b border-primary dark:border-white pb-1 hover:text-secondary dark:hover:text-gray-300 hover:border-secondary dark:hover:border-gray-300 transition-all dark:text-white">
             {language === "en" ? "View All" : "Lihat Semua"}
           </a>
         </div>

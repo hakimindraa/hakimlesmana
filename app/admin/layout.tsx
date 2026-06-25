@@ -15,6 +15,7 @@ import {
   X,
   Camera,
   Database,
+  BarChart,
 } from "lucide-react";
 
 const navItems = [
@@ -22,6 +23,7 @@ const navItems = [
   { name: "Gallery", href: "/admin/gallery", icon: ImageIcon },
   { name: "Categories", href: "/admin/categories", icon: Tags },
   { name: "Web Projects", href: "/admin/tech-projects", icon: Database },
+  { name: "Impact Stats", href: "/admin/impact-stats", icon: BarChart },
   { name: "Profile", href: "/admin/profile", icon: User },
   { name: "Certificates", href: "/admin/certificates", icon: Award },
   { name: "Resume", href: "/admin/resume", icon: User },
@@ -86,9 +88,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="min-h-screen bg-[#f8f9fa] flex">
       {/* ── Sidebar ── */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#0f1117] text-white transform transition-transform duration-300 lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#0f1117] text-white transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         {/* Logo */}
         <div className="flex items-center justify-between h-16 px-6 border-b border-white/10">
@@ -111,11 +112,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 key={item.name}
                 href={item.href}
                 onClick={() => setSidebarOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                  isActive
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${isActive
                     ? "bg-white/10 text-white"
                     : "text-white/50 hover:text-white hover:bg-white/5"
-                }`}
+                  }`}
               >
                 <item.icon className="w-4 h-4" />
                 {item.name}

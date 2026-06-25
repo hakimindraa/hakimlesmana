@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Certificates from "@/components/Certificates";
 import { Award, Trophy, Camera, Briefcase } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 
@@ -29,7 +30,7 @@ export default function AboutPage() {
           fetch("/api/profile"),
           fetch("/api/resume")
         ]);
-        
+
         if (profRes.ok) setProfile(await profRes.json());
         if (resRes.ok) {
           const resData = await resRes.json();
@@ -184,7 +185,7 @@ export default function AboutPage() {
       <section className="py-24 bg-gray-50 border-t border-gray-100">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            
+
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className="flex items-center gap-3 mb-8">
                 <Award className="w-5 h-5" />
@@ -250,7 +251,7 @@ export default function AboutPage() {
                 : "Alat dan teknologi yang saya gunakan untuk mewujudkan kisah."}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(groupedGear).map(([category, items], idx) => (
               <motion.div key={category} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} className="p-6 border border-gray-200 rounded-2xl bg-gray-50/50 hover:bg-white hover:shadow-lg transition-all">
@@ -269,6 +270,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <Certificates />
       <Footer />
     </main>
   );
