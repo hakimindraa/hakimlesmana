@@ -9,7 +9,7 @@ const biodataItems = [
   { icon: Briefcase, label: "Profesi", value: "Photographer" },
   { icon: MapPin, label: "Lokasi", value: "Tanjungpinang, Indonesia" },
   { icon: Mail, label: "Email", value: "hakim@example.com" },
-  { icon: Phone, label: "Telepon", value: "+62 812 3456 7890" },
+  { icon: Phone, label: "Telepon", value: "+62 83137412551" },
 ];
 
 const Biodata = () => {
