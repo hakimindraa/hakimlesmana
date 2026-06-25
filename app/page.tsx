@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroV3 from "@/components/HeroV2";
 import FeaturedWorks from "@/components/FeaturedWorks";
 import WebDevFeatured from "@/components/WebDevFeatured";
+import WebDevFeaturedBento from "@/components/WebDevFeatured";
 import AboutMe from "@/components/AboutMe";
 // import ImpactStats from "@/components/ImpactStats";
 import Footer from "@/components/Footer";
@@ -34,7 +35,8 @@ export default function Home() {
         <div className="relative z-10">
           {/* <ImpactStats /> */}
           <FeaturedWorks />
-          <WebDevFeatured />
+          {/* <WebDevFeatured /> */}
+          <WebDevFeaturedBento />
           <AboutMe />
         </div>
       </div>
