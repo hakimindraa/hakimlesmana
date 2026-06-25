@@ -153,7 +153,7 @@ const Footer = () => {
 
       {/* ──────────── Main Footer Grid ──────────── */}
       <div className="relative container mx-auto px-6 py-10 md:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
 
           {/* Column 1 — Brand */}
           <div className="lg:col-span-1">
@@ -188,43 +188,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2 — Quick Links */}
-          <div>
-            <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
-              {language === "en" ? "Quick Links" : "Tautan Cepat"}
-            </h3>
-            <ul className="space-y-3.5">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="group flex items-center gap-2 text-white/40 text-[10px] md:text-sm hover:text-white transition-colors duration-300"
-                  >
-                    <span className="w-0 h-px bg-white group-hover:w-4 transition-all duration-300" />
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3 — Services */}
-          <div>
-            <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
-              {language === "en" ? "Services" : "Layanan"}
-            </h3>
-            <ul className="space-y-3.5">
-              {services.map((service) => (
-                <li key={service}>
-                  <span className="text-white/40 text-[10px] md:text-sm hover:text-white transition-colors duration-300 cursor-default">
-                    {service}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4 — Contact & Newsletter */}
+          {/* Column 2 — Contact & Newsletter */}
           <div>
             <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-4 md:mb-6">
               {language === "en" ? "Get In Touch" : "Hubungi Kami"}
