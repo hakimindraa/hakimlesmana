@@ -60,19 +60,7 @@ const HeroV2 = () => {
   return (
     <section id="home" className="relative min-h-[90vh] w-full flex items-center justify-center pt-32 md:pt-40 pb-12 bg-transparent z-10">
 
-      {/* Background Orbs (Blurry Glowing Spheres) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div
-          animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[20%] left-[20%] w-[300px] h-[300px] bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-[120px]"
-        />
-        <motion.div
-          animate={{ x: [0, -50, 0], y: [0, 50, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute top-[30%] right-[20%] w-[300px] h-[300px] bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-[120px]"
-        />
-      </div>
+
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">

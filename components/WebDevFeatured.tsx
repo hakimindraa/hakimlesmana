@@ -47,15 +47,15 @@ const WebDevFeatured = () => {
     const stack = (p.tech_stack || "").toLowerCase();
     const title = (p.title || "").toLowerCase();
 
-    const isUIUX = stack.includes("figma") || stack.includes("ui/ux") || stack.includes("adobe xd") || 
-                   title.includes(" ui ") || title.includes("ui ") || title.includes(" ux ") || title.includes("ux");
+    const isUIUX = stack.includes("figma") || stack.includes("ui/ux") || stack.includes("adobe xd") ||
+      title.includes(" ui ") || title.includes("ui ") || title.includes(" ux ") || title.includes("ux");
 
-    const isDesign = !isUIUX && (stack.includes("canva") || stack.includes("illustrator") || 
-                                 stack.includes("coreldraw") || stack.includes("photoshop") || 
-                                 stack.includes("poster") || stack.includes("banner") || stack.includes("design"));
+    const isDesign = !isUIUX && (stack.includes("canva") || stack.includes("illustrator") ||
+      stack.includes("coreldraw") || stack.includes("photoshop") ||
+      stack.includes("poster") || stack.includes("banner") || stack.includes("design"));
 
     const isWeb = !isUIUX && !isDesign;
-    
+
     return { isWeb, isUIUX, isDesign };
   };
 
@@ -147,7 +147,7 @@ const WebDevFeatured = () => {
               <Sparkles className="w-3.5 h-3.5" /> {language === "en" ? "Multi-Disciplinary" : "Multi-Disiplin"}
             </h2>
             <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-primary dark:text-white">
-              {language === "en" ? "Digital Works" : "Karya Digital"}
+              {language === "en" ? "All Projects" : "Semua Proyek"}
             </h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-md">
               {language === "en" ? "A categorized selection of my latest projects." : "Kumpulan proyek terbaru saya yang dibagi berdasarkan keahlian."}
