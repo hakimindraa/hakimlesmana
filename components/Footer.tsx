@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   Instagram,
   Facebook,
@@ -158,9 +159,11 @@ const Footer = () => {
           {/* Column 1 — Brand */}
           <div className="lg:col-span-1">
             <a href="#home" className="inline-block mb-4 hover:opacity-70 transition-opacity">
-              <img
+              <Image
                 src="/iconfooter.jpeg"
                 alt="Logo"
+                width={120}
+                height={44}
                 className="h-7 md:h-11 w-auto"
               />
             </a>

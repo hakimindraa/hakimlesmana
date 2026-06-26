@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useLanguage } from "@/components/LanguageContext";
 
 interface Profile {
@@ -86,10 +87,13 @@ const HeroV2 = () => {
             >
               {/* Spinning gradient ring */}
               <div className="absolute inset-[-4px] rounded-full bg-gradient-to-r from-yellow-500 via-blue-500 to-yellow-500 opacity-70 group-hover:opacity-100 group-hover:rotate-180 transition-[opacity,transform] duration-700 blur-[2px]" />
-              <img
+              <Image
                 src={heroImage}
                 alt={name}
-                className="absolute inset-0 w-full h-full object-cover rounded-full border-[4px] border-white dark:border-slate-950 transition-transform duration-500 group-hover:scale-105"
+                width={144}
+                height={144}
+                priority
+                className="relative w-full h-full object-cover rounded-full border-[4px] border-white dark:border-slate-950 transition-transform duration-500 group-hover:scale-105"
               />
             </motion.div>
           )}

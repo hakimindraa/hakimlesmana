@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Certificates from "@/components/Certificates";
@@ -87,7 +88,7 @@ export default function AboutPage() {
       {/* 1. Hero Section */}
       <section className="relative h-[60vh] w-full overflow-hidden bg-black">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="Hero" className="w-full h-full object-cover opacity-40 grayscale" />
+          <Image src={heroImage} alt="Hero" fill priority className="w-full h-full object-cover opacity-40 grayscale" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/80" />
         </div>
         <div className="relative h-full flex items-center justify-center text-center">
@@ -102,8 +103,8 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <img src={heroImage} alt="Portrait" className="w-full aspect-[3/4] object-cover filter grayscale hover:grayscale-0 transition-all duration-700" />
+            <motion.div className="w-full aspect-[3/4] relative" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <Image src={heroImage} alt="Portrait" fill className="object-cover filter grayscale hover:grayscale-0 transition-all duration-700" />
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">

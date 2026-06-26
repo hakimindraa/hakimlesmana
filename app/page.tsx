@@ -1,11 +1,11 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import HeroV3 from "@/components/HeroV2";
-import FeaturedWorks from "@/components/FeaturedWorks";
-import WebDevFeatured from "@/components/WebDevFeatured";
-import WebDevFeaturedBento from "@/components/WebDevFeatured";
-import AboutMe from "@/components/AboutMe";
-// import ImpactStats from "@/components/ImpactStats";
-import Footer from "@/components/Footer";
+
+const FeaturedWorks = dynamic(() => import("@/components/FeaturedWorks"));
+const WebDevFeaturedBento = dynamic(() => import("@/components/WebDevFeaturedBento"));
+const AboutMe = dynamic(() => import("@/components/AboutMe"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   return (

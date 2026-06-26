@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Code, Layout, Palette, Github, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
@@ -112,7 +113,7 @@ const WebDevFeaturedBento = () => {
             >
               {topWeb ? (
                 <>
-                  <img src={topWeb.image_url} alt={topWeb.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                  <Image src={topWeb.image_url} alt={topWeb.title} fill className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500 flex flex-col items-start">
@@ -167,7 +168,7 @@ const WebDevFeaturedBento = () => {
               >
                 {topUiUx ? (
                   <>
-                    <img src={topUiUx.image_url} alt={topUiUx.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    <Image src={topUiUx.image_url} alt={topUiUx.title} fill className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
 
                     <div className="absolute bottom-0 left-0 right-0 p-5 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-500 flex flex-col items-start">
@@ -205,7 +206,7 @@ const WebDevFeaturedBento = () => {
               >
                 {topDesign ? (
                   <>
-                    <img src={topDesign.image_url} alt={topDesign.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    <Image src={topDesign.image_url} alt={topDesign.title} fill className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
 
                     <div className="absolute bottom-0 left-0 right-0 p-5 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-500 flex flex-col items-start">

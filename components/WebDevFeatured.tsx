@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Code, ExternalLink, Github, ArrowRight, Layout, Palette, Sparkles } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
@@ -108,7 +109,7 @@ const WebDevFeatured = () => {
               {/* Gambar Horizontal (Memanjang) */}
               <div className="w-full sm:w-2/5 aspect-video sm:aspect-auto relative bg-gray-100 dark:bg-slate-800 overflow-hidden shrink-0">
                 {proj.image_url ? (
-                  <img src={proj.image_url} alt={proj.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src={proj.image_url} alt={proj.title} fill className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center text-gray-400">No Image</div>
                 )}

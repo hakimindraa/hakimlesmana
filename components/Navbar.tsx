@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Globe, Sun, Moon } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/LanguageContext";
 import { useTheme } from "next-themes";
@@ -55,9 +56,11 @@ const Navbar = () => {
           href="#home"
           className="shrink-0 hover:opacity-70 transition-opacity"
         >
-          <img
+          <Image
             src="/icon2.png"
             alt="icon2"
+            width={100}
+            height={44}
             className="h-6 md:h-11 w-auto"
           />
         </a>
