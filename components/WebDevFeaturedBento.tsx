@@ -108,7 +108,7 @@ const WebDevFeaturedBento = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="md:col-span-2 group relative rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500 h-[400px] md:h-full"
+              className="md:col-span-2 group relative rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg md:hover:shadow-2xl transition-shadow duration-500 h-[400px] md:h-full"
             >
               {topWeb ? (
                 <>
@@ -116,7 +116,7 @@ const WebDevFeaturedBento = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500 flex flex-col items-start">
-                    <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-600/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-yellow-500/50 shadow-lg mb-4">
+                    <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-600/90 md:backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-yellow-500/50 shadow-sm md:shadow-lg mb-4">
                       <Code className="w-3.5 h-3.5" /> Web Engineering
                     </span>
                     <h3 className="text-2xl md:text-4xl font-extrabold mb-3 line-clamp-2 w-full">
@@ -127,7 +127,7 @@ const WebDevFeaturedBento = () => {
                     </p>
                     <div className="flex flex-wrap gap-2 mb-6">
                       {(language === "en" && topWeb.tech_stack_en ? topWeb.tech_stack_en : topWeb.tech_stack).split(',').slice(0, 4).map((tech, i) => (
-                        <span key={i} className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-md text-[10px] font-semibold uppercase tracking-wider">
+                        <span key={i} className="px-3 py-1 bg-white/10 md:backdrop-blur-md border border-white/20 rounded-md text-[10px] font-semibold uppercase tracking-wider">
                           {tech.trim()}
                         </span>
                       ))}
@@ -163,7 +163,7 @@ const WebDevFeaturedBento = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex-1 group relative rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-500"
+                className="flex-1 group relative rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md md:hover:shadow-xl transition-shadow duration-500"
               >
                 {topUiUx ? (
                   <>
@@ -171,7 +171,7 @@ const WebDevFeaturedBento = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
 
                     <div className="absolute bottom-0 left-0 right-0 p-5 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-500 flex flex-col items-start">
-                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-yellow-600/90 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider border border-yellow-500/50 shadow-md mb-3">
+                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-yellow-600/90 md:backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider border border-yellow-500/50 shadow-sm md:shadow-md mb-3">
                         <Layout className="w-3 h-3" /> UI/UX Design
                       </span>
                       <h3 className="text-xl font-bold mb-2 line-clamp-1 w-full">
@@ -201,7 +201,7 @@ const WebDevFeaturedBento = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex-1 group relative rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-500"
+                className="flex-1 group relative rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md md:hover:shadow-xl transition-shadow duration-500"
               >
                 {topDesign ? (
                   <>
@@ -209,7 +209,7 @@ const WebDevFeaturedBento = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
 
                     <div className="absolute bottom-0 left-0 right-0 p-5 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-500 flex flex-col items-start">
-                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-yellow-600/90 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider border border-yellow-500/50 shadow-md mb-3">
+                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-yellow-600/90 md:backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider border border-yellow-500/50 shadow-sm md:shadow-md mb-3">
                         <Palette className="w-3 h-3" /> Graphic Design
                       </span>
                       <h3 className="text-xl font-bold mb-2 line-clamp-1 w-full">

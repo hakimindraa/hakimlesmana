@@ -43,8 +43,8 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "flex items-center justify-between w-full max-w-5xl h-13 md:h-16 px-5 md:px-8 rounded-full transition-all duration-500",
-          "border backdrop-blur-xl",
+          "flex items-center justify-between w-full max-w-5xl h-13 md:h-16 px-5 md:px-8 rounded-full transition-colors duration-500",
+          "border md:backdrop-blur-xl bg-white/95 md:bg-transparent dark:bg-slate-950/95 md:dark:bg-transparent",
           isScrolled
             ? "bg-white/80 dark:bg-slate-950/80 border-gray-200 dark:border-slate-800 shadow-lg text-slate-900 dark:text-white"
             : "bg-transparent border-transparent text-slate-900 dark:text-white"
@@ -83,7 +83,7 @@ const Navbar = () => {
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className={cn(
-                "flex items-center justify-center w-8 h-8 rounded-full transition-all text-xs font-light",
+                "flex items-center justify-center w-8 h-8 rounded-full transition-colors text-xs font-light",
                 isScrolled ? "hover:bg-gray-100 dark:hover:bg-slate-800" : "hover:bg-slate-100 dark:hover:bg-white/10"
               )}
             >
@@ -94,7 +94,7 @@ const Navbar = () => {
           <button
             onClick={toggleLanguage}
             className={cn(
-              "flex items-center gap-1 px-3 py-2 rounded-full transition-all text-xs font-bold uppercase tracking-widest",
+              "flex items-center gap-1 px-3 py-2 rounded-full transition-colors text-xs font-bold uppercase tracking-widest",
               isScrolled ? "hover:bg-gray-100 dark:hover:bg-slate-800" : "hover:bg-slate-100 dark:hover:bg-white/10"
             )}
           >
@@ -105,7 +105,7 @@ const Navbar = () => {
           <a
             href="mailto:hakim@example.com"
             className={cn(
-              "hidden md:block px-8 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-full transition-all shrink-0",
+              "hidden md:block px-8 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-full transition-colors shrink-0",
               isScrolled
                 ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200"
                 : "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200"

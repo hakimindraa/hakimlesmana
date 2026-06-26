@@ -85,7 +85,7 @@ const HeroV2 = () => {
               className="relative w-28 h-28 md:w-36 md:h-36 mb-6 md:mb-8 group"
             >
               {/* Spinning gradient ring */}
-              <div className="absolute inset-[-4px] rounded-full bg-gradient-to-r from-yellow-500 via-blue-500 to-yellow-500 opacity-70 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-700 blur-[2px]" />
+              <div className="absolute inset-[-4px] rounded-full bg-gradient-to-r from-yellow-500 via-blue-500 to-yellow-500 opacity-70 group-hover:opacity-100 group-hover:rotate-180 transition-[opacity,transform] duration-700 blur-[2px]" />
               <img
                 src={heroImage}
                 alt={name}
@@ -99,7 +99,7 @@ const HeroV2 = () => {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400 text-xs font-medium mb-6 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400 text-xs font-medium mb-6 md:backdrop-blur-md"
           >
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
             {language === "en" ? "Available for work" : "Tersedia untuk proyek"}
@@ -157,7 +157,7 @@ const HeroV2 = () => {
             </a>
             <a
               href="#about"
-              className="px-8 py-3.5 w-full sm:w-auto rounded-full border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-white/5 transition-colors duration-300 backdrop-blur-md"
+              className="px-8 py-3.5 w-full sm:w-auto rounded-full border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-white/5 transition-colors duration-300 md:backdrop-blur-md"
             >
               {language === "en" ? "About Me" : "Tentang Saya"}
             </a>

@@ -63,7 +63,7 @@ const Certificates = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group flex flex-col md:flex-row bg-accent dark:bg-slate-900 border border-gray-200 dark:border-slate-800 overflow-hidden rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] hover:-translate-y-2 transition-all duration-300"
+                className="group flex flex-col md:flex-row bg-accent dark:bg-slate-900 border border-gray-200 dark:border-slate-800 overflow-hidden rounded-xl shadow-sm md:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-md md:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-sm md:dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-md md:dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] hover:-translate-y-2 transition-transform duration-300"
               >
                 {cert.image_url && (
                   <div className="md:w-1/3 relative h-48 md:h-auto bg-gray-200 dark:bg-slate-800">

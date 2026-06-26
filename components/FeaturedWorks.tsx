@@ -59,7 +59,7 @@ const FeaturedWorks = () => {
               {language === "en" ? "Featured Works" : "Karya Unggulan"}
             </h3>
           </div>
-          <a href="/gallery" className="text-[10px] font-bold uppercase tracking-[0.2em] border-b border-primary dark:border-white pb-1 hover:text-secondary dark:hover:text-gray-300 hover:border-secondary dark:hover:border-gray-300 transition-all dark:text-white">
+          <a href="/gallery" className="text-[10px] font-bold uppercase tracking-[0.2em] border-b border-primary dark:border-white pb-1 hover:text-secondary dark:hover:text-gray-300 hover:border-secondary dark:hover:border-gray-300 transition-colors dark:text-white">
             {language === "en" ? "View All" : "Lihat Semua"}
           </a>
         </div>
@@ -77,7 +77,7 @@ const FeaturedWorks = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className={`break-inside-avoid w-full relative overflow-hidden group rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-gray-200 dark:border-slate-800 hover:-translate-y-2 transition-all duration-300 md:h-full ${gridClasses[index] || ""}`}
+                className={`break-inside-avoid w-full relative overflow-hidden group rounded-xl shadow-sm md:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-md md:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-sm md:dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-md md:dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-gray-200 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300 md:h-full ${gridClasses[index] || ""}`}
               >
                 <Image
                   src={item.src}

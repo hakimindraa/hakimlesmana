@@ -113,7 +113,7 @@ const Gallery = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.04 }}
-                    className={`mosaic-item group cursor-pointer bg-gray-200 dark:bg-slate-900 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-gray-200 dark:border-slate-800 hover:-translate-y-2 transition-all duration-300 ${heights[index]}`}
+                    className={`mosaic-item group cursor-pointer bg-gray-200 dark:bg-slate-900 rounded-xl shadow-sm md:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-md md:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-sm md:dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-md md:dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-gray-200 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300 ${heights[index]}`}
                     onClick={() => setSelectedImage(index)}
                   >
                     <Image
@@ -147,7 +147,7 @@ const Gallery = () => {
             >
               <Link
                 href="/gallery"
-                className="group inline-flex items-center gap-3 px-10 py-4 bg-[#111] dark:bg-white text-white dark:text-black text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-[#222] dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-lg"
+                className="group inline-flex items-center gap-3 px-10 py-4 bg-[#111] dark:bg-white text-white dark:text-black text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-[#222] dark:hover:bg-gray-200 transition-colors duration-300 md:hover:shadow-lg"
               >
                 {language === "en" ? "View Full Gallery" : "Lihat Galeri Lengkap"}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

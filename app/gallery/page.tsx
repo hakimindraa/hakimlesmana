@@ -120,7 +120,7 @@ export default function FullGalleryPage() {
       </section>
 
       {/* ──────────── Category Filter ──────────── */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+      <div className="sticky top-0 z-50 bg-white/95 md:bg-white/80 md:backdrop-blur-xl border-b border-gray-100">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 py-4 overflow-x-auto scrollbar-hide">
             {categoryList.map((cat) => {
@@ -135,7 +135,7 @@ export default function FullGalleryPage() {
                     setActiveCategory(cat);
                     setSelectedImage(null);
                   }}
-                  className={`shrink-0 px-4 py-2 md:px-5 md:py-2.5 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest transition-all duration-300 ${
+                  className={`shrink-0 px-4 py-2 md:px-5 md:py-2.5 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest transition-colors duration-300 ${
                     activeCategory === cat
                       ? "bg-[#111] text-white shadow-lg"
                       : "bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-800"

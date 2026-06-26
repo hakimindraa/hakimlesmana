@@ -85,7 +85,7 @@ const AboutMe = () => {
             </div>
 
             <div className="col-span-1 space-y-4 md:space-y-6">
-              <div className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl transition-all duration-300 hover:-translate-y-1 bg-white/60 dark:bg-slate-900/50 border border-gray-200/50 dark:border-slate-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-white hover:border-gray-300/50 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:bg-slate-800/60 dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-sm -mx-3 md:-mx-4 cursor-default">
+              <div className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl transition-transform duration-300 hover:-translate-y-1 bg-white/60 dark:bg-slate-900/50 border border-gray-200/50 dark:border-slate-800/80 shadow-sm md:shadow-[0_8px_20px_rgba(0,0,0,0.04)] md:dark:shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-white hover:border-gray-300/50 hover:shadow-md md:hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] md:dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] md:backdrop-blur-sm -mx-3 md:-mx-4 cursor-default">
                 <div className="p-2 md:p-3 bg-gray-50/50 dark:bg-slate-800/80 rounded-lg shadow-sm dark:shadow-inner border border-gray-200/60 dark:border-slate-700/50 transition-colors">
                   <Camera className="w-4 h-4 md:w-5 md:h-5 text-primary dark:text-gray-100 group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -95,7 +95,7 @@ const AboutMe = () => {
                 </div>
               </div>
 
-              <div className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl transition-all duration-300 hover:-translate-y-1 bg-white/60 dark:bg-slate-900/50 border border-gray-200/50 dark:border-slate-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-white hover:border-gray-300/50 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:bg-slate-800/60 dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-sm -mx-3 md:-mx-4 cursor-default">
+              <div className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl transition-transform duration-300 hover:-translate-y-1 bg-white/60 dark:bg-slate-900/50 border border-gray-200/50 dark:border-slate-800/80 shadow-sm md:shadow-[0_8px_20px_rgba(0,0,0,0.04)] md:dark:shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-white hover:border-gray-300/50 hover:shadow-md md:hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] md:dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] md:backdrop-blur-sm -mx-3 md:-mx-4 cursor-default">
                 <div className="p-2 md:p-3 bg-gray-50/50 dark:bg-slate-800/80 rounded-lg shadow-sm dark:shadow-inner border border-gray-200/60 dark:border-slate-700/50 transition-colors">
                   <Code2 className="w-4 h-4 md:w-5 md:h-5 text-primary dark:text-gray-100 group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -105,7 +105,7 @@ const AboutMe = () => {
                 </div>
               </div>
 
-              <div className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl transition-all duration-300 hover:-translate-y-1 bg-white/60 dark:bg-slate-900/50 border border-gray-200/50 dark:border-slate-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-white hover:border-gray-300/50 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:bg-slate-800/60 dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-sm -mx-3 md:-mx-4 cursor-default">
+              <div className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl transition-transform duration-300 hover:-translate-y-1 bg-white/60 dark:bg-slate-900/50 border border-gray-200/50 dark:border-slate-800/80 shadow-sm md:shadow-[0_8px_20px_rgba(0,0,0,0.04)] md:dark:shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:bg-white hover:border-gray-300/50 hover:shadow-md md:hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] md:dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] md:backdrop-blur-sm -mx-3 md:-mx-4 cursor-default">
                 <div className="p-2 md:p-3 bg-gray-50/50 dark:bg-slate-800/80 rounded-lg shadow-sm dark:shadow-inner border border-gray-200/60 dark:border-slate-700/50 transition-colors">
                   <Heart className="w-4 h-4 md:w-5 md:h-5 text-primary dark:text-gray-100 group-hover:scale-110 transition-transform duration-300" />
                 </div>

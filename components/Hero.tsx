@@ -122,7 +122,7 @@ const Hero = () => {
             >
               <a
                 href="#gallery"
-                className="inline-block bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-3 md:px-12 md:py-4 rounded-full hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] hover:-translate-y-1 transition-all duration-500 font-semibold uppercase tracking-widest text-[10px] md:text-sm"
+                className="inline-block bg-white/10 md:backdrop-blur-md border border-white/20 text-white px-8 py-3 md:px-12 md:py-4 rounded-full hover:bg-white hover:text-black hover:shadow-lg md:hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] hover:-translate-y-1 transition-all duration-500 font-semibold uppercase tracking-widest text-[10px] md:text-sm"
               >
                 {language === "en" ? "View Gallery" : "Lihat Galeri"}
               </a>

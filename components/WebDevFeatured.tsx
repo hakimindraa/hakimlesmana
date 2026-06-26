@@ -103,7 +103,7 @@ const WebDevFeatured = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: (delayOffset * 0.1) + (idx * 0.1) }}
-              className="group flex flex-col sm:flex-row bg-white dark:bg-slate-950 rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-800 shadow-sm hover:shadow-xl dark:hover:shadow-blue-900/10 transition-all duration-300 h-full"
+              className="group flex flex-col sm:flex-row bg-white dark:bg-slate-950 rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-800 shadow-sm hover:shadow-md md:hover:shadow-xl dark:hover:shadow-blue-900/10 transition-shadow duration-300 h-full"
             >
               {/* Gambar Horizontal (Memanjang) */}
               <div className="w-full sm:w-2/5 aspect-video sm:aspect-auto relative bg-gray-100 dark:bg-slate-800 overflow-hidden shrink-0">
@@ -178,7 +178,7 @@ const WebDevFeatured = () => {
           </div>
           <Link
             href="/projects"
-            className="group flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all dark:text-white w-fit"
+            className="group flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors dark:text-white w-fit"
           >
             {language === "en" ? "Explore All" : "Eksplor Semua"}
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
