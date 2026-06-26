@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import HeroV3 from "@/components/HeroV2";
 
 const FeaturedWorks = dynamic(() => import("@/components/FeaturedWorks"));
-const WebDevFeaturedBento = dynamic(() => import("@/components/WebDevFeaturedBento"));
+const WebDevFeatured = dynamic(() => import("@/components/WebDevFeatured"));
 const AboutMe = dynamic(() => import("@/components/AboutMe"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
@@ -36,7 +36,7 @@ export default function Home() {
           {/* <ImpactStats /> */}
           <FeaturedWorks />
           {/* <WebDevFeatured /> */}
-          <WebDevFeaturedBento />
+          <WebDevFeatured />
           <AboutMe />
         </div>
       </div>
