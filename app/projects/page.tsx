@@ -91,10 +91,10 @@ export default function ProjectsPage() {
             <h2 className="text-gray-400 font-bold tracking-[0.2em] text-xs uppercase mb-4 flex items-center gap-2">
               <Code className="w-4 h-4" /> Digital Engineering
             </h2>
-            <h1 className="text-4xl md:text-6xl font-bold text-black tracking-tight mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-black dark:text-white tracking-tight mb-6 leading-tight">
               Web Development <br /> & UI/UX Projects
             </h1>
-            <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-10">
+            <p className="text-gray-500 dark:text-gray-400 text-sm md:text-base leading-relaxed mb-10">
               {language === "en" 
                 ? "Building digital experiences that are not only visually beautiful, but also performant and intuitive."
                 : "Membangun pengalaman digital yang tidak hanya terlihat indah secara visual, tetapi juga berfungsi dengan performa tinggi dan intuitif."}
