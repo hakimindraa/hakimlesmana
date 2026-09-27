@@ -23,6 +23,7 @@ export default function BlogsAdmin() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
+  const [uploadingMd, setUploadingMd] = useState(false);
   
   const [form, setForm] = useState<Blog>({
     id: 0, title: "", title_en: "", excerpt: "", excerpt_en: "", content: "", content_en: "", category: "", category_en: "", read_time: "", is_published: true, display_order: 0, created_at: ""
@@ -45,6 +46,40 @@ export default function BlogsAdmin() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingMd(true);
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const markdown = event.target?.result;
+      if (typeof markdown === "string") {
+        try {
+          const res = await fetch("/api/blogs/bulk", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ markdown })
+          });
+          const data = await res.json();
+          if (data.success) {
+            alert(`Berhasil mengunggah ${data.inserted} artikel sebagai Draf!`);
+            fetchData();
+          } else {
+            alert(`Gagal: ${data.error}`);
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Terjadi kesalahan saat mengunggah file.");
+        }
+      }
+      setUploadingMd(false);
+      // Reset input file
+      e.target.value = '';
+    };
+    reader.readAsText(file);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,16 +147,39 @@ export default function BlogsAdmin() {
           </div>
         </form>
 
+        <div className="flex justify-between items-center mt-12 mb-6">
+          <h2 className="text-xl font-bold font-mono text-gray-900">Daftar Blog & Draf</h2>
+          <label className={`cursor-pointer ${uploadingMd ? 'bg-gray-400' : 'bg-gray-900 hover:bg-gray-800'} text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-2`}>
+            {uploadingMd ? "Memproses..." : "Upload Bulk .md"}
+            <input 
+              type="file" 
+              accept=".md" 
+              className="hidden" 
+              onChange={handleFileUpload} 
+              disabled={uploadingMd}
+            />
+          </label>
+        </div>
+
         {loading ? (
           <div className="py-12 flex justify-center"><div className="w-6 h-6 border-2 border-gray-300 border-t-black rounded-full animate-spin" /></div>
         ) : (
           <div className="flex flex-col gap-4">
             {blogs.map((blog) => (
-              <div key={blog.id} className="border border-gray-200 rounded-xl overflow-hidden bg-white hover:shadow-md transition-shadow p-5 flex justify-between items-center group">
+              <div key={blog.id} className={`border ${blog.is_published ? 'border-gray-200 bg-white' : 'border-yellow-200 bg-yellow-50'} rounded-xl overflow-hidden hover:shadow-md transition-shadow p-5 flex justify-between items-center group`}>
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-medium text-gray-500 mb-1">
-                    <span className="bg-gray-100 px-2 py-0.5 rounded">{blog.category}</span>
-                    <span>• {new Date(blog.created_at).toLocaleDateString()}</span>
+                  <div className="flex items-center gap-2 text-xs font-medium mb-1">
+                    {blog.is_published ? (
+                      <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Published
+                      </span>
+                    ) : (
+                      <span className="bg-yellow-200 text-yellow-800 px-2 py-0.5 rounded flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 bg-yellow-600 rounded-full animate-pulse"></span> Scheduled (Draft)
+                      </span>
+                    )}
+                    <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded">{blog.category}</span>
+                    <span className="text-gray-500">• {new Date(blog.created_at).toLocaleDateString()}</span>
                   </div>
                   <h3 className="font-bold text-gray-900 text-lg">{blog.title}</h3>
                   <p className="text-sm text-gray-600 line-clamp-1 mt-1">{blog.excerpt}</p>

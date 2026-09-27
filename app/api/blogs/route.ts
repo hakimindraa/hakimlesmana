@@ -2,10 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const isAuth = await getSessionFromRequest(req);
     const sql = getDb();
-    const blogs = await sql`SELECT * FROM blogs ORDER BY display_order ASC, created_at DESC`;
+    let blogs;
+    
+    if (isAuth) {
+      // Admin sees everything
+      blogs = await sql`SELECT * FROM blogs ORDER BY display_order ASC, created_at DESC`;
+    } else {
+      // Public only sees published
+      blogs = await sql`SELECT * FROM blogs WHERE is_published = true ORDER BY display_order ASC, created_at DESC`;
+    }
+    
     return NextResponse.json(blogs);
   } catch (error) {
     console.error("Error fetching blogs:", error);
