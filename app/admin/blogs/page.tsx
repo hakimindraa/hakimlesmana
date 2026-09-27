@@ -147,9 +147,9 @@ export default function BlogsAdmin() {
           </div>
         </form>
 
-        <div className="flex justify-between items-center mt-12 mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-12 mb-6 gap-4">
           <h2 className="text-xl font-bold font-mono text-gray-900">Daftar Blog & Draf</h2>
-          <label className={`cursor-pointer ${uploadingMd ? 'bg-gray-400' : 'bg-gray-900 hover:bg-gray-800'} text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-2`}>
+          <label className={`w-full sm:w-auto justify-center cursor-pointer ${uploadingMd ? 'bg-gray-400' : 'bg-gray-900 hover:bg-gray-800'} text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-2`}>
             {uploadingMd ? "Memproses..." : "Upload Bulk .md"}
             <input 
               type="file" 
@@ -166,9 +166,9 @@ export default function BlogsAdmin() {
         ) : (
           <div className="flex flex-col gap-4">
             {blogs.map((blog) => (
-              <div key={blog.id} className={`border ${blog.is_published ? 'border-gray-200 bg-white' : 'border-yellow-200 bg-yellow-50'} rounded-xl overflow-hidden hover:shadow-md transition-shadow p-5 flex justify-between items-center group`}>
-                <div>
-                  <div className="flex items-center gap-2 text-xs font-medium mb-1">
+              <div key={blog.id} className={`border ${blog.is_published ? 'border-gray-200 bg-white' : 'border-yellow-200 bg-yellow-50'} rounded-xl overflow-hidden hover:shadow-md transition-shadow p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center group gap-4`}>
+                <div className="w-full">
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-medium mb-2">
                     {blog.is_published ? (
                       <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded flex items-center gap-1">
                         <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Published
@@ -184,7 +184,7 @@ export default function BlogsAdmin() {
                   <h3 className="font-bold text-gray-900 text-lg">{blog.title}</h3>
                   <p className="text-sm text-gray-600 line-clamp-1 mt-1">{blog.excerpt}</p>
                 </div>
-                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex gap-2 sm:opacity-0 group-hover:opacity-100 transition-opacity w-full sm:w-auto justify-end">
                   <button onClick={() => { setForm(blog); setIsEditing(true); window.scrollTo(0,0); }} className="p-2 bg-gray-50 text-blue-600 rounded-lg shadow-sm border border-gray-100 hover:bg-blue-50"><Edit2 className="w-4 h-4"/></button>
                   <button onClick={() => handleDelete(blog.id)} className="p-2 bg-gray-50 text-red-600 rounded-lg shadow-sm border border-gray-100 hover:bg-red-50"><Trash2 className="w-4 h-4"/></button>
                 </div>
