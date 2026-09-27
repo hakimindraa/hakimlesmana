@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { Instagram, Facebook, Linkedin, Github } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 
 interface Profile {
@@ -10,6 +11,10 @@ interface Profile {
   tagline_en?: string;
   bio: string;
   hero_image: string;
+  instagram?: string;
+  facebook?: string;
+  linkedin?: string;
+  github?: string;
 }
 
 const Hero = () => {
@@ -58,6 +63,12 @@ const Hero = () => {
       </div>
     );
   }
+
+  const getValidUrl = (url?: string) => {
+    if (!url) return "#";
+    if (url.startsWith("http://") || url.startsWith("https://")) return url;
+    return `https://${url}`;
+  };
 
   return (
     <section
@@ -127,6 +138,50 @@ const Hero = () => {
                 {language === "en" ? "View Gallery" : "Lihat Galeri"}
               </a>
             </motion.div>
+
+            {/* Social Media Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="flex items-center justify-center gap-4 md:gap-6 mt-10 md:mt-12"
+            >
+              {profile?.github && (
+                <a href={getValidUrl(profile.github)} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                  <Github className="w-5 h-5 md:w-6 md:h-6" />
+                </a>
+              )}
+              {profile?.linkedin && (
+                <a href={getValidUrl(profile.linkedin)} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0a66c2]/10 border border-[#0a66c2]/30 text-[#0a66c2] hover:bg-[#0a66c2] hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-[0_0_15px_rgba(10,102,194,0.15)] hover:shadow-[0_0_25px_rgba(10,102,194,0.5)]">
+                  <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
+                </a>
+              )}
+              {profile?.instagram && (
+                <a href={getValidUrl(profile.instagram)} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#E1306C]/10 border border-[#E1306C]/30 text-[#E1306C] hover:bg-gradient-to-tr hover:from-[#F56040] hover:to-[#833AB4] hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-[0_0_15px_rgba(225,48,108,0.15)] hover:shadow-[0_0_25px_rgba(225,48,108,0.5)] hover:border-transparent">
+                  <Instagram className="w-5 h-5 md:w-6 md:h-6" />
+                </a>
+              )}
+              {profile?.facebook && (
+                <a href={getValidUrl(profile.facebook)} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#1877F2]/10 border border-[#1877F2]/30 text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-[0_0_15px_rgba(24,119,242,0.15)] hover:shadow-[0_0_25px_rgba(24,119,242,0.5)]">
+                  <Facebook className="w-5 h-5 md:w-6 md:h-6" />
+                </a>
+              )}
+              {/* Fallback dummy ones if none are set */}
+              {!profile?.github && !profile?.linkedin && !profile?.instagram && !profile?.facebook && (
+                <>
+                  <a href="#" aria-label="GitHub" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                    <Github className="w-5 h-5 md:w-6 md:h-6" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/hakimindralesmana" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0a66c2]/10 border border-[#0a66c2]/30 text-[#0a66c2] hover:bg-[#0a66c2] hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-[0_0_15px_rgba(10,102,194,0.15)] hover:shadow-[0_0_25px_rgba(10,102,194,0.5)]">
+                    <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
+                  </a>
+                  <a href="#" aria-label="Instagram" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#E1306C]/10 border border-[#E1306C]/30 text-[#E1306C] hover:bg-gradient-to-tr hover:from-[#F56040] hover:to-[#833AB4] hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-[0_0_15px_rgba(225,48,108,0.15)] hover:shadow-[0_0_25px_rgba(225,48,108,0.5)] hover:border-transparent">
+                    <Instagram className="w-5 h-5 md:w-6 md:h-6" />
+                  </a>
+                </>
+              )}
+            </motion.div>
+
           </motion.div>
         </div>
       </div>

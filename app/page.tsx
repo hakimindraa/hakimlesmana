@@ -5,6 +5,7 @@ import HeroV3 from "@/components/HeroV2";
 const FeaturedWorks = dynamic(() => import("@/components/FeaturedWorks"));
 const WebDevFeatured = dynamic(() => import("@/components/WebDevFeatured"));
 const AboutMe = dynamic(() => import("@/components/AboutMe"));
+const RecentBlog = dynamic(() => import("@/components/RecentBlog"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
@@ -35,9 +36,9 @@ export default function Home() {
         <div className="relative z-10">
           {/* <ImpactStats /> */}
           <FeaturedWorks />
-          {/* <WebDevFeatured /> */}
           <WebDevFeatured />
           <AboutMe />
+          <RecentBlog />
         </div>
       </div>
       <Footer />

@@ -16,6 +16,7 @@ import {
   Camera,
   Database,
   BarChart,
+  FileText,
 } from "lucide-react";
 
 const navItems = [
@@ -28,6 +29,7 @@ const navItems = [
   { name: "Certificates", href: "/admin/certificates", icon: Award },
   { name: "Resume", href: "/admin/resume", icon: User },
   { name: "Featured", href: "/admin/featured", icon: Star },
+  { name: "Blogs", href: "/admin/blogs", icon: FileText },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

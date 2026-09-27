@@ -26,6 +26,7 @@ const Navbar = () => {
     { name: language === "en" ? "About" : "Tentang", href: "/about" },
     { name: language === "en" ? "Gallery" : "Galeri", href: "/gallery" },
     { name: language === "en" ? "Projects" : "Project", href: "/projects" },
+    { name: language === "en" ? "Blog" : "Blog", href: "/blog" },
     // { name: language === "en" ? "Certificates" : "Sertifikat", href: "/about#certificates" },
   ];
 

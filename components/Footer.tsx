@@ -64,7 +64,8 @@ const Footer = () => {
     { name: language === "en" ? "About" : "Tentang", href: "#about" },
     { name: language === "en" ? "Gallery" : "Galeri", href: "#gallery" },
     { name: language === "en" ? "Web Projects" : "Project Web", href: "/projects" },
-    //{ name: language === "en" ? "Certificates" : "Sertifikat", href: "#certificates" },
+    { name: language === "en" ? "Blog" : "Blog", href: "/blog" },
+    // { name: language === "en" ? "Certificates" : "Sertifikat", href: "#certificates" },
     { name: language === "en" ? "Contact" : "Kontak", href: "#contact" },
   ];
 
@@ -77,12 +78,7 @@ const Footer = () => {
     language === "en" ? "Frontend Engineering" : "Frontend Engineering",
   ];
 
-  const socialLinks = [
-    { icon: Instagram, href: instagramUrl, name: "Instagram", color: "hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500" },
-    { icon: Facebook, href: facebookUrl, name: "Facebook", color: "hover:bg-blue-600" },
-    { icon: Linkedin, href: linkedinUrl, name: "LinkedIn", color: "hover:bg-blue-700" },
-    { icon: MessageCircle, href: `https://wa.me/${whatsapp}`, name: "WhatsApp", color: "hover:bg-green-600" },
-  ];
+
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -174,21 +170,7 @@ const Footer = () => {
                 : "Mengabadikan momen melalui lensa dan membangun pengalaman digital interaktif."}
             </p>
 
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className={`shrink-0 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 hover:text-white hover:border-transparent transition-all duration-300 ${social.color}`}
-                >
-                  <social.icon className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                </a>
-              ))}
-            </div>
+
           </div>
 
           {/* Column 2 — Contact & Newsletter */}

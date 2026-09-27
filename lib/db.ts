@@ -163,6 +163,25 @@ export async function initializeDatabase() {
   `;
 
   await sql`
+    CREATE TABLE IF NOT EXISTS blogs (
+      id SERIAL PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      title_en VARCHAR(255),
+      excerpt TEXT,
+      excerpt_en TEXT,
+      content TEXT,
+      content_en TEXT,
+      category VARCHAR(100),
+      category_en VARCHAR(100),
+      read_time VARCHAR(50),
+      is_published BOOLEAN DEFAULT true,
+      display_order INT DEFAULT 0,
+      created_at TIMESTAMP DEFAULT NOW(),
+      updated_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
+  await sql`
     CREATE TABLE IF NOT EXISTS impact_stats (
       id SERIAL PRIMARY KEY,
       value VARCHAR(50) NOT NULL,
