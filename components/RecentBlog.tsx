@@ -11,7 +11,7 @@ const RecentBlog = () => {
   const [articles, setArticles] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("/api/blogs")
+    fetch("/api/blogs?public=true")
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {

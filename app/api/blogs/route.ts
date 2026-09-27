@@ -5,11 +5,14 @@ import { getSessionFromRequest } from "@/lib/auth";
 export async function GET(req: NextRequest) {
   try {
     const isAuth = await getSessionFromRequest(req);
+    const { searchParams } = new URL(req.url);
+    const isPublicMode = searchParams.get("public") === "true";
+    
     const sql = getDb();
     let blogs;
     
-    if (isAuth) {
-      // Admin sees everything
+    if (isAuth && !isPublicMode) {
+      // Admin sees everything if not requesting public mode
       blogs = await sql`SELECT * FROM blogs ORDER BY display_order ASC, created_at DESC`;
     } else {
       // Public only sees published
