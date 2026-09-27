@@ -3,10 +3,10 @@ import { getDb } from "@/lib/db";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = params.id;
+    const { id } = await context.params;
     const sql = getDb();
     
     const blogs = await sql`SELECT * FROM blogs WHERE id = ${id} LIMIT 1`;
