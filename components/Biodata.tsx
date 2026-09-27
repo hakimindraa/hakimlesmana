@@ -8,7 +8,7 @@ const biodataItems = [
   { icon: User, label: "Nama", value: "Hakim" },
   { icon: Briefcase, label: "Profesi", value: "Photographer" },
   { icon: MapPin, label: "Lokasi", value: "Tanjungpinang, Indonesia" },
-  { icon: Mail, label: "Email", value: "hakim@example.com" },
+  { icon: Mail, label: "Email", value: "hakimindralesmana@gmail.com" },
   { icon: Phone, label: "Telepon", value: "+62 83137412551" },
 ];
 
