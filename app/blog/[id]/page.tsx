@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
@@ -44,7 +45,6 @@ export default function ArticlePage() {
 
   // Pisahkan konten berdasarkan baris baru untuk membuat paragraf
   const contentStr = language === "en" ? (article.content_en || article.content) : article.content;
-  const paragraphs = contentStr.split('\n\n').filter((p: string) => p.trim() !== '');
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-slate-300 font-serif selection:bg-yellow-500/30 selection:text-yellow-200 pb-32">
@@ -95,18 +95,14 @@ export default function ArticlePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="prose prose-invert prose-lg md:prose-xl prose-slate max-w-none"
+          className="prose prose-invert prose-lg md:prose-xl max-w-none 
+          prose-p:text-slate-300 prose-p:leading-relaxed prose-p:font-serif prose-p:tracking-wide 
+          prose-a:text-yellow-500 hover:prose-a:text-yellow-400 prose-a:transition-colors
+          prose-headings:font-sans prose-headings:text-white prose-strong:text-white
+          prose-blockquote:border-l-yellow-500 prose-blockquote:bg-white/5 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:font-serif prose-blockquote:italic
+          [&>p:first-child]:first-letter:float-left [&>p:first-child]:first-letter:text-6xl md:[&>p:first-child]:first-letter:text-7xl [&>p:first-child]:first-letter:font-bold [&>p:first-child]:first-letter:text-yellow-500 [&>p:first-child]:first-letter:mr-4 [&>p:first-child]:first-letter:mt-2 [&>p:first-child]:first-letter:leading-[0.8] [&>p:first-child]:first-letter:font-sans"
         >
-          {paragraphs.map((paragraph: string, index: number) => (
-            <p key={index} className="mb-8 text-slate-300 leading-relaxed font-serif tracking-wide opacity-90 text-[17px] md:text-[20px]">
-              {index === 0 && paragraph.length > 0 ? (
-                <span className="float-left text-6xl md:text-7xl font-bold text-white mr-4 mt-2 leading-[0.8] font-sans">
-                  {paragraph.charAt(0)}
-                </span>
-              ) : null}
-              {index === 0 && paragraph.length > 0 ? paragraph.slice(1) : paragraph}
-            </p>
-          ))}
+          <ReactMarkdown>{contentStr}</ReactMarkdown>
         </motion.article>
 
         <motion.div
