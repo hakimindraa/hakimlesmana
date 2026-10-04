@@ -18,20 +18,22 @@ import Link from "next/link";
 
 interface Stats {
   photos: number;
+  galleryDrafts: number;
   categories: number;
   certificates: number;
   featured: number;
   blogs: number;
-  drafts: number;
+  blogDrafts: number;
 }
 
 const statCards = [
-  { key: "photos", label: "Total Photos", icon: ImageIcon, color: "from-blue-500 to-blue-600", href: "/admin/gallery" },
-  { key: "categories", label: "Categories", icon: Tags, color: "from-emerald-500 to-emerald-600", href: "/admin/categories" },
-  { key: "certificates", label: "Certificates", icon: Award, color: "from-amber-500 to-amber-600", href: "/admin/certificates" },
-  { key: "featured", label: "Featured Works", icon: Star, color: "from-purple-500 to-purple-600", href: "/admin/featured" },
-  { key: "blogs", label: "Published Blogs", icon: BookOpen, color: "from-rose-500 to-rose-600", href: "/admin/blogs" },
-  { key: "drafts", label: "Scheduled Drafts", icon: Clock, color: "from-yellow-500 to-orange-600", href: "/admin/blogs" },
+  { key: "photos", label: "Published Photos", icon: ImageIcon, color: "bg-blue-50 text-blue-600", href: "/admin/gallery" },
+  { key: "galleryDrafts", label: "Gallery Drafts", icon: Clock, color: "bg-orange-50 text-orange-600", href: "/admin/gallery" },
+  { key: "blogs", label: "Published Blogs", icon: BookOpen, color: "bg-rose-50 text-rose-600", href: "/admin/blogs" },
+  { key: "blogDrafts", label: "Blog Drafts", icon: FileText, color: "bg-amber-50 text-amber-600", href: "/admin/blogs" },
+  { key: "categories", label: "Categories", icon: Tags, color: "bg-emerald-50 text-emerald-600", href: "/admin/categories" },
+  { key: "certificates", label: "Certificates", icon: Award, color: "bg-purple-50 text-purple-600", href: "/admin/certificates" },
+  { key: "featured", label: "Featured Works", icon: Star, color: "bg-indigo-50 text-indigo-600", href: "/admin/featured" },
 ];
 
 const quickActions = [
@@ -42,7 +44,7 @@ const quickActions = [
 ];
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState<Stats>({ photos: 0, categories: 0, certificates: 0, featured: 0, blogs: 0, drafts: 0 });
+  const [stats, setStats] = useState<Stats>({ photos: 0, galleryDrafts: 0, categories: 0, certificates: 0, featured: 0, blogs: 0, blogDrafts: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -61,12 +63,13 @@ export default function AdminDashboard() {
         const blogs = blogsRes.ok ? await blogsRes.json() : [];
 
         setStats({
-          photos: Array.isArray(photos) ? photos.length : 0,
+          photos: Array.isArray(photos) ? photos.filter((p: { is_published: boolean }) => p.is_published !== false).length : 0,
+          galleryDrafts: Array.isArray(photos) ? photos.filter((p: { is_published: boolean }) => p.is_published === false).length : 0,
           categories: Array.isArray(categories) ? categories.length : 0,
           certificates: Array.isArray(certs) ? certs.length : 0,
           featured: Array.isArray(photos) ? photos.filter((p: { is_featured: boolean }) => p.is_featured).length : 0,
           blogs: Array.isArray(blogs) ? blogs.filter((b: { is_published: boolean }) => b.is_published).length : 0,
-          drafts: Array.isArray(blogs) ? blogs.filter((b: { is_published: boolean }) => !b.is_published).length : 0,
+          blogDrafts: Array.isArray(blogs) ? blogs.filter((b: { is_published: boolean }) => !b.is_published).length : 0,
         });
       } catch (err) {
         console.error("Failed to fetch stats:", err);
@@ -86,7 +89,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
         {statCards.map((card, i) => (
           <motion.div
             key={card.key}
@@ -94,17 +97,17 @@ export default function AdminDashboard() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.08 }}
           >
-            <Link href={card.href} className="block bg-white rounded-xl border border-gray-100 p-6 hover:shadow-md transition-shadow group h-full">
-              <div className="flex items-center justify-between mb-4">
-                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${card.color} flex items-center justify-center`}>
-                  <card.icon className="w-5 h-5 text-white" />
+            <Link href={card.href} className="block bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-gray-200 transition-all duration-300 group h-full">
+              <div className="flex items-center justify-between mb-5">
+                <div className={`w-12 h-12 rounded-xl ${card.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                  <card.icon className="w-6 h-6" strokeWidth={2.5} />
                 </div>
-                <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-gray-900 group-hover:translate-x-1 transition-all duration-300" />
               </div>
-              <p className="text-2xl font-bold text-gray-900">
-                {loading ? "—" : stats[card.key as keyof Stats]}
+              <p className="text-3xl font-bold text-gray-900 mb-1">
+                {loading ? <span className="animate-pulse text-gray-200">00</span> : stats[card.key as keyof Stats]}
               </p>
-              <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mt-1">{card.label}</p>
+              <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider">{card.label}</p>
             </Link>
           </motion.div>
         ))}
@@ -123,7 +126,7 @@ export default function AdminDashboard() {
             >
               <Link
                 href={action.href}
-                className="flex items-center gap-4 bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md hover:border-gray-200 transition-all group h-full"
+                className="flex items-center gap-4 bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-[#111] transition-all group h-full"
               >
                 <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center group-hover:bg-gray-100 transition-colors flex-shrink-0">
                   <action.icon className="w-5 h-5 text-gray-600" />
