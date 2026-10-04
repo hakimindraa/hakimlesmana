@@ -49,7 +49,7 @@ export default function AdminDashboard() {
     const fetchStats = async () => {
       try {
         const [photosRes, categoriesRes, certsRes, blogsRes] = await Promise.all([
-          fetch("/api/photos"),
+          fetch("/api/photos?all=true"),
           fetch("/api/categories"),
           fetch("/api/certificates"),
           fetch("/api/blogs"),

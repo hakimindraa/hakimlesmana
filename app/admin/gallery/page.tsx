@@ -62,7 +62,7 @@ export default function GalleryManager() {
   const fetchData = useCallback(async () => {
     try {
       const [photosRes, catsRes] = await Promise.all([
-        fetch("/api/photos"),
+        fetch("/api/photos?all=true"),
         fetch("/api/categories"),
       ]);
       if (photosRes.ok) setPhotos(await photosRes.json());

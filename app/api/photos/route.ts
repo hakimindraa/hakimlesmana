@@ -6,10 +6,14 @@ import { getSessionFromRequest } from "@/lib/auth";
 export async function GET(req: NextRequest) {
   try {
     const isAuth = await getSessionFromRequest(req);
+    const url = new URL(req.url);
+    const showAll = url.searchParams.get("all") === "true";
+    
     const sql = getDb();
     let photos;
     
-    if (isAuth) {
+    // Only return drafts if the user is authenticated AND explicitly requests all photos
+    if (isAuth && showAll) {
       photos = await sql`SELECT * FROM photos ORDER BY display_order ASC, created_at DESC`;
     } else {
       photos = await sql`SELECT * FROM photos WHERE is_published = true ORDER BY display_order ASC, created_at DESC`;
