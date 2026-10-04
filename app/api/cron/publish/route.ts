@@ -17,28 +17,49 @@ export async function GET(request: Request) {
   try {
     const sql = getDb();
 
-    // Find the oldest unpublished blog
-    const oldestDrafts = await sql`
+    let message = "";
+
+    // 1. Process Blogs
+    const oldestDraftBlogs = await sql`
       SELECT id FROM blogs 
       WHERE is_published = false 
       ORDER BY id ASC 
       LIMIT 1
     `;
 
-    if (oldestDrafts.length === 0) {
-      return NextResponse.json({ success: true, message: "No draft articles to publish." });
+    if (oldestDraftBlogs.length > 0) {
+      const draftId = oldestDraftBlogs[0].id;
+      await sql`
+        UPDATE blogs 
+        SET is_published = true, created_at = NOW() 
+        WHERE id = ${draftId}
+      `;
+      message += `Published blog ${draftId}. `;
     }
 
-    const draftId = oldestDrafts[0].id;
-
-    // Publish it and update the created_at to the publish time
-    await sql`
-      UPDATE blogs 
-      SET is_published = true, created_at = NOW() 
-      WHERE id = ${draftId}
+    // 2. Process Photos (Gallery)
+    const oldestDraftPhotos = await sql`
+      SELECT id FROM photos 
+      WHERE is_published = false 
+      ORDER BY id ASC 
+      LIMIT 1
     `;
 
-    return NextResponse.json({ success: true, published_id: draftId, message: "Article published successfully." });
+    if (oldestDraftPhotos.length > 0) {
+      const photoId = oldestDraftPhotos[0].id;
+      await sql`
+        UPDATE photos 
+        SET is_published = true, created_at = NOW() 
+        WHERE id = ${photoId}
+      `;
+      message += `Published photo ${photoId}.`;
+    }
+
+    if (!message) {
+      message = "No draft articles or photos to publish.";
+    }
+
+    return NextResponse.json({ success: true, message: message.trim() });
   } catch (error) {
     console.error("Cron Error:", error);
     return NextResponse.json({ error: "Failed to publish article" }, { status: 500 });

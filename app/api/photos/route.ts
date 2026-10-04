@@ -3,10 +3,18 @@ import { getDb } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
 
 // GET all photos
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const isAuth = await getSessionFromRequest(req);
     const sql = getDb();
-    const photos = await sql`SELECT * FROM photos ORDER BY display_order ASC, created_at DESC`;
+    let photos;
+    
+    if (isAuth) {
+      photos = await sql`SELECT * FROM photos ORDER BY display_order ASC, created_at DESC`;
+    } else {
+      photos = await sql`SELECT * FROM photos WHERE is_published = true ORDER BY display_order ASC, created_at DESC`;
+    }
+    
     return NextResponse.json(photos);
   } catch (error) {
     console.error("Error fetching photos:", error);

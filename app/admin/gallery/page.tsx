@@ -26,6 +26,7 @@ interface Photo {
   featured_description: string;
   featured_description_en: string;
   display_order: number;
+  is_published?: boolean;
 }
 
 interface Category {
@@ -38,6 +39,8 @@ export default function GalleryManager() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [bulkModalOpen, setBulkModalOpen] = useState(false);
+  const [bulkJson, setBulkJson] = useState("");
   const [editingPhoto, setEditingPhoto] = useState<Photo | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
@@ -185,12 +188,20 @@ export default function GalleryManager() {
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Gallery Manager</h1>
           <p className="text-gray-500 text-sm mt-1">{photos.length} photos total</p>
         </div>
-        <button
-          onClick={openAddModal}
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111] text-white text-sm font-semibold rounded-lg hover:bg-[#222] transition-colors"
-        >
-          <Plus className="w-4 h-4" /> Add Photo
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => { setBulkJson(""); setBulkModalOpen(true); }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+          >
+            <Upload className="w-4 h-4" /> Bulk Upload (JSON)
+          </button>
+          <button
+            onClick={openAddModal}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111] text-white text-sm font-semibold rounded-lg hover:bg-[#222] transition-colors"
+          >
+            <Plus className="w-4 h-4" /> Add Photo
+          </button>
+        </div>
       </div>
 
       {/* Filters */}
@@ -250,6 +261,11 @@ export default function GalleryManager() {
                 {photo.is_featured && (
                   <div className="absolute top-2 left-2 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full flex items-center gap-1">
                     <Star className="w-3 h-3" /> Featured
+                  </div>
+                )}
+                {photo.is_published === false && (
+                  <div className="absolute top-2 right-2 bg-gray-900/80 backdrop-blur text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md flex items-center gap-1">
+                    Draft
                   </div>
                 )}
                 {/* Action overlay */}
@@ -472,6 +488,84 @@ export default function GalleryManager() {
                   className="px-5 py-2.5 bg-[#111] text-white text-sm font-semibold rounded-lg hover:bg-[#222] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   {editingPhoto ? "Save Changes" : "Add Photo"}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      {/* ── Bulk Upload Modal ── */}
+      <AnimatePresence>
+        {bulkModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-black/50 flex items-center justify-center p-4"
+            onClick={() => setBulkModalOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between p-6 border-b border-gray-100 shrink-0">
+                <h2 className="text-lg font-bold text-gray-900">Bulk Upload Photos (JSON)</h2>
+                <button onClick={() => setBulkModalOpen(false)} className="text-gray-400 hover:text-gray-600">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto grow">
+                <p className="text-sm text-gray-600 mb-4">
+                  Paste your JSON array here. Each photo will be saved as a draft (<code className="bg-gray-100 px-1 rounded">is_published: false</code>) and published automatically by the cron job.
+                </p>
+                <textarea
+                  value={bulkJson}
+                  onChange={(e) => setBulkJson(e.target.value)}
+                  placeholder="[\n  {\n    &#34;title&#34;: &#34;My Photo&#34;,\n    &#34;category&#34;: &#34;Landscape&#34;,\n    &#34;src&#34;: &#34;https://...&#34;,\n    &#34;is_published&#34;: false\n  }\n]"
+                  className="w-full h-[300px] font-mono text-xs px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 resize-none"
+                />
+              </div>
+              <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-100 shrink-0">
+                <button
+                  onClick={() => setBulkModalOpen(false)}
+                  className="px-5 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={async () => {
+                    try {
+                      const data = JSON.parse(bulkJson);
+                      if (!Array.isArray(data)) throw new Error("JSON must be an array");
+                      
+                      setUploading(true);
+                      const res = await fetch("/api/photos/bulk", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(data),
+                      });
+                      
+                      if (res.ok) {
+                        const result = await res.json();
+                        alert(`Success! Imported ${result.count} photos.`);
+                        setBulkModalOpen(false);
+                        fetchData();
+                      } else {
+                        const err = await res.json();
+                        alert("Error: " + (err.error || "Failed to upload"));
+                      }
+                    } catch (e: any) {
+                      alert("Invalid JSON: " + e.message);
+                    } finally {
+                      setUploading(false);
+                    }
+                  }}
+                  disabled={!bulkJson || uploading}
+                  className="px-5 py-2.5 bg-[#111] text-white text-sm font-semibold rounded-lg hover:bg-[#222] transition-colors disabled:opacity-40"
+                >
+                  {uploading ? "Uploading..." : "Upload JSON"}
                 </button>
               </div>
             </motion.div>

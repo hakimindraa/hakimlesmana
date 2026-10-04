@@ -32,6 +32,7 @@ export async function initializeDatabase() {
       featured_description TEXT,
       featured_description_en TEXT,
       display_order INT DEFAULT 0,
+      is_published BOOLEAN DEFAULT true,
       created_at TIMESTAMP DEFAULT NOW(),
       updated_at TIMESTAMP DEFAULT NOW()
     )
