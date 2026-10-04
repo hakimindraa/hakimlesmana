@@ -493,6 +493,8 @@ export default function GalleryManager() {
             </motion.div>
           </motion.div>
         )}
+      </AnimatePresence>
+
       {/* ── Bulk Upload Modal ── */}
       <AnimatePresence>
         {bulkModalOpen && (
