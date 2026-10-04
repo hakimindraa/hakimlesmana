@@ -519,9 +519,48 @@ export default function GalleryManager() {
                 </button>
               </div>
               <div className="p-6 overflow-y-auto grow">
-                <p className="text-sm text-gray-600 mb-4">
-                  Paste your JSON array here. Each photo will be saved as a draft (<code className="bg-gray-100 px-1 rounded">is_published: false</code>) and published automatically by the cron job.
-                </p>
+                <div className="mb-4 space-y-2">
+                  <p className="text-sm text-gray-600">
+                    Paste your JSON array here. Each photo will be saved as a draft (<code className="bg-gray-100 px-1 rounded">is_published: false</code>).
+                  </p>
+                  <details className="text-xs text-gray-500 bg-gray-50 rounded-lg border border-gray-100 p-3 cursor-pointer select-none">
+                    <summary className="font-semibold text-gray-700 outline-none">Lihat Format JSON (Klik di sini)</summary>
+                    <div className="mt-3 space-y-3 cursor-text select-text">
+                      <div>
+                        <p className="font-semibold text-gray-700 mb-1">Untuk 1 Foto:</p>
+                        <pre className="bg-white border border-gray-200 p-2 rounded text-[10px] overflow-x-auto text-gray-600">
+{`[
+  {
+    "title": "Pemandangan Gunung",
+    "category": "Landscape",
+    "src": "https://i.ibb.co/xxxxx/gunung.jpg",
+    "is_published": false
+  }
+]`}
+                        </pre>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700 mb-1">Untuk Lebih dari 1 Foto:</p>
+                        <pre className="bg-white border border-gray-200 p-2 rounded text-[10px] overflow-x-auto text-gray-600">
+{`[
+  {
+    "title": "Foto 1",
+    "category": "Landscape",
+    "src": "https://i.ibb.co/1111/foto1.jpg",
+    "is_published": false
+  },
+  {
+    "title": "Foto 2",
+    "category": "Urban",
+    "src": "https://i.ibb.co/2222/foto2.jpg",
+    "is_published": false
+  }
+]`}
+                        </pre>
+                      </div>
+                    </div>
+                  </details>
+                </div>
                 <textarea
                   value={bulkJson}
                   onChange={(e) => setBulkJson(e.target.value)}
