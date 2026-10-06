@@ -174,9 +174,11 @@ export async function initializeDatabase() {
       content_en TEXT,
       category VARCHAR(100),
       category_en VARCHAR(100),
+      image_url TEXT,
       read_time VARCHAR(50),
       is_published BOOLEAN DEFAULT true,
       display_order INT DEFAULT 0,
+      likes_count INTEGER DEFAULT 0,
       created_at TIMESTAMP DEFAULT NOW(),
       updated_at TIMESTAMP DEFAULT NOW()
     )

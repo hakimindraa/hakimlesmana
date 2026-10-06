@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto, PT_Serif } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700", "900"], variable: "--font-roboto" });
+const ptSerif = PT_Serif({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-pt-serif" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hakimlesmana.my.id"),
@@ -67,7 +69,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${roboto.variable} ${ptSerif.variable} ${inter.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

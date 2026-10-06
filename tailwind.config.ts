@@ -16,6 +16,10 @@ const config: Config = {
         secondary: "#4B5563",
         accent: "#F5F5F5",
       },
+      fontFamily: {
+        'kompas-sans': ['var(--font-roboto)', 'sans-serif'],
+        'kompas-serif': ['var(--font-pt-serif)', 'serif'],
+      },
     },
   },
   plugins: [

@@ -12,7 +12,8 @@ import {
   FileText,
   Plus,
   ArrowRight,
-  Settings
+  Settings,
+  ThumbsUp
 } from "lucide-react";
 import Link from "next/link";
 
@@ -24,6 +25,7 @@ interface Stats {
   featured: number;
   blogs: number;
   blogDrafts: number;
+  totalLikes: number;
 }
 
 const statCards = [
@@ -31,6 +33,7 @@ const statCards = [
   { key: "galleryDrafts", label: "Gallery Drafts", icon: Clock, color: "bg-orange-50 text-orange-600", href: "/admin/gallery" },
   { key: "blogs", label: "Published Blogs", icon: BookOpen, color: "bg-rose-50 text-rose-600", href: "/admin/blogs" },
   { key: "blogDrafts", label: "Blog Drafts", icon: FileText, color: "bg-amber-50 text-amber-600", href: "/admin/blogs" },
+  { key: "totalLikes", label: "Total Article Likes", icon: ThumbsUp, color: "bg-yellow-50 text-yellow-600", href: "/admin/blogs" },
   { key: "categories", label: "Categories", icon: Tags, color: "bg-emerald-50 text-emerald-600", href: "/admin/categories" },
   { key: "certificates", label: "Certificates", icon: Award, color: "bg-purple-50 text-purple-600", href: "/admin/certificates" },
   { key: "featured", label: "Featured Works", icon: Star, color: "bg-indigo-50 text-indigo-600", href: "/admin/featured" },
@@ -44,7 +47,7 @@ const quickActions = [
 ];
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState<Stats>({ photos: 0, galleryDrafts: 0, categories: 0, certificates: 0, featured: 0, blogs: 0, blogDrafts: 0 });
+  const [stats, setStats] = useState<Stats>({ photos: 0, galleryDrafts: 0, categories: 0, certificates: 0, featured: 0, blogs: 0, blogDrafts: 0, totalLikes: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -70,6 +73,7 @@ export default function AdminDashboard() {
           featured: Array.isArray(photos) ? photos.filter((p: { is_featured: boolean }) => p.is_featured).length : 0,
           blogs: Array.isArray(blogs) ? blogs.filter((b: { is_published: boolean }) => b.is_published).length : 0,
           blogDrafts: Array.isArray(blogs) ? blogs.filter((b: { is_published: boolean }) => !b.is_published).length : 0,
+          totalLikes: Array.isArray(blogs) ? blogs.reduce((sum: number, b: any) => sum + (b.likes_count || 0), 0) : 0,
         });
       } catch (err) {
         console.error("Failed to fetch stats:", err);

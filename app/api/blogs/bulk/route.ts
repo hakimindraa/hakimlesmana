@@ -49,20 +49,29 @@ export async function POST(req: NextRequest) {
       const read_time = extractValue(frontmatter, "read_time");
       const excerpt = extractValue(frontmatter, "excerpt");
       const excerpt_en = extractValue(frontmatter, "excerpt_en");
+      let image_url = extractValue(frontmatter, "image_url");
 
       // Extract bodies
       const bodyParts = fullBody.split("===EN===");
       const content = bodyParts[0]?.trim() || "";
       const content_en = bodyParts[1]?.trim() || "";
 
+      // Fallback: If no image_url in frontmatter, try to find the first markdown image ![alt](url) in content
+      if (!image_url) {
+        const imgMatch = content.match(/!\[.*?\]\((.*?)\)/);
+        if (imgMatch) {
+          image_url = imgMatch[1];
+        }
+      }
+
       // Save to database as DRAFT (is_published = false)
       await sql`
         INSERT INTO blogs (
           title, title_en, excerpt, excerpt_en, content, content_en, 
-          category, category_en, read_time, is_published, display_order
+          category, category_en, image_url, read_time, is_published, display_order
         ) VALUES (
           ${title}, ${title_en}, ${excerpt}, ${excerpt_en}, ${content}, ${content_en},
-          ${category}, ${category_en}, ${read_time}, false, 0
+          ${category}, ${category_en}, ${image_url}, ${read_time}, false, 0
         )
       `;
       insertedCount++;

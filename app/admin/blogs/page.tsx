@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Plus, Trash2, Edit2, RefreshCw } from "lucide-react";
+import { Plus, Trash2, Edit2, RefreshCw, ThumbsUp } from "lucide-react";
 
 type Blog = {
   id: number;
@@ -13,20 +13,23 @@ type Blog = {
   content_en: string;
   category: string;
   category_en: string;
+  image_url?: string;
   read_time: string;
   is_published: boolean;
   display_order: number;
+  likes_count?: number;
   created_at: string;
 };
 
 export default function BlogsAdmin() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showTemplate, setShowTemplate] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [uploadingMd, setUploadingMd] = useState(false);
   
   const [form, setForm] = useState<Blog>({
-    id: 0, title: "", title_en: "", excerpt: "", excerpt_en: "", content: "", content_en: "", category: "", category_en: "", read_time: "", is_published: true, display_order: 0, created_at: ""
+    id: 0, title: "", title_en: "", excerpt: "", excerpt_en: "", content: "", content_en: "", category: "", category_en: "", image_url: "", read_time: "", is_published: true, display_order: 0, created_at: ""
   });
 
   const fetchData = async () => {
@@ -90,7 +93,7 @@ export default function BlogsAdmin() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)
       });
-      setForm({ id: 0, title: "", title_en: "", excerpt: "", excerpt_en: "", content: "", content_en: "", category: "", category_en: "", read_time: "", is_published: true, display_order: 0, created_at: "" });
+      setForm({ id: 0, title: "", title_en: "", excerpt: "", excerpt_en: "", content: "", content_en: "", category: "", category_en: "", image_url: "", read_time: "", is_published: true, display_order: 0, created_at: "" });
       setIsEditing(false);
       fetchData();
     } catch (err) {
@@ -128,6 +131,8 @@ export default function BlogsAdmin() {
           <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Category - ID</label><input required value={form.category} onChange={e=>setForm({...form, category: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. Design" /></div>
           <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Category - EN</label><input value={form.category_en} onChange={e=>setForm({...form, category_en: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. Design" /></div>
           
+          <div className="md:col-span-2"><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Cover Image URL (ImgBB / Unsplash)</label><input value={form.image_url || ""} onChange={e=>setForm({...form, image_url: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="https://i.ibb.co/... atau tinggalkan kosong" /></div>
+          
           <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Read Time</label><input required value={form.read_time} onChange={e=>setForm({...form, read_time: e.target.value})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" placeholder="e.g. 5 min read" /></div>
           <div><label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Display Order</label><input type="number" value={form.display_order} onChange={e=>setForm({...form, display_order: parseInt(e.target.value)})} className="w-full border border-gray-300 p-2.5 rounded-lg text-sm bg-white" /></div>
 
@@ -139,7 +144,7 @@ export default function BlogsAdmin() {
 
           <div className="md:col-span-2 flex justify-end items-center mt-2">
             <div className="flex gap-2">
-              {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, title: "", title_en: "", excerpt: "", excerpt_en: "", content: "", content_en: "", category: "", category_en: "", read_time: "", is_published: true, display_order: 0, created_at: "" })}} className="px-6 py-2.5 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50">Cancel</button>}
+              {isEditing && <button type="button" onClick={() => {setIsEditing(false); setForm({ id: 0, title: "", title_en: "", excerpt: "", excerpt_en: "", content: "", content_en: "", category: "", category_en: "", image_url: "", read_time: "", is_published: true, display_order: 0, created_at: "" })}} className="px-6 py-2.5 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50">Cancel</button>}
               <button type="submit" className="px-6 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 flex items-center gap-2">
                 {isEditing ? <Edit2 className="w-4 h-4"/> : <Plus className="w-4 h-4"/>} {isEditing ? "Update Post" : "Publish Post"}
               </button>
@@ -149,17 +154,70 @@ export default function BlogsAdmin() {
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-12 mb-6 gap-4">
           <h2 className="text-xl font-bold font-mono text-gray-900">Daftar Blog & Draf</h2>
-          <label className={`w-full sm:w-auto justify-center cursor-pointer ${uploadingMd ? 'bg-gray-400' : 'bg-gray-900 hover:bg-gray-800'} text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-2`}>
-            {uploadingMd ? "Memproses..." : "Upload Bulk .md"}
-            <input 
-              type="file" 
-              accept=".md" 
-              className="hidden" 
-              onChange={handleFileUpload} 
-              disabled={uploadingMd}
-            />
-          </label>
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+            <button 
+              type="button" 
+              onClick={() => setShowTemplate(true)}
+              className="w-full sm:w-auto justify-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors border border-gray-200"
+            >
+              Lihat Template
+            </button>
+            <label className={`w-full sm:w-auto justify-center cursor-pointer ${uploadingMd ? 'bg-gray-400' : 'bg-gray-900 hover:bg-gray-800'} text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-2`}>
+              {uploadingMd ? "Memproses..." : "Upload Bulk .md"}
+              <input 
+                type="file" 
+                accept=".md" 
+                className="hidden" 
+                onChange={handleFileUpload} 
+                disabled={uploadingMd}
+              />
+            </label>
+          </div>
         </div>
+
+        {/* TEMPLATE MODAL */}
+        {showTemplate && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+              <div className="p-4 border-b border-gray-100 flex justify-between items-center">
+                 <h3 className="font-bold">Template Markdown (.md)</h3>
+                 <button onClick={() => setShowTemplate(false)} className="text-gray-500 hover:text-black font-bold text-xl leading-none">&times;</button>
+              </div>
+              <div className="p-4 overflow-y-auto">
+                <p className="text-sm text-gray-600 mb-4">Gunakan format ini untuk mengunggah artikel lewat <b>Upload Bulk .md</b>. Pemisah antar artikel gunakan <code className="bg-gray-100 px-1 rounded">---POST---</code>.</p>
+                <pre className="bg-gray-50 p-4 rounded-lg text-xs font-mono text-gray-800 whitespace-pre-wrap border border-gray-200">
+{`---POST---
+---
+title: "Judul Berita Indonesia"
+title_en: "English News Title"
+category: "Kategori"
+category_en: "Category"
+read_time: "5 min read"
+excerpt: "Kutipan pendek berita."
+excerpt_en: "Short excerpt of the news."
+image_url: "https://i.ibb.co/contoh-gambar.jpg"
+---
+
+Tulis konten bahasa Indonesia di sini...
+Bisa menggunakan **bold**, *italic*, atau gambar.
+
+===EN===
+
+Write english content here...`}
+                </pre>
+                <button 
+                  onClick={() => {
+                    navigator.clipboard.writeText("---\ntitle: \"\"\ntitle_en: \"\"\ncategory: \"\"\ncategory_en: \"\"\nread_time: \"\"\nexcerpt: \"\"\nexcerpt_en: \"\"\nimage_url: \"\"\n---\n\nKonten ID...\n\n===EN===\n\nContent EN...");
+                    alert("Template disalin!");
+                  }} 
+                  className="mt-4 w-full bg-black text-white py-2 rounded text-sm font-medium hover:bg-gray-800"
+                >
+                  Copy Template Kosong
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {loading ? (
           <div className="py-12 flex justify-center"><div className="w-6 h-6 border-2 border-gray-300 border-t-black rounded-full animate-spin" /></div>
@@ -180,6 +238,7 @@ export default function BlogsAdmin() {
                     )}
                     <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded">{blog.category}</span>
                     <span className="text-gray-500">• {new Date(blog.created_at).toLocaleDateString()}</span>
+                    <span className="text-gray-500 flex items-center gap-1">• <ThumbsUp className="w-3.5 h-3.5"/> {blog.likes_count || 0}</span>
                   </div>
                   <h3 className="font-bold text-gray-900 text-lg">{blog.title}</h3>
                   <p className="text-sm text-gray-600 line-clamp-1 mt-1">{blog.excerpt}</p>
