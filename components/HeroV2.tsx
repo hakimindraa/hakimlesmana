@@ -18,8 +18,8 @@ interface Profile {
   github?: string;
 }
 
-const HeroV2 = () => {
-  const [profile, setProfile] = useState<Profile | null>(null);
+const HeroV2 = ({ initialProfile }: { initialProfile?: Profile | null }) => {
+  const [profile, setProfile] = useState<Profile | null>(initialProfile || null);
   const { language } = useLanguage();
 
   useEffect(() => {
@@ -31,8 +31,11 @@ const HeroV2 = () => {
         console.error("Failed to fetch profile:", err);
       }
     };
-    fetchProfile();
-  }, []);
+    // Fetch only if initialProfile is missing (fallback) or if you want to keep it fresh
+    if (!initialProfile) {
+      fetchProfile();
+    }
+  }, [initialProfile]);
 
   const name = profile?.name || "";
   const firstName = name.split(" ")[0];

@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import HeroV3 from "@/components/HeroV2";
+import { getDb } from "@/lib/db";
 
 const FeaturedWorks = dynamic(() => import("@/components/FeaturedWorks"));
 const WebDevFeatured = dynamic(() => import("@/components/WebDevFeatured"));
@@ -8,7 +9,17 @@ const AboutMe = dynamic(() => import("@/components/AboutMe"));
 const RecentBlog = dynamic(() => import("@/components/RecentBlog"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
-export default function Home() {
+export default async function Home() {
+  // SSR: Fetch profile directly from the database to eliminate LCP delay
+  const sql = getDb();
+  let profile = null;
+  try {
+    const result = await sql`SELECT * FROM profile LIMIT 1`;
+    profile = result[0] || null;
+  } catch (error) {
+    console.error("Failed to fetch profile for SSR:", error);
+  }
+
   return (
     <main className="min-h-screen">
       <Navbar />
@@ -21,7 +32,7 @@ export default function Home() {
         />
 
         <div className="relative z-10">
-          <HeroV3 />
+          <HeroV3 initialProfile={profile as any} />
         </div>
 
 
