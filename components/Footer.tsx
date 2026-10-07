@@ -17,6 +17,12 @@ import {
   Code,
   Send,
 } from "lucide-react";
+import { 
+  SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, 
+  SiFramer, SiNodedotjs, SiFigma, SiVercel
+} from "react-icons/si";
+import { FaCameraRetro, FaVideo, FaFilm } from "react-icons/fa";
+import { MdDesignServices } from "react-icons/md";
 import { useLanguage } from "@/components/LanguageContext";
 
 interface Profile {
@@ -102,48 +108,54 @@ const Footer = () => {
         }}
       />
 
-      {/* ──────────── CTA Banner ──────────── */}
-      <div className="relative border-b border-white/10 bg-[#111]">
-        <div className="container mx-auto px-6 py-12 md:py-24">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs uppercase tracking-[0.2em] text-white/60 mb-8">
-              <Camera className="w-3.5 h-3.5" />
-              <span>Available for Booking</span>
-              <Code className="w-3.5 h-3.5" />
-              <Video className="w-3.5 h-3.5" />
-            </div>
-
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6 leading-[1.2] md:leading-[1.1]">
-              {language === "en" ? "Let's Create" : "Mari Ciptakan"}
-              <span className="block bg-gradient-to-r from-white via-white/80 to-white/50 bg-clip-text text-transparent">
-                {language === "en" ? "Something Beautiful" : "Sesuatu yang Indah"}
-              </span>
+      {/* ──────────── Tech Stack Galaxy (Optimized) ──────────── */}
+      <div className="relative border-b border-white/10 bg-[#0a0a0a] overflow-hidden py-16 md:py-32">
+        {/* Optimized Background Glow (Using CSS radial-gradient instead of expensive backdrop-filter/blur) */}
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[800px] pointer-events-none" 
+          style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)' }}
+        />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/40 mb-3">
+              {language === "en" ? "Powered By" : "Senjata Pilihan"}
             </h2>
-
-            <p className="text-white/50 text-base md:text-lg max-w-lg mx-auto mb-10 leading-relaxed">
-              {language === "en"
-                ? "Got an interesting project or just want to say hi? I'm always open to discussing meaningful visual collaborations."
-                : "Punya proyek menarik atau ingin menyapa? Saya selalu terbuka untuk diskusi mengenai kolaborasi visual yang bermakna."}
+            <p className="text-xl md:text-4xl font-bold bg-gradient-to-r from-white via-white/90 to-white/50 bg-clip-text text-transparent">
+              Modern Tech Arsenal
             </p>
+          </div>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 md:gap-4">
-              <a
-                href={`mailto:${email}`}
-                className="group flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 md:px-8 md:py-4 bg-white text-black text-xs md:text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-white/90 transition-all duration-300"
-              >
-                <Mail className="w-4 h-4 group-hover:rotate-6 transition-transform" />
-                {language === "en" ? "Contact Me" : "Hubungi Saya"}
-              </a>
-              <a
-                href={`https://wa.me/${whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 md:px-8 md:py-4 border border-white/20 text-white text-xs md:text-sm font-semibold uppercase tracking-widest rounded-full hover:bg-white/10 transition-all duration-300"
-              >
-                <MessageCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                WhatsApp
-              </a>
-            </div>
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 max-w-4xl mx-auto">
+            {[
+              { id: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+              { id: "React", icon: SiReact, color: "#61DAFB" },
+              { id: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+              { id: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+              { id: "Framer Motion", icon: SiFramer, color: "#0055FF" },
+              { id: "Node.js", icon: SiNodedotjs, color: "#339933" },
+              { id: "Figma", icon: SiFigma, color: "#F24E1E" },
+              { id: "UI/UX Design", icon: MdDesignServices, color: "#FFD700" },
+              { id: "Photography", icon: FaCameraRetro, color: "#E1306C" },
+              { id: "Videography", icon: FaVideo, color: "#FF0000" },
+              { id: "Premiere Pro", icon: FaFilm, color: "#9999FF" },
+              { id: "Vercel", icon: SiVercel, color: "#ffffff" },
+            ].map((tech) => {
+              const Icon = tech.icon;
+              
+              return (
+                <div
+                  key={tech.id}
+                  title={tech.id}
+                  className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-xl md:rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer group"
+                >
+                  <Icon 
+                    className="w-6 h-6 md:w-8 md:h-8 opacity-75 group-hover:opacity-100 transition-transform duration-300 group-hover:scale-110" 
+                    style={{ color: tech.color }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
