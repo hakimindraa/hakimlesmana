@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { CloudUpload, X, Copy, CheckCircle2, Loader2, Image as ImageIcon } from "lucide-react";
 
 export default function ImgbbUploaderModal() {
@@ -78,7 +79,7 @@ export default function ImgbbUploaderModal() {
       </button>
 
       {/* Modal Overlay */}
-      {isOpen && (
+      {isOpen && typeof document !== 'undefined' && createPortal(
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
             {/* Header */}
@@ -177,7 +178,8 @@ export default function ImgbbUploaderModal() {
               )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
