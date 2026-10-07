@@ -173,24 +173,32 @@ export default function FullGalleryPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-2 space-y-2 md:gap-4 md:space-y-4"
+                className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 grid-flow-dense"
               >
-                {filteredPhotos.map((photo, index) => (
-                  <motion.div
-                    key={photo.id}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: index * 0.03 }}
-                    className="relative group cursor-pointer overflow-hidden bg-gray-200 break-inside-avoid rounded-lg"
-                    onClick={() => setSelectedImage(index)}
-                  >
-                    <Image
-                      src={photo.src}
-                      alt={photo.title}
-                      width={800}
-                      height={600}
-                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                {filteredPhotos.map((photo, index) => {
+                  // Pola Bento Grid (berulang setiap 7 item)
+                  const i = index % 7;
+                  let gridClass = "col-span-1 aspect-square"; // Default: Kotak kecil (1x1)
+                  if (i === 0 || i === 6) {
+                    gridClass = "col-span-2 aspect-[2/1]"; // Gambar lebar (2x1) di awal dan akhir pola
+                  }
+
+                  return (
+                    <motion.div
+                      key={photo.id}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.03 }}
+                      className={`relative group cursor-pointer overflow-hidden bg-gray-200 rounded-xl ${gridClass}`}
+                      onClick={() => setSelectedImage(index)}
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
                       <p className="text-white font-semibold text-sm md:text-base translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
                         {language === "en" && photo.title_en ? photo.title_en : photo.title}
@@ -200,7 +208,8 @@ export default function FullGalleryPage() {
                       </p>
                     </div>
                   </motion.div>
-                ))}
+                  );
+                })}
               </motion.div>
             </AnimatePresence>
 
