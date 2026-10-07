@@ -114,19 +114,19 @@ export default function MonitorPage() {
             {/* Progress Pipeline */}
             <div className="w-full max-w-2xl mx-auto relative mb-16">
               {/* Background Track */}
-              <div className="absolute top-1/2 left-0 w-full h-1 bg-white/10 -translate-y-1/2 rounded-full overflow-hidden">
+              <div className="absolute top-6 left-6 right-6 h-1 bg-white/10 -translate-y-1/2 rounded-full overflow-hidden z-0">
                 {/* Glowing Active Track */}
                 <div 
                   className={`h-full transition-all duration-1000 ease-out relative ${
                     isError ? 'bg-red-500 w-full shadow-[0_0_15px_rgba(239,68,68,0.8)]' : 
                     isReady ? 'bg-emerald-400 w-full shadow-[0_0_15px_rgba(52,211,153,0.8)]' : 
                     isBuilding ? 'bg-amber-400 w-1/2 shadow-[0_0_15px_rgba(251,191,36,0.8)]' : 
-                    'bg-blue-400 w-1/4 shadow-[0_0_15px_rgba(96,165,250,0.8)]'
+                    'bg-blue-400 w-0 shadow-[0_0_15px_rgba(96,165,250,0.8)]'
                   }`}
                 />
               </div>
 
-              <div className="relative flex justify-between">
+              <div className="relative flex justify-between z-10">
                 {/* Step 1: Queued */}
                 <div className="flex flex-col items-center gap-4">
                   <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center bg-[#0A0A0B] transition-all duration-500 relative ${
