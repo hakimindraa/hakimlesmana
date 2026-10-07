@@ -63,6 +63,7 @@ const Navbar = () => {
             width={100}
             height={44}
             className="h-6 md:h-11 w-auto"
+            style={{ width: "auto" }}
           />
         </a>
 

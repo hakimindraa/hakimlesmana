@@ -173,6 +173,7 @@ const Footer = () => {
                 width={120}
                 height={44}
                 className="h-7 md:h-11 w-auto"
+                style={{ width: "auto" }}
               />
             </a>
 

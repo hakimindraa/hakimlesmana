@@ -202,6 +202,7 @@ const Gallery = () => {
                 src={previewPhotos[selectedImage].src}
                 alt={previewPhotos[selectedImage].title}
                 fill
+                sizes="100vw"
                 className="object-contain"
               />
               <div className="absolute -bottom-12 left-0 right-0 text-center">

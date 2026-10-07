@@ -71,6 +71,7 @@ const Certificates = () => {
                       src={cert.image_url}
                       alt={cert.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover grayscale-0 md:grayscale hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
@@ -130,6 +131,7 @@ const Certificates = () => {
                 src={certificates[selectedCert].image_url}
                 alt={certificates[selectedCert].title}
                 fill
+                sizes="100vw"
                 className="object-contain"
               />
             </div>

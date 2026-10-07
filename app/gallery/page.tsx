@@ -268,6 +268,7 @@ export default function FullGalleryPage() {
                 src={filteredPhotos[selectedImage].src}
                 alt={filteredPhotos[selectedImage].title}
                 fill
+                sizes="100vw"
                 className="object-contain"
               />
               <div className="absolute -bottom-14 left-0 right-0 text-center">
