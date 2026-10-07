@@ -27,6 +27,16 @@ export async function generateMetadata(
     const description = blog.excerpt || 
       (blog.content ? blog.content.substring(0, 150) + "..." : "Artikel blog dari Hakim Lesmana");
 
+    // Prepare images array if custom image_url exists
+    const ogImages = blog.image_url ? [
+      {
+        url: blog.image_url,
+        width: 1200,
+        height: 630,
+        alt: title,
+      }
+    ] : [];
+
     return {
       title: `${title} | Hakim Lesmana`,
       description: description,
@@ -37,11 +47,13 @@ export async function generateMetadata(
         publishedTime: blog.created_at,
         modifiedTime: blog.updated_at,
         authors: ["Hakim Lesmana"],
+        ...(ogImages.length > 0 && { images: ogImages }),
       },
       twitter: {
         card: "summary_large_image",
         title: title,
         description: description,
+        ...(ogImages.length > 0 && { images: ogImages }),
       },
     };
   } catch (error) {
@@ -79,6 +91,7 @@ export default async function BlogLayout({
         }],
         "datePublished": blog.created_at,
         "dateModified": blog.updated_at || blog.created_at,
+        "image": blog.image_url ? [blog.image_url] : [],
       };
     }
   } catch (e) {
