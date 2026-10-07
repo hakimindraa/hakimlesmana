@@ -28,7 +28,10 @@ export async function GET() {
       return NextResponse.json({
         state: latest.state, // 'READY', 'ERROR', 'BUILDING', 'QUEUED'
         url: latest.url,
-        created: latest.createdAt
+        created: latest.createdAt,
+        commitMessage: latest.meta?.githubCommitMessage,
+        commitRef: latest.meta?.githubCommitRef,
+        commitAuthor: latest.meta?.githubCommitAuthorName
       });
     }
 
