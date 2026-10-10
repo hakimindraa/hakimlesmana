@@ -2,14 +2,15 @@ import { Metadata, ResolvingMetadata } from "next";
 import { getDb } from "@/lib/db";
 
 type Props = {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug: string }>
 };
 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { id } = await params;
+  const { slug } = await params;
+  const id = slug ? slug.split('-')[0] : "";
 
   try {
     const sql = getDb();
@@ -71,9 +72,10 @@ export default async function BlogLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
+  const { slug } = await params;
+  const id = slug ? slug.split('-')[0] : "";
   
   // Buat JSON-LD Data untuk SEO Blog Article
   let jsonLd = null;

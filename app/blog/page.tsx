@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Clock, TrendingUp, Instagram, Linkedin, Github } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
+import { generateBlogUrl } from "@/lib/utils";
 
 export default function BlogPage() {
   const { language } = useLanguage();
@@ -54,7 +55,7 @@ export default function BlogPage() {
             >
               {articles.slice(0,5).map(a => (
                 <span key={a.id} className="mx-4 hover:text-black dark:hover:text-white transition-colors">
-                  <Link href={`/blog/${a.id}`}>
+                  <Link href={`/blog/${generateBlogUrl(a.id, a.title)}`}>
                     {language === "en" ? a.title_en || a.title : a.title}
                   </Link>
                   <span className="mx-4 text-slate-300 dark:text-slate-700">•</span>
@@ -96,7 +97,7 @@ export default function BlogPage() {
                   initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
                   className="group relative flex flex-col"
                 >
-                  <Link href={`/blog/${headline.id}`} className="block overflow-hidden rounded-xl bg-slate-100 dark:bg-white/5 aspect-video mb-6 border border-black/10 dark:border-white/10 relative">
+                  <Link href={`/blog/${generateBlogUrl(headline.id, headline.title)}`} className="block overflow-hidden rounded-xl bg-slate-100 dark:bg-white/5 aspect-video mb-6 border border-black/10 dark:border-white/10 relative">
                     {headline.image_url ? (
                       <img src={headline.image_url} alt={headline.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                     ) : (
@@ -114,7 +115,7 @@ export default function BlogPage() {
                     <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5"/> {headline.read_time}</span>
                   </div>
                   
-                  <Link href={`/blog/${headline.id}`} className="block">
+                  <Link href={`/blog/${generateBlogUrl(headline.id, headline.title)}`} className="block">
                     <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-4 leading-tight group-hover:text-yellow-500 dark:group-hover:text-yellow-400 transition-colors font-sans">
                       {language === "en" ? headline.title_en || headline.title : headline.title}
                     </h2>
@@ -139,7 +140,7 @@ export default function BlogPage() {
                         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: idx * 0.1 }}
                         className="group flex flex-col"
                       >
-                        <Link href={`/blog/${article.id}`} className="block overflow-hidden rounded-lg bg-slate-100 dark:bg-white/5 aspect-[16/9] mb-4 border border-black/5 dark:border-white/5 relative">
+                        <Link href={`/blog/${generateBlogUrl(article.id, article.title)}`} className="block overflow-hidden rounded-lg bg-slate-100 dark:bg-white/5 aspect-[16/9] mb-4 border border-black/5 dark:border-white/5 relative">
                           {article.image_url ? (
                             <img src={article.image_url} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                           ) : (
@@ -152,7 +153,7 @@ export default function BlogPage() {
                           <span className="text-yellow-600 font-bold">{language === "en" ? article.category_en || article.category : article.category}</span>
                           <span>• {new Date(article.created_at).toLocaleDateString()}</span>
                         </div>
-                        <Link href={`/blog/${article.id}`}>
+                        <Link href={`/blog/${generateBlogUrl(article.id, article.title)}`}>
                           <h3 className="text-base md:text-xl font-bold text-slate-800 dark:text-slate-200 leading-snug group-hover:text-yellow-500 dark:group-hover:text-yellow-400 transition-colors font-sans line-clamp-3 mb-2">
                             {language === "en" ? article.title_en || article.title : article.title}
                           </h3>
@@ -178,7 +179,7 @@ export default function BlogPage() {
                   </h3>
                   <div className="flex flex-col gap-6 relative z-10">
                     {popular.map((article, idx) => (
-                      <Link href={`/blog/${article.id}`} key={article.id} className="group flex items-start gap-4">
+                      <Link href={`/blog/${generateBlogUrl(article.id, article.title)}`} key={article.id} className="group flex items-start gap-4">
                         <span className="text-4xl font-sans font-black text-slate-300 dark:text-slate-800 group-hover:text-yellow-500/30 transition-colors leading-none">
                           {idx + 1}
                         </span>

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
+import { generateBlogUrl } from "@/lib/utils";
 
 const RecentBlog = () => {
   const { language } = useLanguage();
@@ -69,7 +70,7 @@ const RecentBlog = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <Link href={`/blog/${article.id}`} className="group block h-full">
+              <Link href={`/blog/${generateBlogUrl(article.id, article.title)}`} className="group block h-full">
                 <article className="h-full p-8 md:p-10 rounded-3xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 hover:border-yellow-500/50 dark:hover:border-yellow-500/50 transition-colors duration-300 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">

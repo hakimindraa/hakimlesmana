@@ -7,11 +7,13 @@ import Link from "next/link";
 import { Clock, Share2, ThumbsUp, Bookmark, ChevronRight, Instagram, Linkedin, Github } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 import { useParams } from "next/navigation";
+import { generateBlogUrl } from "@/lib/utils";
 
 export default function ArticlePage() {
   const { language } = useLanguage();
   const params = useParams();
-  const articleId = params?.id as string;
+  const slugParam = params?.slug as string;
+  const articleId = slugParam ? slugParam.split('-')[0] : "";
   
   const [article, setArticle] = useState<any>(null);
   const [latestArticles, setLatestArticles] = useState<any[]>([]);
@@ -242,7 +244,7 @@ export default function ArticlePage() {
                 
                 <div className="flex flex-col gap-6">
                   {latestArticles.map((latest) => (
-                    <Link href={`/blog/${latest.id}`} key={latest.id} className="group flex gap-4">
+                    <Link href={`/blog/${generateBlogUrl(latest.id, latest.title)}`} key={latest.id} className="group flex gap-4">
                       {latest.image_url ? (
                         <div className="w-24 h-20 shrink-0 rounded-lg overflow-hidden border border-black/10 dark:border-white/10 bg-slate-100 dark:bg-slate-900 relative">
                           <img src={latest.image_url} alt="thumbnail" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />

@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { getDb } from "@/lib/db";
+import { generateBlogUrl } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.hakimlesmana.my.id";
@@ -39,10 +40,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const sql = getDb();
-    const blogs = await sql`SELECT id, updated_at FROM blogs WHERE is_published = true`;
+    const blogs = await sql`SELECT id, title, updated_at FROM blogs WHERE is_published = true`;
     
     const blogRoutes: MetadataRoute.Sitemap = blogs.map((blog: any) => ({
-      url: `${baseUrl}/blog/${blog.id}`,
+      url: `${baseUrl}/blog/${generateBlogUrl(blog.id, blog.title)}`,
       lastModified: blog.updated_at || new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
