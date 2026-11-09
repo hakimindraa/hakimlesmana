@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
+import fs from "fs";
+import path from "path";
 
 export async function GET() {
   try {
@@ -9,7 +11,12 @@ export async function GET() {
     if (profile.length === 0) {
       return NextResponse.json({ error: "Profile not found" }, { status: 404 });
     }
-    return NextResponse.json(profile[0]);
+    const data = profile[0];
+    const heroRel = "/uploads/profile/hero.jpg";
+    if (fs.existsSync(path.join(process.cwd(), "public", heroRel))) {
+      data.hero_image = heroRel;
+    }
+    return NextResponse.json(data);
   } catch (error) {
     console.error("Error fetching profile:", error);
     return NextResponse.json({ error: "Failed to fetch profile" }, { status: 500 });
@@ -59,6 +66,7 @@ export async function PUT(req: NextRequest) {
         instagram = ${data.instagram || ""},
         facebook = ${data.facebook || ""},
         linkedin = ${data.linkedin || ""},
+        github = ${data.github || ""},
         updated_at = NOW()
       WHERE id = 1
       RETURNING *

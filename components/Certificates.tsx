@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Award } from "lucide-react";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/ImageWithSkeleton";
 import { useLanguage } from "@/components/LanguageContext";
 
 interface Certificate {
@@ -67,7 +67,7 @@ const Certificates = () => {
               >
                 {cert.image_url && (
                   <div className="md:w-1/3 relative h-48 md:h-auto bg-gray-200 dark:bg-slate-800">
-                    <Image
+                    <ImageWithSkeleton
                       src={cert.image_url}
                       alt={cert.title}
                       fill
@@ -127,7 +127,7 @@ const Certificates = () => {
               <X size={32} />
             </button>
             <div className="relative w-full max-w-4xl aspect-[4/3]">
-              <Image
+              <ImageWithSkeleton
                 src={certificates[selectedCert].image_url}
                 alt={certificates[selectedCert].title}
                 fill

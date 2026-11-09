@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/ImageWithSkeleton";
 import { useLanguage } from "@/components/LanguageContext";
 
 interface Photo {
@@ -79,7 +79,7 @@ const FeaturedWorks = () => {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 className={`break-inside-avoid w-full relative overflow-hidden group rounded-xl shadow-sm md:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-md md:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-sm md:dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)] dark:hover:shadow-md md:dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)] border border-gray-200 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300 md:h-full ${gridClasses[index] || ""}`}
               >
-                <Image
+                <ImageWithSkeleton
                   src={item.src}
                   alt={item.title}
                   fill

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
+import fs from "fs";
+import path from "path";
 
 export async function GET(req: NextRequest) {
   try {
@@ -18,8 +20,20 @@ export async function GET(req: NextRequest) {
       // Public only sees published
       blogs = await sql`SELECT * FROM blogs WHERE is_published = true ORDER BY display_order ASC, created_at DESC`;
     }
+
+    const processed = blogs.map((b: any) => {
+      const exts = [".jpg", ".png", ".webp", ".jpeg"];
+      for (const ext of exts) {
+        const localRel = `/uploads/blogs/blog-${b.id}${ext}`;
+        const localAbs = path.join(process.cwd(), "public", localRel);
+        if (fs.existsSync(localAbs)) {
+          return { ...b, image_url: localRel };
+        }
+      }
+      return b;
+    });
     
-    return NextResponse.json(blogs);
+    return NextResponse.json(processed);
   } catch (error) {
     console.error("Error fetching blogs:", error);
     return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
+import fs from "fs";
+import path from "path";
 
 // GET all photos
 export async function GET(req: NextRequest) {
@@ -18,8 +20,20 @@ export async function GET(req: NextRequest) {
     } else {
       photos = await sql`SELECT * FROM photos WHERE is_published = true ORDER BY display_order ASC, created_at DESC`;
     }
+
+    const processedPhotos = photos.map((p: any) => {
+      const exts = [".jpg", ".png", ".webp", ".jpeg"];
+      for (const ext of exts) {
+        const localRel = `/uploads/photos/photo-${p.id}${ext}`;
+        const localAbs = path.join(process.cwd(), "public", localRel);
+        if (fs.existsSync(localAbs)) {
+          return { ...p, src: localRel };
+        }
+      }
+      return p;
+    });
     
-    return NextResponse.json(photos);
+    return NextResponse.json(processedPhotos);
   } catch (error) {
     console.error("Error fetching photos:", error);
     return NextResponse.json({ error: "Failed to fetch photos" }, { status: 500 });

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Instagram,
   Facebook,
@@ -15,7 +16,6 @@ import {
   Camera,
   Video,
   Code,
-  Send,
 } from "lucide-react";
 import { 
   SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, 
@@ -38,8 +38,6 @@ interface Profile {
 }
 
 const Footer = () => {
-  const [emailValue, setEmailValue] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
   const { language } = useLanguage();
 
@@ -85,15 +83,6 @@ const Footer = () => {
   ];
 
 
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (emailValue.trim()) {
-      setSubscribed(true);
-      setEmailValue("");
-      setTimeout(() => setSubscribed(false), 3000);
-    }
-  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -166,7 +155,7 @@ const Footer = () => {
 
           {/* Column 1 — Brand */}
           <div className="lg:col-span-1">
-            <a href="#home" className="inline-block mb-4 hover:opacity-70 transition-opacity">
+            <Link href="/" className="inline-block mb-4 hover:opacity-70 transition-opacity">
               <Image
                 src="/iconfooter.jpeg"
                 alt="Logo"
@@ -175,7 +164,7 @@ const Footer = () => {
                 className="h-7 md:h-11 w-auto"
                 style={{ width: "auto" }}
               />
-            </a>
+            </Link>
 
             <p className="text-white/40 text-sm md:text-base leading-relaxed mb-6 max-w-xs">
               {language === "en"
@@ -218,36 +207,6 @@ const Footer = () => {
                 </div>
               </li>
             </ul>
-
-            {/* Newsletter */}
-            <div>
-              <p className="text-white/50 text-xs md:text-sm uppercase tracking-widest mb-3">Newsletter</p>
-              <form onSubmit={handleSubscribe} className="relative">
-                <input
-                  type="email"
-                  value={emailValue}
-                  onChange={(e) => setEmailValue(e.target.value)}
-                  placeholder="Email address"
-                  className="w-full bg-white/5 border border-white/10 rounded-full px-4 md:px-5 py-2.5 md:py-3 pr-10 md:pr-12 text-sm md:text-base text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors"
-                />
-                <button
-                  type="submit"
-                  aria-label="Subscribe"
-                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-                >
-                  <Send className="w-3 h-3 md:w-3.5 md:h-3.5" />
-                </button>
-              </form>
-              {subscribed && (
-                <motion.p
-                  initial={{ opacity: 0, y: 4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-green-400 text-xs mt-2 ml-1"
-                >
-                  ✓ Subscribed successfully!
-                </motion.p>
-              )}
-            </div>
           </div>
         </div>
       </div>
@@ -261,15 +220,6 @@ const Footer = () => {
             </p>
 
             <div className="flex items-center gap-6 order-1 md:order-2">
-              <a href="#" className="text-white/30 text-xs hover:text-white/60 transition-colors">
-                Privacy Policy
-              </a>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <a href="#" className="text-white/30 text-xs hover:text-white/60 transition-colors">
-                Terms of Services
-              </a>
-              <span className="w-1 h-1 rounded-full bg-white/20 hidden sm:block" />
-
               <button
                 onClick={scrollToTop}
                 aria-label="Back to top"

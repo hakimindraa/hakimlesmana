@@ -1,12 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
+import fs from "fs";
+import path from "path";
 
 export async function GET() {
   try {
     const sql = getDb();
     const certs = await sql`SELECT * FROM certificates ORDER BY created_at DESC`;
-    return NextResponse.json(certs);
+
+    const processed = certs.map((c: any) => {
+      const exts = [".jpg", ".png", ".webp", ".jpeg"];
+      for (const ext of exts) {
+        const localRel = `/uploads/certificates/cert-${c.id}${ext}`;
+        const localAbs = path.join(process.cwd(), "public", localRel);
+        if (fs.existsSync(localAbs)) {
+          return { ...c, image_url: localRel };
+        }
+      }
+      return c;
+    });
+
+    return NextResponse.json(processed);
   } catch (error) {
     console.error("Error fetching certificates:", error);
     return NextResponse.json({ error: "Failed to fetch certificates" }, { status: 500 });

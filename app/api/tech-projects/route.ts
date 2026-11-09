@@ -1,12 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
+import fs from "fs";
+import path from "path";
 
 export async function GET() {
   try {
     const sql = getDb();
     const projects = await sql`SELECT * FROM tech_projects ORDER BY display_order ASC, id DESC`;
-    return NextResponse.json(projects);
+
+    const processed = projects.map((p: any) => {
+      const exts = [".jpg", ".png", ".webp", ".jpeg"];
+      for (const ext of exts) {
+        const localRel = `/uploads/tech-projects/tech-${p.id}${ext}`;
+        const localAbs = path.join(process.cwd(), "public", localRel);
+        if (fs.existsSync(localAbs)) {
+          return { ...p, image_url: localRel };
+        }
+      }
+      return p;
+    });
+
+    return NextResponse.json(processed);
   } catch (error) {
     console.error("Error fetching tech projects:", error);
     return NextResponse.json({ error: "Failed to fetch tech projects" }, { status: 500 });

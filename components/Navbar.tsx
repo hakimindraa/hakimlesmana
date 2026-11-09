@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Globe, Sun, Moon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/LanguageContext";
 import { useTheme } from "next-themes";
@@ -53,8 +54,8 @@ const Navbar = () => {
         )}
       >
         {/* Left: Logo (HAKIM) */}
-        <a
-          href="#home"
+        <Link
+          href="/"
           className="shrink-0 hover:opacity-70 transition-opacity"
         >
           <Image
@@ -64,8 +65,9 @@ const Navbar = () => {
             height={44}
             className="h-6 md:h-11 w-auto"
             style={{ width: "auto" }}
+            priority
           />
-        </a>
+        </Link>
 
 
         {/* Center: Desktop Menu */}
@@ -107,8 +109,8 @@ const Navbar = () => {
             {language}
           </button>
 
-          <a
-            href="mailto:hakim@example.com"
+          <Link
+            href="/#contact"
             className={cn(
               "hidden md:block px-8 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-full transition-colors shrink-0",
               isScrolled
@@ -117,7 +119,7 @@ const Navbar = () => {
             )}
           >
             {language === "en" ? "Contact" : "Kontak"}
-          </a>
+          </Link>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -149,12 +151,13 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <a
-                href="mailto:hakim@example.com"
+              <Link
+                href="/#contact"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center py-4 bg-black dark:bg-white text-white dark:text-black text-[11px] font-bold uppercase tracking-widest rounded-full"
               >
                 {language === "en" ? "Contact" : "Kontak"}
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

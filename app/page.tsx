@@ -16,6 +16,14 @@ export default async function Home() {
   try {
     const result = await sql`SELECT * FROM profile LIMIT 1`;
     profile = result[0] || null;
+    if (profile) {
+      const heroRel = "/uploads/profile/hero.jpg";
+      const fs = (await import("fs")).default;
+      const path = (await import("path")).default;
+      if (fs.existsSync(path.join(process.cwd(), "public", heroRel))) {
+        profile.hero_image = heroRel;
+      }
+    }
   } catch (error) {
     console.error("Failed to fetch profile for SSR:", error);
   }

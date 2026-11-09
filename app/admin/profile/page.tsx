@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Save, User, Mail, Phone, MapPin, Instagram, Facebook, Linkedin, ImageIcon } from "lucide-react";
+import { Save, User, Mail, Phone, MapPin, Instagram, Facebook, Linkedin, Github, ImageIcon } from "lucide-react";
 
 interface Profile {
   id: number;
@@ -39,6 +39,7 @@ interface Profile {
   instagram: string;
   facebook: string;
   linkedin: string;
+  github?: string;
 }
 
 export default function ProfileEditor() {
@@ -350,7 +351,15 @@ export default function ProfileEditor() {
           <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Social Media</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+          <div>
+            <label className={labelClass}><Github className="inline w-3 h-3 mr-1" />GitHub</label>
+            <input type="text" value={profile.github || ""} onChange={(e) => updateField("github", e.target.value)} placeholder="https://github.com/..." className={inputClass} />
+          </div>
+          <div>
+            <label className={labelClass}><Linkedin className="inline w-3 h-3 mr-1" />LinkedIn</label>
+            <input type="text" value={profile.linkedin} onChange={(e) => updateField("linkedin", e.target.value)} placeholder="https://linkedin.com/in/..." className={inputClass} />
+          </div>
           <div>
             <label className={labelClass}><Instagram className="inline w-3 h-3 mr-1" />Instagram</label>
             <input type="text" value={profile.instagram} onChange={(e) => updateField("instagram", e.target.value)} placeholder="https://instagram.com/..." className={inputClass} />
@@ -358,10 +367,6 @@ export default function ProfileEditor() {
           <div>
             <label className={labelClass}><Facebook className="inline w-3 h-3 mr-1" />Facebook</label>
             <input type="text" value={profile.facebook} onChange={(e) => updateField("facebook", e.target.value)} placeholder="https://facebook.com/..." className={inputClass} />
-          </div>
-          <div>
-            <label className={labelClass}><Linkedin className="inline w-3 h-3 mr-1" />LinkedIn</label>
-            <input type="text" value={profile.linkedin} onChange={(e) => updateField("linkedin", e.target.value)} placeholder="https://linkedin.com/in/..." className={inputClass} />
           </div>
         </div>
       </motion.div>

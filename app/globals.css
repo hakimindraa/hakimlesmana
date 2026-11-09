@@ -54,3 +54,10 @@ body {
     column-count: 4;
   }
 }
+
+/* ── Shimmer Animation for Image Skeleton ── */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

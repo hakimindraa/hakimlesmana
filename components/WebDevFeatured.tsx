@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/ImageWithSkeleton";
 import Link from "next/link";
 import { Code, ExternalLink, Github, ArrowRight, Layout, Palette, Sparkles } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
@@ -92,7 +92,7 @@ const WebDevFeatured = () => {
       >
         <div className="w-full aspect-[4/3] relative bg-gray-100 dark:bg-slate-800 overflow-hidden shrink-0">
           {proj.image_url ? (
-            <Image src={proj.image_url} alt={proj.title} fill className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <ImageWithSkeleton src={proj.image_url} alt={proj.title} fill className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center text-gray-400">No Image</div>
           )}

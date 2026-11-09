@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/ImageWithSkeleton";
 import Link from "next/link";
 import {
   X,
@@ -192,7 +192,7 @@ export default function FullGalleryPage() {
                       className={`relative group cursor-pointer overflow-hidden bg-gray-200 rounded-xl ${gridClass}`}
                       onClick={() => setSelectedImage(index)}
                     >
-                      <Image
+                      <ImageWithSkeleton
                         src={photo.src}
                         alt={photo.title}
                         fill
@@ -273,7 +273,7 @@ export default function FullGalleryPage() {
               className="relative w-full h-full max-w-5xl max-h-[80vh]"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              <ImageWithSkeleton
                 src={filteredPhotos[selectedImage].src}
                 alt={filteredPhotos[selectedImage].title}
                 fill
